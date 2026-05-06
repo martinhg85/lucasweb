@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import ClientGrid from "../components/ClientGrid.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+---
+
+<Layout
+  title="Clientes"
+  description="Empresas que confían en el asesoramiento profesional del Lic. Lucas Contreras en Seguridad e Higiene."
+>
+  <section class="bg-white py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle title="Clientes" subtitle="Confían en nosotros." />
+      <div class="mt-12 max-w-6xl mx-auto">
+        <ClientGrid />
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</Layout>

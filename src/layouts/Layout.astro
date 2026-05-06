@@ -1,0 +1,121 @@
+---
+import "../styles/global.css";
+import { site, services } from "../data/site";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = "Asesoramiento integral en Seguridad e Higiene en CABA. Habilitaciones, permisos de obra, mediciones ambientales y sistemas contra incendio. Lic. Lucas Contreras.",
+  ogImage = "/og-default.jpg",
+  canonical,
+  noindex = false,
+} = Astro.props;
+
+const fullTitle = title
+  ? `${title} | ${site.name} — Seguridad e Higiene`
+  : `${site.name} — ${site.tagline} en CABA`;
+
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.url).toString();
+
+// Schema.org structured data — LocalBusiness + ProfessionalService.
+// Esto es lo que le dice a Google "soy un profesional local que ofrece estos servicios".
+const schema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "ProfessionalService"],
+  name: site.professional.fullName,
+  description,
+  url: site.url,
+  email: site.contact.email,
+  telephone: site.contact.phoneDisplay,
+  image: new URL(site.professional.photo, site.url).toString(),
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.business.addressLocality,
+    addressRegion: site.business.addressRegion,
+    addressCountry: site.business.addressCountry,
+    ...(site.business.streetAddress && {
+      streetAddress: site.business.streetAddress,
+    }),
+    ...(site.business.postalCode && { postalCode: site.business.postalCode }),
+  },
+  areaServed: site.business.areaServed.map((a) => ({
+    "@type": "City",
+    name: a,
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios de Seguridad e Higiene",
+    itemListElement: services.map((s, i) => ({
+      "@type": "Offer",
+      position: i + 1,
+      itemOffered: {
+        "@type": "Service",
+        name: s.title,
+        description: s.short,
+      },
+    })),
+  },
+};
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={new URL(ogImage, site.url).toString()} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={site.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, site.url).toString()} />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(schema)}
+    />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppButton />
+  </body>
+</html>

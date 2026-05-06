@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Propuesta — Sitio web profesional</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 20mm 20mm 20mm;
+  }
+
+  :root {
+    --ink: #1a1f2b;
+    --muted: #5b6473;
+    --rule: #d9dde3;
+    --soft: #f4f6f9;
+    --accent: #c8410b;
+    --accent-soft: #fdf3ed;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .doc {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* --- Header --- */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 22px;
+  }
+
+  .header .brand {
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .header .doc-type {
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* --- Title block --- */
+  .title-block { margin-bottom: 24px; }
+
+  .title-block h1 {
+    font-size: 24pt;
+    line-height: 1.15;
+    margin: 0 0 12px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 18px;
+    font-size: 10pt;
+    color: var(--muted);
+  }
+
+  .meta dt {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .meta dd { margin: 0; }
+
+  /* --- Price card --- */
+  .price-card {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 18px 24px;
+    margin: 0 0 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    page-break-inside: avoid;
+  }
+
+  .price-card .label {
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .price-card .plan-name {
+    font-size: 16pt;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .price-card .amount {
+    font-size: 28pt;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .price-card .amount small {
+    display: block;
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  /* --- Sections --- */
+  section {
+    margin-bottom: 22px;
+  }
+
+  /* Avoid orphaned headings */
+  h2, h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    margin: 0 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+    letter-spacing: -0.005em;
+  }
+
+  h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    margin: 16px 0 6px;
+    color: var(--ink);
+  }
+
+  h3:first-of-type { margin-top: 0; }
+
+  ul {
+    margin: 0 0 6px;
+    padding-left: 18px;
+  }
+
+  ul li {
+    margin-bottom: 3px;
+  }
+
+  ul li::marker { color: var(--accent); }
+
+  p { margin: 0 0 8px; }
+
+  code {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 9.5pt;
+    background: var(--soft);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+
+  /* --- Highlight --- */
+  .highlight {
+    background: var(--soft);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 8px;
+    font-size: 10pt;
+  }
+
+  .highlight strong { color: var(--accent); }
+
+  /* --- Footer --- */
+  .footer {
+    margin-top: 36px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rule);
+    font-size: 9pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <header class="header">
+    <div class="brand">Propuesta de servicios</div>
+  </header>
+
+  <div class="title-block">
+    <h1>Sitio web profesional</h1>
+    <dl class="meta">
+      <dt>Para</dt><dd>Lic. Lucas Contreras — Asesor en Seguridad e Higiene</dd>
+      <dt>Fecha</dt><dd>5 de mayo de 2026</dd>
+      <dt>Validez</dt><dd>15 días desde la fecha de emisión</dd>
+    </dl>
+  </div>
+
+  <div class="price-card">
+    <div>
+      <div class="label">Inversión</div>
+      <div class="plan-name">Sitio web + 1 año de soporte</div>
+    </div>
+    <div class="amount">
+      USD 1.500
+      <small>Pago único</small>
+    </div>
+  </div>
+
+  <section>
+    <h2>Lo que incluye el sitio</h2>
+
+    <h3>Sitio web profesional de 10 páginas</h3>
+    <ul>
+      <li>Inicio con presentación visual de tu marca</li>
+      <li>Sobre vos: trayectoria y formación profesional</li>
+      <li>Servicios (página general + 3 páginas individuales: Habilitaciones, Mediciones Ambientales, Sistemas contra Incendio)</li>
+      <li>Capacitación</li>
+      <li>Clientes</li>
+      <li>Contacto</li>
+      <li>Página de error personalizada</li>
+    </ul>
+
+    <h3>Diseño y experiencia</h3>
+    <ul>
+      <li>Identidad visual industrial-profesional</li>
+      <li>Adaptado 100% a celular, tablet y computadora</li>
+      <li>Botón flotante de WhatsApp para contacto directo</li>
+      <li>Carga ultra rápida</li>
+    </ul>
+
+    <h3>Posicionamiento en Google (SEO técnico)</h3>
+    <ul>
+      <li>Sitio preparado para aparecer en búsquedas locales tipo «habilitaciones CABA», «mediciones ambientales CABA», «carga de extintores Buenos Aires»</li>
+      <li>Datos estructurados profesionales (Google reconoce que sos un profesional certificado y muestra info enriquecida en los resultados)</li>
+      <li>Vista previa cuidada cuando se comparte por WhatsApp, LinkedIn, etc.</li>
+      <li>Sitemap y robots.txt configurados</li>
+    </ul>
+
+    <h3>Puesta en marcha</h3>
+    <ul>
+      <li>Carga de tus textos, fotos y logos de clientes definitivos</li>
+      <li>Publicación en internet con dominio propio (<code>lucascontreras.com.ar</code> u otro)</li>
+      <li>Certificado de seguridad SSL incluido (candado verde)</li>
+      <li>1 ronda de revisiones y ajustes posteriores a la entrega</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Soporte incluido el primer año</h2>
+    <ul>
+      <li>Hosting y certificado SSL incluidos</li>
+      <li>Renovación y gestión técnica del dominio</li>
+      <li>Monitoreo de funcionamiento del sitio</li>
+      <li><strong>Hasta 6 cambios o actualizaciones por año</strong> (foto nueva, sumar un cliente al listado, ajustar texto de un servicio, actualizar bio, etc.)</li>
+      <li>Actualizaciones de seguridad y mantenimiento técnico</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Tiempo de entrega</h2>
+    <p class="highlight"><strong>7 a 15 días hábiles</strong> desde recibida la información completa.</p>
+  </section>
+
+  <section>
+    <h2>Lo que necesito de vos para arrancar</h2>
+    <p>Para cumplir el plazo de entrega y que el sitio salga al aire sin demoras, necesito de tu lado:</p>
+    <ul>
+      <li><strong>Textos finales</strong> de cada página (presentación, sobre vos, descripción de cada servicio, capacitaciones)</li>
+      <li><strong>Foto profesional</strong> en buena calidad (vertical y horizontal, si es posible)</li>
+      <li><strong>Logos de clientes</strong> que quieras mostrar en el sitio (idealmente en formato PNG o SVG, con fondo transparente)</li>
+      <li><strong>Logo propio</strong> en versión digital, si ya lo tenés definido</li>
+      <li><strong>Datos de contacto definitivos</strong>: mail, celular/WhatsApp, redes</li>
+      <li><strong>Detalle del posgrado</strong> y certificaciones que quieras destacar</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Aclaraciones importantes</h2>
+
+    <h3>Sobre el dominio <code>.com.ar</code></h3>
+    <p>El <strong>costo anual del dominio</strong> (~ARS 18.000/año en NIC.ar) <strong>no está incluido</strong> en el presupuesto. Se abona directo a NIC.ar a tu nombre, así queda registrado legalmente como tuyo. <strong>La gestión y configuración técnica</strong> del dominio (vinculación con el sitio, certificado SSL, renovación) <strong>sí está incluida</strong> durante el primer año de soporte.</p>
+
+    <h3>Cambios que no entran en el soporte</h3>
+    <p>Los <strong>6 cambios incluidos durante el año</strong> están pensados para mantenimiento normal del sitio (actualizar textos, cambiar fotos, sumar o quitar un cliente del listado). <strong>No están incluidos</strong>: páginas nuevas, rediseños mayores, ni funcionalidades nuevas (formularios complejos, integraciones, blog, etc.). Esos se cotizan aparte.</p>
+  </section>
+
+  <section>
+    <h2>Forma de pago</h2>
+
+    <h3>Pago del sitio</h3>
+    <ul>
+      <li><strong>50% al confirmar la propuesta</strong> — habilita el inicio del trabajo y la producción del diseño</li>
+      <li><strong>50% al publicar el sitio</strong> en tu dominio definitivo</li>
+    </ul>
+    <p>Acepto transferencia bancaria, MercadoPago o USD en efectivo.</p>
+
+    <h3>Renovación del soporte (a partir del año 2)</h3>
+    <p>Cumplido el primer año, podés <strong>renovar el soporte por USD 250/año</strong> (hosting, gestión del dominio, monitoreo, 6 cambios incluidos y actualizaciones de seguridad). La renovación es <strong>opcional</strong>: si decidís no renovar, el sitio te queda igual y podés migrar el hosting a otro proveedor en cualquier momento.</p>
+  </section>
+
+  <footer class="footer">
+    <span>Propuesta para Lic. Lucas Contreras</span>
+    <span>5 de mayo de 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>

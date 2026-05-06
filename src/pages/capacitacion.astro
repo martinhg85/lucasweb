@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+
+const items = [
+  "Actividades de capacitación específicas, in company",
+  "Coaching y capacitaciones personalizadas en puestos estratégicos",
+  "Implementación de planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
+  "Conferencias en instituciones nacionales e internacionales",
+];
+---
+
+<Layout
+  title="Capacitación"
+  description="Capacitaciones en Seguridad e Higiene Laboral: in company, planes anuales y conferencias. Lic. Lucas Contreras."
+>
+  <section class="bg-white py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle title="Capacitación" />
+
+      <div class="max-w-3xl mx-auto text-center space-y-6">
+        {items.map((t, i) => (
+          <>
+            <p class="text-ink-700 text-base sm:text-lg leading-relaxed">{t}</p>
+            {i < items.length - 1 && (
+              <div class="mx-auto h-px w-2/3 border-t border-dashed border-ink-300"></div>
+            )}
+          </>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA
+    title="¿NECESITÁS UNA CAPACITACIÓN A MEDIDA?"
+    subtitle="Diseñamos el plan según el rubro, los riesgos y la cantidad de personal."
+  />
+</Layout>

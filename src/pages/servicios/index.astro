@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import ServiceTabs from "../../components/ServiceTabs.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+import ContactCTA from "../../components/ContactCTA.astro";
+import { services } from "../../data/site";
+---
+
+<Layout
+  title="Servicios"
+  description="Servicios de Seguridad e Higiene en CABA: habilitaciones, permisos de obra, mediciones de iluminación y ruido, sistemas contra incendio. Lic. Lucas Contreras."
+>
+  <section class="py-20 sm:py-24 bg-white">
+    <SectionTitle
+      title="Servicios"
+      subtitle="Soluciones integrales en Seguridad e Higiene. Coordino los frentes técnicos y administrativos para cumplir la normativa sin frenar tu actividad."
+    />
+    <ServiceTabs />
+  </section>
+
+  <section class="bg-ink-50 py-20">
+    <div class="container-tight">
+      <SectionTitle title="Áreas de trabajo" />
+      <div class="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+        {services.map((s) => <ServiceCard service={s} />)}
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</Layout>

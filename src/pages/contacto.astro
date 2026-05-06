@@ -1,0 +1,59 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import { site, whatsappUrl, mailtoUrl } from "../data/site";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout
+  title="Contacto"
+  description="Contactá al Lic. Lucas Contreras para asesoramiento en Seguridad e Higiene. WhatsApp directo o mail."
+>
+  <section class="bg-white py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle
+        title="Contacto"
+        subtitle="Contame qué necesitás. Te respondo personalmente. Si es urgente, lo más rápido es WhatsApp; si querés mandar planos o documentación, usá el mail."
+      />
+
+      <div class="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto mt-8">
+        <a
+          href={whatsappUrl()}
+          target="_blank"
+          rel="noopener"
+          class="group p-8 border border-ink-200 bg-white hover:border-navy-700 transition-all text-center"
+        >
+          <div class="mx-auto mb-5 w-14 h-14 grid place-items-center text-navy-700">
+            <Icon name="ph:whatsapp-logo-bold" class="w-12 h-12" />
+          </div>
+          <h2 class="font-display text-base font-bold tracking-wider uppercase text-navy-700">WhatsApp</h2>
+          <div class="mx-auto my-3 h-px w-10 bg-orange-600"></div>
+          <p class="font-semibold text-ink-700">{site.contact.phoneDisplay}</p>
+          <p class="mt-4 text-xs font-bold tracking-widest uppercase text-orange-600 group-hover:underline">
+            Abrir conversación →
+          </p>
+        </a>
+
+        <a
+          href={mailtoUrl("Consulta desde la web")}
+          class="group p-8 border border-ink-200 bg-white hover:border-navy-700 transition-all text-center"
+        >
+          <div class="mx-auto mb-5 w-14 h-14 grid place-items-center text-navy-700">
+            <Icon name="ph:envelope-simple-bold" class="w-12 h-12" />
+          </div>
+          <h2 class="font-display text-base font-bold tracking-wider uppercase text-navy-700">Mail</h2>
+          <div class="mx-auto my-3 h-px w-10 bg-orange-600"></div>
+          <p class="font-semibold text-ink-700 break-all">{site.contact.email}</p>
+          <p class="mt-4 text-xs font-bold tracking-widest uppercase text-orange-600 group-hover:underline">
+            Escribir un mail →
+          </p>
+        </a>
+      </div>
+
+      <div class="mt-12 max-w-4xl mx-auto p-6 bg-ink-50 border border-ink-200 text-center">
+        <p class="text-xs font-bold tracking-widest uppercase text-orange-600 mb-2">Zona de trabajo</p>
+        <p class="text-ink-700">{site.coverage.extended}</p>
+      </div>
+    </div>
+  </section>
+</Layout>

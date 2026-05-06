@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@theme {
+  /* Navy estilo Flowork */
+  --color-navy-50: #f0f2fa;
+  --color-navy-100: #d9deef;
+  --color-navy-200: #b3bce0;
+  --color-navy-500: #2a3a8c;
+  --color-navy-600: #21307a;
+  --color-navy-700: #1b2868;
+  --color-navy-800: #15205a;
+  --color-navy-900: #0f1849;
+
+  /* Naranja accent */
+  --color-orange-50: #fef3ec;
+  --color-orange-100: #fde0cb;
+  --color-orange-500: #ee6a26;
+  --color-orange-600: #e8602c;
+  --color-orange-700: #c94e1d;
+
+  /* Grises sobrios */
+  --color-ink-900: #1a1a1a;
+  --color-ink-700: #444444;
+  --color-ink-500: #6b6b6b;
+  --color-ink-400: #9a9a9a;
+  --color-ink-300: #c8c8c8;
+  --color-ink-200: #e3e3e3;
+  --color-ink-100: #f1f1f1;
+  --color-ink-50: #f7f7f7;
+
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink-700);
+  background: white;
+}
+
+@layer utilities {
+  .container-tight {
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* Patrón de líneas diagonales sutiles, estilo Flowork */
+  .pattern-diagonal {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.04) 0,
+      rgba(0, 0, 0, 0.04) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  }
+
+  .pattern-diagonal-light {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  }
+
+  /* Header fijo con efecto shrink-on-scroll estilo Flowork.
+     Usa position:fixed + spacer para evitar reflow del contenido al cambiar de estado. */
+  .site-header {
+    transition:
+      box-shadow 0.35s ease,
+      background-color 0.35s ease,
+      border-color 0.35s ease;
+  }
+  .header-spacer {
+    /* Alto inicial aproximado del header. JS lo ajusta exacto al cargar y en resize. */
+    height: 6rem;
+  }
+  @media (min-width: 768px) {
+    .header-spacer {
+      height: 7rem;
+    }
+  }
+  .site-header.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 6px 24px -10px rgba(15, 24, 73, 0.18);
+    border-bottom-color: transparent;
+  }
+
+  .header-inner {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    transition: padding 0.35s ease;
+  }
+  @media (min-width: 768px) {
+    .header-inner {
+      padding-top: 1.75rem;
+      padding-bottom: 1.75rem;
+    }
+  }
+  .site-header.is-scrolled .header-inner {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .header-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+    transition: transform 0.35s ease, width 0.35s ease, height 0.35s ease;
+  }
+  .site-header.is-scrolled .header-logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .header-brand {
+    font-size: 1.5rem;
+    transition: font-size 0.35s ease;
+  }
+  @media (min-width: 640px) {
+    .header-brand {
+      font-size: 1.875rem;
+    }
+  }
+  .site-header.is-scrolled .header-brand {
+    font-size: 1.25rem;
+  }
+
+  .header-tagline {
+    margin-top: 0.375rem;
+    font-size: 11px;
+    max-height: 1.2rem;
+    opacity: 1;
+    overflow: hidden;
+    transition:
+      opacity 0.25s ease,
+      max-height 0.35s ease,
+      margin-top 0.35s ease;
+  }
+  @media (min-width: 640px) {
+    .header-tagline {
+      font-size: 0.75rem;
+    }
+  }
+  .site-header.is-scrolled .header-tagline {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+  }
+
+  .header-link {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    transition: padding 0.35s ease, color 0.2s ease, background-color 0.2s ease;
+  }
+  .site-header.is-scrolled .header-link {
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+  }
+
+  /* Heading section style — MAYÚSCULAS centrado con regla horizontal */
+  .section-heading {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .section-heading h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 400;
+    color: var(--color-navy-700);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-heading::after {
+    content: "";
+    display: block;
+    width: 100%;
+    max-width: 36rem;
+    height: 1px;
+    background: var(--color-ink-300);
+    margin: 0 auto;
+  }
+}

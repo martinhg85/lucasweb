@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import ServiceTabs from "../components/ServiceTabs.astro";
+import ClientGrid from "../components/ClientGrid.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import { Icon } from "astro-icon/components";
+
+const pillars = [
+  {
+    icon: "ph:handshake-bold",
+    title: "Servicio adaptado",
+    text: "Me adapto a las necesidades y estructura de cada cliente, brindando un servicio de excelencia que demuestro con acciones concretas.",
+  },
+  {
+    icon: "ph:certificate-bold",
+    title: "Profesional matriculado",
+    text: "Licenciado en Seguridad e Higiene con posgrado en el área. Conocimiento integral de la normativa vigente y los procesos de fiscalización.",
+  },
+  {
+    icon: "ph:gauge-bold",
+    title: "Especialización real",
+    text: "Mi diferencial son las mediciones ambientales: iluminación y ruido, con instrumental propio calibrado y protocolos firmados.",
+  },
+];
+---
+
+<Layout
+  title="Asesoramiento en Seguridad e Higiene en CABA"
+  description="Asesoramiento integral en Seguridad e Higiene en CABA y GBA. Habilitaciones, permisos de obra, mediciones ambientales y sistemas contra incendio. Lic. Lucas Contreras."
+>
+  <Hero
+    eyebrow="Lic. en Seguridad e Higiene"
+    title="Asesoramiento integral en seguridad e higiene"
+    subtitle="Acompaño a empresas, comercios y obras en CABA con el cumplimiento normativo de punta a punta."
+    bottomLabel="SERVICIOS"
+  />
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="bg-ink-50 py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle
+        title="Nosotros"
+        subtitle='Brindo soluciones en todas las áreas relacionadas a "SEGURIDAD E HIGIENE LABORAL". Me especializo en la detección y control de enfermedades profesionales y en la evaluación de los contaminantes vinculados — convencido de que una buena gestión en prevención de riesgos contribuye a la formación de una compañía sólida.'
+      />
+
+      <div class="grid gap-10 md:grid-cols-3 max-w-5xl mx-auto mt-4">
+        {pillars.map((b) => (
+          <div class="text-center">
+            <div class="mx-auto mb-6 w-20 h-20 text-navy-700 relative grid place-items-center">
+              <Icon name={b.icon} class="w-16 h-16" />
+              <span class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-orange-600/15 -z-10"></span>
+            </div>
+            <h3 class="font-display text-base font-bold tracking-wider uppercase text-navy-700 mb-3">
+              {b.title}
+            </h3>
+            <p class="text-ink-500 text-sm leading-relaxed">{b.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="bg-white py-20 sm:py-24">
+    <SectionTitle title="Servicios" />
+    <ServiceTabs />
+  </section>
+
+  <!-- CAPACITACIÓN -->
+  <section id="capacitacion" class="bg-ink-50 py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle title="Capacitación" />
+
+      <div class="max-w-3xl mx-auto text-center space-y-6">
+        {[
+          "Actividades de capacitación específicas, in company",
+          "Coaching y capacitaciones personalizadas en puestos estratégicos",
+          "Implementación de planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
+          "Conferencias en instituciones nacionales e internacionales",
+        ].map((t, i, arr) => (
+          <>
+            <p class="text-ink-700 text-base sm:text-lg">{t}</p>
+            {i < arr.length - 1 && (
+              <div class="mx-auto h-px w-2/3 border-t border-dashed border-ink-300"></div>
+            )}
+          </>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section id="clientes" class="bg-white py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle
+        title="Clientes"
+        subtitle="Confían en nosotros."
+        withRule={false}
+      />
+      <div class="mt-10">
+        <ClientGrid />
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</Layout>

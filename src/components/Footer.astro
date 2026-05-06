@@ -1,0 +1,55 @@
+---
+import { site, services, mailtoUrl, whatsappUrl } from "../data/site";
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy-800 text-white relative overflow-hidden">
+  <div class="absolute inset-0 pattern-diagonal-light opacity-30"></div>
+  <div class="container-tight py-14 grid gap-10 md:grid-cols-4 relative">
+    <div class="md:col-span-2">
+      <p class="font-display text-2xl font-extrabold tracking-wider uppercase text-white">
+        {site.name}
+      </p>
+      <p class="text-xs font-semibold tracking-[0.18em] uppercase text-orange-500 mt-1">
+        {site.brandTagline}
+      </p>
+      <p class="mt-5 text-white/70 text-sm max-w-sm leading-relaxed">
+        {site.tagline}. Atención en {site.coverage.extended}.
+      </p>
+      <p class="mt-3 text-white/50 text-xs">{site.professional.matricula}</p>
+    </div>
+
+    <div>
+      <h4 class="font-bold text-xs tracking-widest uppercase text-white mb-4">Servicios</h4>
+      <ul class="space-y-2 text-sm text-white/70">
+        {services.map((s) => (
+          <li><a href={`/servicios/${s.slug}`} class="hover:text-orange-500 transition-colors">{s.title}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-bold text-xs tracking-widest uppercase text-white mb-4">Contacto</h4>
+      <ul class="space-y-2 text-sm text-white/70">
+        <li>
+          <a href={whatsappUrl()} target="_blank" rel="noopener" class="hover:text-orange-500 transition-colors">
+            {site.contact.phoneDisplay}
+          </a>
+        </li>
+        <li>
+          <a href={mailtoUrl()} class="hover:text-orange-500 transition-colors break-all">
+            {site.contact.email}
+          </a>
+        </li>
+        <li class="text-white/50">{site.coverage.extended}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10 relative">
+    <div class="container-tight py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/40">
+      <p>© {year} {site.professional.fullName}. Todos los derechos reservados.</p>
+      <p>Buenos Aires, Argentina.</p>
+    </div>
+  </div>
+</footer>

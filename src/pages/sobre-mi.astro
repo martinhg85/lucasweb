@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import { site } from "../data/site";
+---
+
+<Layout
+  title="Nosotros"
+  description="Lic. Lucas Contreras: Licenciado en Seguridad e Higiene con experiencia en habilitaciones, mediciones ambientales y sistemas contra incendio en CABA."
+>
+  <section class="bg-white py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle
+        title="Nosotros"
+        subtitle='Brindo soluciones en todas las áreas relacionadas a "SEGURIDAD E HIGIENE LABORAL". Me especializo en la detección y control de enfermedades profesionales y en la evaluación de los contaminantes vinculados.'
+      />
+
+      <div class="grid gap-12 md:grid-cols-[1fr_1.4fr] items-start max-w-5xl mx-auto mt-6">
+        <div class="order-2 md:order-1">
+          <div class="aspect-[4/5] bg-ink-200 relative overflow-hidden border-l-4 border-orange-600">
+            <div class="w-full h-full grid place-items-center text-ink-400 text-sm font-medium p-8 text-center pattern-diagonal">
+              {/* TODO: foto profesional en /public/lucas.jpg, ratio 4:5 */}
+              Foto profesional de Lucas
+            </div>
+          </div>
+        </div>
+
+        <div class="order-1 md:order-2">
+          <p class="text-xs font-bold tracking-[0.22em] uppercase text-orange-600 mb-3">
+            {site.professional.title}
+          </p>
+          <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-wide uppercase text-navy-700 leading-tight">
+            {site.professional.fullName}
+          </h1>
+          <p class="mt-2 text-ink-500 text-base">
+            {/* TODO: completar posgrado real */}
+            {site.professional.postgrado}
+          </p>
+
+          <div class="mt-8 space-y-4 text-ink-700 leading-relaxed">
+            {/* TODO: reemplazar con bio real */}
+            <p>
+              Soy licenciado en Seguridad e Higiene con base en CABA. Acompaño a comercios, oficinas, viviendas y obras civiles en todo lo que hace al cumplimiento normativo: habilitaciones, permisos de obra, mediciones ambientales y sistemas contra incendio.
+            </p>
+            <p>
+              Mi enfoque es práctico: entender el caso, simplificar el camino administrativo y entregar soluciones concretas. Cada cliente trabaja directamente conmigo, sin intermediarios.
+            </p>
+            <p>
+              Cuento con instrumental propio calibrado para mediciones de iluminación y ruido —la base de los protocolos exigidos por la SRT— y red de profesionales aliados para las obras de instalación contra incendio.
+            </p>
+          </div>
+
+          <div class="mt-8 grid gap-3 sm:grid-cols-2">
+            <div class="border border-ink-200 p-4 bg-ink-50">
+              <p class="text-[10px] font-bold tracking-widest uppercase text-orange-600 mb-1">Matrícula</p>
+              <p class="font-semibold text-navy-700">{site.professional.matricula}</p>
+            </div>
+            <div class="border border-ink-200 p-4 bg-ink-50">
+              <p class="text-[10px] font-bold tracking-widest uppercase text-orange-600 mb-1">Zona</p>
+              <p class="font-semibold text-navy-700">{site.coverage.extended}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA
+    title="¿HABLAMOS DE TU OBRA O LOCAL?"
+    subtitle="Coordinemos una primera visita o videollamada sin cargo."
+  />
+</Layout>

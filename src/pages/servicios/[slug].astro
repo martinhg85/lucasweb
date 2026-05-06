@@ -1,0 +1,79 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import ServiceTabs from "../../components/ServiceTabs.astro";
+import ContactCTA from "../../components/ContactCTA.astro";
+import { services, whatsappUrl } from "../../data/site";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: service.title,
+  description: service.description,
+  provider: {
+    "@type": "ProfessionalService",
+    name: "Lic. Lucas Contreras",
+  },
+  areaServed: ["Ciudad Autónoma de Buenos Aires", "Gran Buenos Aires"],
+};
+---
+
+<Layout
+  title={service.title}
+  description={`${service.short} Servicio profesional en CABA y GBA por el Lic. Lucas Contreras.`}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="default" />
+
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="container-tight">
+      <nav class="text-xs text-ink-400 mb-8 tracking-wider uppercase">
+        <a href="/" class="hover:text-orange-600">Inicio</a>
+        <span class="mx-2">/</span>
+        <a href="/servicios" class="hover:text-orange-600">Servicios</a>
+        <span class="mx-2">/</span>
+        <span class="text-navy-700">{service.title}</span>
+      </nav>
+    </div>
+
+    <SectionTitle title={service.title} subtitle={service.description} />
+    <ServiceTabs active={service.slug} />
+  </section>
+
+  <section class="bg-ink-50 py-16 sm:py-20">
+    <div class="container-tight max-w-4xl">
+      <h3 class="font-display text-xl sm:text-2xl font-bold tracking-wide uppercase text-navy-700 text-center mb-8">
+        Qué incluye
+      </h3>
+      <ul class="grid gap-3 sm:grid-cols-2 max-w-3xl mx-auto">
+        {service.items.map((it) => (
+          <li class="flex items-start gap-3 p-4 bg-white border border-ink-200">
+            <span class="mt-1 inline-block w-2 h-2 bg-orange-600 flex-shrink-0"></span>
+            <span class="text-ink-700">{it}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="text-center mt-12">
+        <a
+          href={whatsappUrl(`Hola Lucas, te consulto por: ${service.title}`)}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 px-8 py-3 bg-orange-600 text-white font-bold text-sm tracking-wider uppercase hover:bg-orange-700 transition-colors"
+        >
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <ContactCTA />
+</Layout>

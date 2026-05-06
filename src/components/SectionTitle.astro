@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  withRule?: boolean;
+}
+
+const { title, subtitle, withRule = true } = Astro.props;
+---
+
+<div class="text-center mb-10 sm:mb-14">
+  <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-wider uppercase text-navy-700 leading-tight">
+    {title}
+  </h2>
+  {subtitle && (
+    <p class="mt-6 text-ink-500 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
+      {subtitle}
+    </p>
+  )}
+  {withRule && (
+    <div class="mx-auto mt-8 h-px w-full max-w-xl bg-ink-300"></div>
+  )}
+</div>
