@@ -4,10 +4,10 @@ import SectionTitle from "../components/SectionTitle.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 
 const items = [
-  "Actividades de capacitación específicas, in company",
-  "Coaching y capacitaciones personalizadas en puestos estratégicos",
-  "Implementación de planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
-  "Conferencias en instituciones nacionales e internacionales",
+  "Capacitaciones in company sobre los riesgos específicos de tu actividad",
+  "Coaching y formación personalizada en puestos estratégicos",
+  "Planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
+  "Conferencias y talleres en instituciones nacionales e internacionales",
 ];
 ---
 
@@ -17,7 +17,10 @@ const items = [
 >
   <section class="bg-white py-20 sm:py-24">
     <div class="container-tight">
-      <SectionTitle title="Capacitación" />
+      <SectionTitle
+        title="Capacitación"
+        subtitle="Diseño y dicto capacitaciones a medida del rubro y los riesgos reales del puesto. Sin clases enlatadas."
+      />
 
       <div class="max-w-3xl mx-auto text-center space-y-6">
         {items.map((t, i) => (
@@ -34,6 +37,6 @@ const items = [
 
   <ContactCTA
     title="¿NECESITÁS UNA CAPACITACIÓN A MEDIDA?"
-    subtitle="Diseñamos el plan según el rubro, los riesgos y la cantidad de personal."
+    subtitle="Armo el plan según el rubro, los riesgos y la cantidad de personal. Te respondo personalmente."
   />
 </Layout>

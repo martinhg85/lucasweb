@@ -62,6 +62,22 @@ const serviceSchema = {
         ))}
       </ul>
 
+      {service.regulations && service.regulations.length > 0 && (
+        <div class="max-w-3xl mx-auto mt-10 p-6 bg-white border border-ink-200">
+          <p class="text-[10px] font-bold tracking-[0.22em] uppercase text-orange-600 mb-3">
+            Normativa de referencia
+          </p>
+          <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink-700">
+            {service.regulations.map((r) => (
+              <li class="flex items-center gap-2">
+                <span class="inline-block w-1.5 h-1.5 bg-navy-700" aria-hidden="true"></span>
+                <span class="font-medium">{r}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div class="text-center mt-12">
         <a
           href={whatsappUrl(`Hola Lucas, te consulto por: ${service.title}`)}

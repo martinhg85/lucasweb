@@ -5,44 +5,51 @@ import SectionTitle from "../components/SectionTitle.astro";
 import ServiceTabs from "../components/ServiceTabs.astro";
 import ClientGrid from "../components/ClientGrid.astro";
 import ContactCTA from "../components/ContactCTA.astro";
+import HowIWork from "../components/HowIWork.astro";
+import RegulatoryStrip from "../components/RegulatoryStrip.astro";
+import Stats from "../components/Stats.astro";
 import { Icon } from "astro-icon/components";
 
 const pillars = [
   {
-    icon: "ph:handshake-bold",
-    title: "Servicio adaptado",
-    text: "Me adapto a las necesidades y estructura de cada cliente, brindando un servicio de excelencia que demuestro con acciones concretas.",
+    icon: "ph:user-focus-bold",
+    title: "Te atiendo yo",
+    text: "No vas a hablar con un comercial ni con un junior. Yo hago el diagnóstico, voy a la visita, firmo el protocolo y te explico qué hacer con cada hallazgo.",
   },
   {
     icon: "ph:certificate-bold",
     title: "Profesional matriculado",
-    text: "Licenciado en Seguridad e Higiene con posgrado en el área. Conocimiento integral de la normativa vigente y los procesos de fiscalización.",
+    text: "Licenciado en Seguridad e Higiene con posgrado en el área. Mi nombre y matrícula van en cada protocolo y en cada presentación ante el GCBA o la SRT.",
   },
   {
     icon: "ph:gauge-bold",
-    title: "Especialización real",
-    text: "Mi diferencial son las mediciones ambientales: iluminación y ruido, con instrumental propio calibrado y protocolos firmados.",
+    title: "Mediciones interpretadas",
+    text: "Trabajo con instrumental propio calibrado. No te entrego solo el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir antes de la inspección.",
   },
 ];
 ---
 
 <Layout
   title="Asesoramiento en Seguridad e Higiene en CABA"
-  description="Asesoramiento integral en Seguridad e Higiene en CABA y GBA. Habilitaciones, permisos de obra, mediciones ambientales y sistemas contra incendio. Lic. Lucas Contreras."
+  description="Asesoramiento integral en Seguridad e Higiene en CABA y GBA. Habilitaciones bajo Ley 5.920, mediciones SRT 84/12 y 85/12, sistemas contra incendio. Lic. Lucas Contreras."
 >
   <Hero
     eyebrow="Lic. en Seguridad e Higiene"
-    title="Asesoramiento integral en seguridad e higiene"
-    subtitle="Acompaño a empresas, comercios y obras en CABA con el cumplimiento normativo de punta a punta."
+    title="Habilitaciones, mediciones e incendios en CABA"
+    subtitle="Te acompaño en el cumplimiento normativo de punta a punta — desde el primer relevamiento hasta la firma del protocolo. Atención personal en CABA y GBA."
     bottomLabel="SERVICIOS"
   />
 
+  <RegulatoryStrip />
+
+  <Stats />
+
   <!-- NOSOTROS -->
-  <section id="nosotros" class="bg-ink-50 py-20 sm:py-24">
+  <section id="nosotros" class="bg-white py-20 sm:py-24">
     <div class="container-tight">
       <SectionTitle
-        title="Nosotros"
-        subtitle='Brindo soluciones en todas las áreas relacionadas a "SEGURIDAD E HIGIENE LABORAL". Me especializo en la detección y control de enfermedades profesionales y en la evaluación de los contaminantes vinculados — convencido de que una buena gestión en prevención de riesgos contribuye a la formación de una compañía sólida.'
+        title="Por qué trabajar conmigo"
+        subtitle="Soy un profesional, no una consultora. Eso significa trato directo, decisiones rápidas y un solo responsable de punta a punta."
       />
 
       <div class="grid gap-10 md:grid-cols-3 max-w-5xl mx-auto mt-4">
@@ -63,22 +70,31 @@ const pillars = [
   </section>
 
   <!-- SERVICIOS -->
-  <section id="servicios" class="bg-white py-20 sm:py-24">
-    <SectionTitle title="Servicios" />
+  <section id="servicios" class="bg-ink-50 py-20 sm:py-24">
+    <SectionTitle
+      title="Servicios"
+      subtitle="Tres áreas de trabajo, una sola firma. Elegí el área para ver el desglose y la normativa de referencia."
+    />
     <ServiceTabs />
   </section>
+
+  <!-- CÓMO TRABAJO -->
+  <HowIWork />
 
   <!-- CAPACITACIÓN -->
   <section id="capacitacion" class="bg-ink-50 py-20 sm:py-24">
     <div class="container-tight">
-      <SectionTitle title="Capacitación" />
+      <SectionTitle
+        title="Capacitación"
+        subtitle="Diseño y dicto capacitaciones a medida del rubro y los riesgos reales del puesto. Sin clases enlatadas."
+      />
 
       <div class="max-w-3xl mx-auto text-center space-y-6">
         {[
-          "Actividades de capacitación específicas, in company",
-          "Coaching y capacitaciones personalizadas en puestos estratégicos",
-          "Implementación de planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
-          "Conferencias en instituciones nacionales e internacionales",
+          "Capacitaciones in company sobre los riesgos específicos de tu actividad",
+          "Coaching y formación personalizada en puestos estratégicos",
+          "Planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
+          "Conferencias y talleres en instituciones nacionales e internacionales",
         ].map((t, i, arr) => (
           <>
             <p class="text-ink-700 text-base sm:text-lg">{t}</p>
@@ -96,7 +112,7 @@ const pillars = [
     <div class="container-tight">
       <SectionTitle
         title="Clientes"
-        subtitle="Confían en nosotros."
+        subtitle="Comercios, oficinas, gastronomía y obras civiles que confiaron en este servicio."
         withRule={false}
       />
       <div class="mt-10">

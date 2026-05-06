@@ -20,6 +20,18 @@ const href = `/servicios/${service.slug}`;
   <p class="text-ink-500 text-sm leading-relaxed">
     {service.short}
   </p>
+
+  {service.regulations && service.regulations.length > 0 && (
+    <ul class="mt-5 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-ink-400">
+      {service.regulations.slice(0, 3).map((r) => (
+        <li class="flex items-center gap-1.5">
+          <span class="inline-block w-1 h-1 bg-navy-700" aria-hidden="true"></span>
+          <span class="font-medium tracking-wide">{r}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+
   <p class="mt-6 inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-orange-600 group-hover:gap-3 transition-all">
     Ver más
     <span aria-hidden="true">→</span>

@@ -50,6 +50,26 @@ export const site = {
     linkedin: "",
     instagram: "",
   },
+
+  // Marco normativo de referencia. Se muestra en la home (sub-hero) y en cada servicio.
+  // Capturar estas keywords es una oportunidad de SEO local que la competencia no aprovecha.
+  regulations: [
+    "Ley Nacional 19.587 — Higiene y Seguridad en el Trabajo",
+    "Decreto 351/79 — Reglamentación general",
+    "Ley 5.920 CABA — Sistema de Autoprotección",
+    "Resolución SRT 84/12 — Iluminación",
+    "Resolución SRT 85/12 — Ruido",
+    "Resolución SRT 886/15 — Ergonomía",
+  ],
+
+  // Números para reforzar autoridad. TODO: confirmar con Lucas valores reales,
+  // mientras tanto van como placeholders entre corchetes para que sean fáciles de detectar.
+  stats: [
+    { value: "[+X] años", label: "ejerciendo en CABA" },
+    { value: "[+X]", label: "habilitaciones gestionadas" },
+    { value: "[+X]", label: "mediciones realizadas" },
+    { value: "100%", label: "atendido personalmente" },
+  ],
 } as const;
 
 export type ServiceGroup = {
@@ -58,6 +78,8 @@ export type ServiceGroup = {
   short: string;
   description: string;
   items: string[];
+  // Normativa específica del servicio. Aparece en la card y en la página de detalle.
+  regulations?: string[];
   highlight?: boolean;
 };
 
@@ -66,30 +88,49 @@ export const services: ServiceGroup[] = [
     slug: "habilitaciones",
     title: "Habilitaciones y obra en CABA",
     short:
-      "Gestión integral de habilitaciones, permisos de obra, excavación y reformas.",
+      "Gestión integral de habilitaciones, permisos de obra, excavación y reformas ante el GCBA.",
     description:
-      "Acompañamos cada etapa del proceso ante el Gobierno de la Ciudad: desde el diagnóstico inicial hasta la obtención del certificado final. Trabajamos con comercios, oficinas, viviendas y obras civiles.",
+      "Te acompaño en cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico inicial hasta el certificado final. Trabajo con comercios, oficinas, locales gastronómicos, viviendas y obras civiles, bajo el marco de la Ley 5.920 de Sistema de Autoprotección y la normativa de habilitaciones del GCBA.",
     items: [
-      "Habilitaciones comerciales",
-      "Permisos de obra y ejecución",
-      "Permisos de excavación",
-      "Reformas de viviendas y permisos de construcción",
+      "Habilitación comercial (rubros simples y con condiciones)",
+      "Permiso de obra y aviso de obra",
+      "Permiso de demolición y excavación",
+      "Reformas y permisos de construcción",
+      "Plan de Autoprotección (Ley 5.920 CABA)",
+      "Plano de incendio para AGC y Bomberos",
+      "Plan de evacuación y señalización",
+      "Trámites ante AGC, ADI y Defensa Civil",
+      "Acta de constatación y descargos por inspección",
+    ],
+    regulations: [
+      "Ley 5.920 CABA",
+      "Código de Edificación CABA",
+      "Decreto 351/79",
     ],
   },
   {
     slug: "mediciones",
     title: "Mediciones ambientales",
     short:
-      "Nuestro diferencial: mediciones técnicas con instrumental calibrado.",
+      "Mediciones técnicas con instrumental propio calibrado y protocolos firmados, listos para presentar a la SRT.",
     description:
-      "Realizamos las mediciones obligatorias por la Resolución SRT 84/12, 85/12 y normativa vigente. Entregamos protocolos firmados y plan de mejoras.",
+      "Realizo personalmente las mediciones obligatorias bajo las Resoluciones SRT 84/12 y 85/12, y normativa ergonómica vigente. No solo entrego el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir. Cada protocolo lleva mi firma y matrícula.",
     items: [
-      "Iluminación en ambientes laborales",
-      "Ruido (dosimetrías y nivel sonoro)",
-      // TODO: confirmar con Lucas si también ofrece estos:
-      // "Puesta a tierra y continuidad eléctrica",
-      // "Carga de fuego",
-      // "Estudio ergonómico",
+      "Iluminación general y localizada en puestos de trabajo",
+      "Nivel sonoro continuo equivalente (LAeq)",
+      "Dosimetrías personales de ruido",
+      "Puesta a tierra y continuidad de masas",
+      "Carga de fuego de sectores y depósitos",
+      "Carga térmica y estrés térmico (TGBH)",
+      "Estudios ergonómicos por puesto",
+      "Termohigrometría y ventilación",
+      "Verificación de tableros e instalaciones eléctricas",
+    ],
+    regulations: [
+      "Res. SRT 84/12 (Iluminación)",
+      "Res. SRT 85/12 (Ruido)",
+      "Res. SRT 886/15 (Ergonomía)",
+      "Res. SRT 900/15 (Puesta a tierra)",
     ],
     highlight: true,
   },
@@ -97,14 +138,23 @@ export const services: ServiceGroup[] = [
     slug: "incendios",
     title: "Sistemas contra incendio",
     short:
-      "Instalación, mantenimiento y certificación de sistemas de protección.",
+      "Proyecto, instalación, mantenimiento y certificación de sistemas de protección contra incendio.",
     description:
-      "Cubrimos el ciclo completo: desde el proyecto y la obra hasta el mantenimiento periódico exigido por normativa.",
+      "Cubro el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordino una red de instaladores y matriculados de confianza, y supervisó la entrega para que pase inspección de Bomberos y AGC sin observaciones.",
     items: [
-      "Carga de extintores",
-      "Instalación de red de incendio",
-      "Mantenimiento de red de incendio",
-      "Obras e instalaciones contra incendio",
+      "Recarga y mantenimiento de matafuegos",
+      "Red de hidrantes (proyecto, obra y mantenimiento)",
+      "Sistemas de detección y alarma temprana",
+      "Iluminación de emergencia y señalización",
+      "Estudio de carga de fuego y memoria técnica",
+      "Capacitación al personal en uso de extintores",
+      "Inspección anual y plan de mantenimiento",
+      "Certificaciones para inspección AGC / Bomberos",
+    ],
+    regulations: [
+      "Ley 19.587 — Decreto 351/79 (Cap. 18)",
+      "IRAM 3517 / 3546 / 3597",
+      "Código de Edificación CABA",
     ],
   },
 ];
@@ -113,6 +163,31 @@ export const services: ServiceGroup[] = [
 export const clients: { name: string; logo?: string }[] = [
   // { name: "Cliente 1", logo: "/clients/cliente1.svg" },
   // { name: "Cliente 2", logo: "/clients/cliente2.svg" },
+];
+
+// "Cómo trabajo" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
+// lo tiene bien hecho (HISE es el único que se acerca, con 4 pasos genéricos).
+export const howIWork: { icon: string; title: string; text: string }[] = [
+  {
+    icon: "ph:magnifying-glass-bold",
+    title: "Diagnóstico",
+    text: "Te llamo o nos juntamos por videollamada. Entiendo el caso, reviso lo que ya tenés y te digo qué hace falta — sin compromiso.",
+  },
+  {
+    icon: "ph:hard-hat-bold",
+    title: "Visita técnica",
+    text: "Voy yo a tu local u obra. Hago el relevamiento, las mediciones con instrumental propio y registro todo lo que hay que corregir.",
+  },
+  {
+    icon: "ph:list-checks-bold",
+    title: "Plan de acción",
+    text: "Te entrego un informe con prioridades, plazos y costos estimados. Vos decidís qué se ejecuta primero según el riesgo y el presupuesto.",
+  },
+  {
+    icon: "ph:repeat-bold",
+    title: "Seguimiento",
+    text: "Coordino las correcciones, presento los trámites y vuelvo a inspeccionar antes de la fiscalización oficial. No te dejo solo en la inspección.",
+  },
 ];
 
 export const navLinks = [

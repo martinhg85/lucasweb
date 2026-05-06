@@ -1,0 +1,50 @@
+---
+import { howIWork } from "../data/site";
+import { Icon } from "astro-icon/components";
+import SectionTitle from "./SectionTitle.astro";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Cómo trabajo",
+  subtitle = "Mismo método para cada cliente. Cuatro pasos, todos atendidos por mí.",
+} = Astro.props;
+---
+
+<section class="bg-white py-20 sm:py-24">
+  <div class="container-tight">
+    <SectionTitle title={title} subtitle={subtitle} />
+
+    <ol class="grid gap-10 md:grid-cols-4 max-w-6xl mx-auto mt-4">
+      {howIWork.map((step, i) => (
+        <li class="relative text-center md:text-left">
+          <div class="flex md:block items-center gap-4 md:gap-0">
+            <div class="relative inline-grid place-items-center w-16 h-16 text-navy-700 flex-shrink-0">
+              <Icon name={step.icon} class="w-12 h-12" />
+              <span class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-orange-600/15 -z-10"></span>
+            </div>
+            <div class="md:mt-5">
+              <p class="text-[10px] font-bold tracking-[0.22em] uppercase text-orange-600">
+                Paso {String(i + 1).padStart(2, "0")}
+              </p>
+              <h3 class="font-display text-base font-bold tracking-wider uppercase text-navy-700 mt-1">
+                {step.title}
+              </h3>
+            </div>
+          </div>
+          <p class="mt-4 text-sm text-ink-500 leading-relaxed">{step.text}</p>
+
+          {i < howIWork.length - 1 && (
+            <span
+              class="hidden md:block absolute top-8 right-[-1.5rem] w-12 h-px bg-ink-300"
+              aria-hidden="true"
+            ></span>
+          )}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

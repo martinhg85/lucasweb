@@ -1,5 +1,4 @@
 ---
-import type { ServiceGroup } from "../data/site";
 import { services } from "../data/site";
 import { Icon } from "astro-icon/components";
 
@@ -49,17 +48,35 @@ const icons: Record<string, string> = {
       <h3 class="font-display text-xl sm:text-2xl font-bold tracking-wide uppercase text-navy-700 mb-4">
         {activeService.title}
       </h3>
-      <ul class="space-y-2 text-ink-700">
+
+      <p class="text-ink-500 text-sm leading-relaxed mb-5">
+        {activeService.description}
+      </p>
+
+      <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-ink-700">
         {activeService.items.map((it) => (
           <li class="flex gap-2">
             <span class="text-orange-600 font-bold flex-shrink-0">—</span>
-            <span>{it}</span>
+            <span class="text-sm">{it}</span>
           </li>
         ))}
       </ul>
-      <p class="mt-5 text-ink-500 text-sm leading-relaxed">
-        {activeService.description}
-      </p>
+
+      {activeService.regulations && activeService.regulations.length > 0 && (
+        <div class="mt-7 pt-5 border-t border-ink-200">
+          <p class="text-[10px] font-bold tracking-[0.22em] uppercase text-orange-600 mb-3">
+            Normativa de referencia
+          </p>
+          <ul class="flex flex-wrap gap-x-4 gap-y-2 text-xs text-ink-700">
+            {activeService.regulations.map((r) => (
+              <li class="flex items-center gap-2">
+                <span class="inline-block w-1 h-1 bg-navy-700" aria-hidden="true"></span>
+                <span class="font-medium">{r}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   </div>
 </div>
