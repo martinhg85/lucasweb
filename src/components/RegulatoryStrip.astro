@@ -3,7 +3,6 @@ import { site } from "../data/site";
 import { Icon } from "astro-icon/components";
 
 interface Props {
-  // Si se pasan, sobreescribe la lista global. Útil en páginas de servicios.
   items?: readonly string[];
   label?: string;
 }
@@ -11,8 +10,6 @@ interface Props {
 const { items = site.regulations, label = "Trabajo bajo el marco de" } =
   Astro.props;
 
-// Cada string viene como "Nombre corto — Descripción". Separamos para mostrar
-// el nombre como título y la descripción como subtítulo en cada celda del grid.
 const parsed = items.map((raw) => {
   const [name, ...rest] = raw.split(" — ");
   return {
@@ -23,38 +20,38 @@ const parsed = items.map((raw) => {
 ---
 
 <aside
-  class="bg-navy-700 text-white relative overflow-hidden"
+  class="bg-olive-900 text-cream-50 relative overflow-hidden"
   aria-label="Marco normativo"
 >
-  <div class="absolute inset-0 pattern-diagonal-light opacity-40"></div>
+  <span
+    class="absolute -top-32 left-1/3 w-[28rem] h-[28rem] rounded-full bg-copper-500/15 blur-3xl pointer-events-none"
+    aria-hidden="true"
+  ></span>
 
-  <div class="container-tight py-14 sm:py-16 relative">
-    <!-- Encabezado centrado: ícono + eyebrow -->
+  <div class="container-tight py-16 sm:py-20 relative reveal">
     <div class="flex items-center justify-center gap-3 mb-6">
       <Icon
         name="ph:shield-check-bold"
-        class="w-6 h-6 text-orange-500"
+        class="w-6 h-6 text-copper-300"
         aria-hidden="true"
       />
-      <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-orange-500">
+      <p class="text-[11px] font-semibold tracking-[0.22em] uppercase text-copper-300">
         {label}
       </p>
     </div>
 
-    <!-- Línea divisoria suave -->
-    <div class="mx-auto max-w-md border-t border-white/15 mb-12"></div>
+    <div class="mx-auto max-w-md border-t border-cream-50/15 mb-12"></div>
 
-    <!-- Grid 3x2 simétrico -->
     <ul
       class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10 max-w-5xl mx-auto"
     >
       {parsed.map((r) => (
         <li class="text-center">
-          <p class="font-display text-sm sm:text-base font-bold tracking-wide uppercase text-white leading-tight">
+          <p class="font-display text-sm sm:text-base font-semibold tracking-tight leading-tight">
             {r.name}
           </p>
           {r.description && (
-            <p class="mt-2 text-xs text-white/70 leading-relaxed">
+            <p class="mt-2 text-xs text-cream-50/70 leading-relaxed">
               {r.description}
             </p>
           )}

@@ -2,64 +2,66 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import SectionTitle from "../components/SectionTitle.astro";
-import ServiceTabs from "../components/ServiceTabs.astro";
+import ServiceCard from "../components/ServiceCard.astro";
 import ClientGrid from "../components/ClientGrid.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import HowIWork from "../components/HowIWork.astro";
 import RegulatoryStrip from "../components/RegulatoryStrip.astro";
 import Stats from "../components/Stats.astro";
 import { Icon } from "astro-icon/components";
+import { services } from "../data/site";
 
 const pillars = [
   {
     icon: "ph:user-focus-bold",
     title: "Te atiendo yo",
-    text: "No vas a hablar con un comercial ni con un junior. Yo hago el diagnóstico, voy a la visita, firmo el protocolo y te explico qué hacer con cada hallazgo.",
+    text: "No hablás con un comercial ni con un junior. Yo hago el diagnóstico, voy a la visita, firmo el protocolo y te explico qué hacer con cada hallazgo.",
   },
   {
     icon: "ph:certificate-bold",
     title: "Profesional matriculado",
-    text: "Licenciado en Seguridad e Higiene con posgrado en el área. Mi nombre y matrícula van en cada protocolo y en cada presentación ante el GCBA o la SRT.",
+    text: "Licenciado en Seguridad e Higiene con posgrado en el área. Mi nombre y matrícula van en cada protocolo y presentación ante el GCBA o la SRT.",
   },
   {
     icon: "ph:gauge-bold",
     title: "Mediciones interpretadas",
-    text: "Trabajo con instrumental propio calibrado. No te entrego solo el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir antes de la inspección.",
+    text: "Trabajo con instrumental propio calibrado. No te entrego solo el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir.",
   },
 ];
 ---
 
 <Layout
   title="Asesoramiento en Seguridad e Higiene en CABA"
-  description="Asesoramiento integral en Seguridad e Higiene en CABA y GBA. Habilitaciones bajo Ley 5.920, mediciones SRT 84/12 y 85/12, sistemas contra incendio. Lic. Lucas Contreras."
+  description="Habilitaciones bajo Ley 5.920, mediciones SRT 84/12 y 85/12, sistemas contra incendio. Lic. Lucas Contreras — atención personal en CABA y GBA."
 >
   <Hero
-    eyebrow="Lic. en Seguridad e Higiene"
-    title="Habilitaciones, mediciones e incendios en CABA"
-    subtitle="Te acompaño en el cumplimiento normativo de punta a punta — desde el primer relevamiento hasta la firma del protocolo. Atención personal en CABA y GBA."
-    bottomLabel="SERVICIOS"
+    title="Habilitaciones y mediciones con tu firma."
+    subtitle="Soy Lucas Contreras, Lic. en Seguridad e Higiene. Te acompaño en el cumplimiento normativo de punta a punta — desde el primer relevamiento hasta la firma del protocolo."
   />
-
-  <RegulatoryStrip />
 
   <Stats />
 
-  <!-- NOSOTROS -->
-  <section id="nosotros" class="bg-white py-20 sm:py-24">
+  <!-- POR QUÉ -->
+  <section id="nosotros" class="bg-cream-50 py-24 sm:py-32">
     <div class="container-tight">
       <SectionTitle
-        title="Por qué trabajar conmigo"
-        subtitle="Soy un profesional, no una consultora. Eso significa trato directo, decisiones rápidas y un solo responsable de punta a punta."
+        eyebrow="Por qué elegirme"
+        title="Trato directo. Decisiones rápidas. Un solo responsable."
+        subtitle="Soy un profesional, no una consultora. Eso es lo que recibís cuando trabajamos juntos."
       />
 
-      <div class="grid gap-10 md:grid-cols-3 max-w-5xl mx-auto mt-4">
-        {pillars.map((b) => (
-          <div class="text-center">
-            <div class="mx-auto mb-6 w-20 h-20 text-navy-700 relative grid place-items-center">
-              <Icon name={b.icon} class="w-16 h-16" />
-              <span class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-orange-600/15 -z-10"></span>
-            </div>
-            <h3 class="font-display text-base font-bold tracking-wider uppercase text-navy-700 mb-3">
+      <div class="grid gap-5 md:grid-cols-3 max-w-6xl mx-auto reveal-stagger">
+        {pillars.map((b, i) => (
+          <div class="card-frame p-7 sm:p-8 group">
+            <p class="num-badge text-[11px] tracking-[0.22em] uppercase mb-4">
+              {String(i + 1).padStart(3, "0")}
+            </p>
+            <span
+              class="grid place-items-center w-12 h-12 rounded-md bg-olive-50 text-olive-700 ring-1 ring-olive-100 mb-5 group-hover:bg-olive-700 group-hover:text-cream-50 transition-colors"
+            >
+              <Icon name={b.icon} class="w-6 h-6" />
+            </span>
+            <h3 class="font-display font-semibold text-ink-900 text-lg leading-tight mb-3">
               {b.title}
             </h3>
             <p class="text-ink-500 text-sm leading-relaxed">{b.text}</p>
@@ -70,52 +72,66 @@ const pillars = [
   </section>
 
   <!-- SERVICIOS -->
-  <section id="servicios" class="bg-ink-50 py-20 sm:py-24">
-    <SectionTitle
-      title="Servicios"
-      subtitle="Tres áreas de trabajo, una sola firma. Elegí el área para ver el desglose y la normativa de referencia."
-    />
-    <ServiceTabs />
+  <section id="servicios" class="bg-cream-100 py-24 sm:py-32 border-y border-ink-200">
+    <div class="container-tight">
+      <SectionTitle
+        eyebrow="Servicios"
+        title="Tres áreas de trabajo. Una sola firma."
+        subtitle="Cada servicio incluye relevamiento, ejecución y entrega de la documentación firmada."
+      />
+
+      <div class="grid gap-5 md:grid-cols-3 max-w-6xl mx-auto reveal-stagger">
+        {services.map((s, i) => (
+          <ServiceCard service={s} index={i} />
+        ))}
+      </div>
+    </div>
   </section>
 
   <!-- CÓMO TRABAJO -->
   <HowIWork />
 
   <!-- CAPACITACIÓN -->
-  <section id="capacitacion" class="bg-ink-50 py-20 sm:py-24">
+  <section id="capacitacion" class="bg-cream-50 py-24 sm:py-32">
     <div class="container-tight">
       <SectionTitle
-        title="Capacitación"
-        subtitle="Diseño y dicto capacitaciones a medida del rubro y los riesgos reales del puesto. Sin clases enlatadas."
+        eyebrow="Capacitación"
+        title="Capacitaciones a medida"
+        subtitle="Diseño y dicto formaciones acordes al rubro y a los riesgos reales del puesto. Sin clases enlatadas."
       />
 
-      <div class="max-w-3xl mx-auto text-center space-y-6">
+      <ul class="grid gap-4 md:grid-cols-2 max-w-4xl mx-auto reveal-stagger">
         {[
           "Capacitaciones in company sobre los riesgos específicos de tu actividad",
           "Coaching y formación personalizada en puestos estratégicos",
           "Planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
           "Conferencias y talleres en instituciones nacionales e internacionales",
-        ].map((t, i, arr) => (
-          <>
-            <p class="text-ink-700 text-base sm:text-lg">{t}</p>
-            {i < arr.length - 1 && (
-              <div class="mx-auto h-px w-2/3 border-t border-dashed border-ink-300"></div>
-            )}
-          </>
+        ].map((t) => (
+          <li class="card-frame p-5 flex items-start gap-3">
+            <Icon
+              name="ph:check-bold"
+              class="w-5 h-5 text-olive-700 flex-shrink-0 mt-0.5"
+              aria-hidden="true"
+            />
+            <span class="text-ink-700 text-sm leading-relaxed">{t}</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   </section>
 
+  <!-- MARCO NORMATIVO -->
+  <RegulatoryStrip />
+
   <!-- CLIENTES -->
-  <section id="clientes" class="bg-white py-20 sm:py-24">
+  <section id="clientes" class="bg-cream-50 py-24 sm:py-32">
     <div class="container-tight">
       <SectionTitle
-        title="Clientes"
-        subtitle="Comercios, oficinas, gastronomía y obras civiles que confiaron en este servicio."
-        withRule={false}
+        eyebrow="Clientes"
+        title="Comercios, oficinas y obras que confiaron"
+        subtitle="Una muestra del tipo de proyectos que acompaño."
       />
-      <div class="mt-10">
+      <div class="mt-4">
         <ClientGrid />
       </div>
     </div>
