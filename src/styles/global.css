@@ -50,6 +50,11 @@ body {
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
+  @media (min-width: 768px) {
+    .container-tight {
+      padding-inline: 2rem;
+    }
+  }
 
   /* Patrón de líneas diagonales sutiles, estilo Flowork */
   .pattern-diagonal {
