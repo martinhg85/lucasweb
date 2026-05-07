@@ -8,73 +8,52 @@ interface Props {
 }
 
 const {
-  title = "Contame qué necesitás.",
+  title = "Hablemos.",
   subtitle = "Te respondo personalmente. Coordinemos una visita o videollamada para evaluar tu caso, sin compromiso.",
 } = Astro.props;
 ---
 
-<section class="bg-ink-900 text-cream-50 relative overflow-hidden">
-  <div
-    class="absolute inset-0 opacity-[0.04]"
-    style="background-image: radial-gradient(circle at 20% 50%, white 1px, transparent 1px); background-size: 40px 40px;"
+<section
+  class="relative bg-night-900 text-ink-50 overflow-hidden border-t border-white/5"
+>
+  <span
+    class="orb orb-amber w-[44rem] h-[44rem]"
+    style="top:-12rem; left:50%; transform:translateX(-50%); opacity:0.35;"
     aria-hidden="true"
+  ></span>
+  <div
+    class="absolute inset-0 pattern-diagonal opacity-50 pointer-events-none"
   ></div>
 
-  <div class="container-tight py-20 sm:py-28 relative">
-    <div class="grid md:grid-cols-[1.2fr_1fr] gap-12 md:gap-20 items-center">
-      <div>
-        <p class="section-eyebrow text-accent-500 mb-5">Hablemos</p>
-        <h2
-          class="font-display font-light text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] tracking-tight"
-        >
-          {title}
-        </h2>
-        <p class="mt-6 text-cream-100/80 text-lg leading-relaxed max-w-xl">
-          {subtitle}
-        </p>
-      </div>
+  <div class="container-tight py-24 sm:py-32 relative">
+    <div class="max-w-4xl mx-auto text-center reveal">
+      <p class="section-eyebrow mb-6">Contacto</p>
+      <h2
+        class="font-display font-bold text-ink-50 leading-[0.92] tracking-[-0.04em] glow-amber"
+        style="font-size: clamp(3rem, 9vw, 8rem);"
+      >
+        {title}
+      </h2>
+      <p class="mt-8 text-ink-300 text-lg leading-relaxed max-w-2xl mx-auto">
+        {subtitle}
+      </p>
 
-      <div class="space-y-4">
+      <div
+        class="mt-12 flex flex-wrap justify-center gap-3 reveal"
+        style="transition-delay: 0.2s;"
+      >
         <a
           href={whatsappUrl()}
           target="_blank"
           rel="noopener"
-          class="group flex items-center justify-between gap-4 p-6 rounded-xl bg-cream-50/5 border border-cream-50/10 hover:bg-cream-50/10 hover:border-cream-50/30 transition-all"
+          class="btn-neon"
         >
-          <div class="flex items-center gap-4">
-            <span class="grid place-items-center w-12 h-12 rounded-full bg-[#25D366]/15 text-[#25D366]">
-              <Icon name="ph:whatsapp-logo-bold" class="w-6 h-6" />
-            </span>
-            <div>
-              <p class="text-xs uppercase tracking-widest text-cream-100/60 font-medium">
-                WhatsApp
-              </p>
-              <p class="font-display text-xl mt-1 tracking-tight">
-                {site.contact.phoneDisplay}
-              </p>
-            </div>
-          </div>
-          <span class="text-cream-50/60 group-hover:text-cream-50 transition-colors">→</span>
+          <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4" />
+          WhatsApp · {site.contact.phoneDisplay}
         </a>
-
-        <a
-          href={mailtoUrl()}
-          class="group flex items-center justify-between gap-4 p-6 rounded-xl bg-cream-50/5 border border-cream-50/10 hover:bg-cream-50/10 hover:border-cream-50/30 transition-all"
-        >
-          <div class="flex items-center gap-4">
-            <span class="grid place-items-center w-12 h-12 rounded-full bg-accent-500/15 text-accent-500">
-              <Icon name="ph:envelope-simple-bold" class="w-6 h-6" />
-            </span>
-            <div>
-              <p class="text-xs uppercase tracking-widest text-cream-100/60 font-medium">
-                Mail
-              </p>
-              <p class="font-display text-lg mt-1 tracking-tight break-all">
-                {site.contact.email}
-              </p>
-            </div>
-          </div>
-          <span class="text-cream-50/60 group-hover:text-cream-50 transition-colors">→</span>
+        <a href={mailtoUrl()} class="btn-ghost">
+          <Icon name="ph:envelope-simple-bold" class="w-4 h-4" />
+          {site.contact.email}
         </a>
       </div>
     </div>

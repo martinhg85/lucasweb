@@ -1,0 +1,76 @@
+---
+import { site } from "../data/site";
+
+// Si el value contiene un número (ej. "[+X] años"), lo extraemos para animar el counter.
+// Si no hay número (ej. "100%"), animamos igual.
+function extractNumber(v: string): number | null {
+  // Reemplaza placeholders [+X] -> 0 (placeholder) o intenta extraer un número real
+  if (v.includes("[")) return null;
+  const m = v.match(/(\d+)/);
+  return m ? parseInt(m[1], 10) : null;
+}
+---
+
+<section
+  class="relative bg-night-900 border-y border-white/5 overflow-hidden"
+>
+  <div class="container-tight py-16 sm:py-20">
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 reveal-stagger">
+      {site.stats.map((s) => {
+        const num = extractNumber(s.value);
+        return (
+          <li class="text-left">
+            <p
+              class="font-display font-bold text-ink-50 tracking-tight leading-none"
+              style="font-size: clamp(2.5rem, 5vw, 4.5rem);"
+              data-counter={num !== null ? num : ""}
+              data-suffix={num !== null ? s.value.replace(/(\d+)/, "") : ""}
+            >
+              {s.value}
+            </p>
+            <div class="mt-4 h-px w-10 bg-accent-500"></div>
+            <p class="mt-3 text-xs text-ink-400 uppercase tracking-widest font-semibold">
+              {s.label}
+            </p>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    const counters = document.querySelectorAll("[data-counter]");
+    if (!counters.length || !("IntersectionObserver" in window)) return;
+
+    const animate = (el) => {
+      const target = parseInt(el.getAttribute("data-counter") || "0", 10);
+      const suffix = el.getAttribute("data-suffix") || "";
+      if (!target) return;
+      const duration = 1400;
+      const start = performance.now();
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+      const tick = (now) => {
+        const t = Math.min((now - start) / duration, 1);
+        const v = Math.floor(target * ease(t));
+        el.textContent = `${v}${suffix}`;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            animate(e.target);
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    counters.forEach((c) => io.observe(c));
+  })();
+</script>

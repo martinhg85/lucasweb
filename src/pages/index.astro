@@ -1,77 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import Timeline from "../components/Timeline.astro";
+import Marquee from "../components/Marquee.astro";
+import AnimatedStats from "../components/AnimatedStats.astro";
+import BentoServices from "../components/BentoServices.astro";
 import SelectedWork from "../components/SelectedWork.astro";
-import ServicesList from "../components/ServicesList.astro";
 import HowIWork from "../components/HowIWork.astro";
 import ContactCTA from "../components/ContactCTA.astro";
-import { Icon } from "astro-icon/components";
-import { site } from "../data/site";
 ---
 
 <Layout
   title="Asesoramiento en Seguridad e Higiene en CABA"
-  description="Asesoramiento integral en Seguridad e Higiene en CABA y GBA. Habilitaciones bajo Ley 5.920, mediciones SRT 84/12 y 85/12, sistemas contra incendio. Lic. Lucas Contreras."
+  description="Habilitaciones bajo Ley 5.920, mediciones SRT 84/12 y 85/12, sistemas contra incendio. Atendido personalmente por el Lic. Lucas Contreras en CABA y GBA."
 >
-  <Hero
-    eyebrow="Asesor en Seguridad e Higiene · CABA"
-    title="Habilitaciones, mediciones e incendio. Atendidos personalmente."
-    subtitle="Soy Lucas Contreras, Lic. en Seguridad e Higiene. Acompaño a comercios, oficinas y obras en el cumplimiento de la Ley 19.587, el Decreto 351/79 y la Ley 5.920 de la Ciudad."
-  />
+  <Hero />
 
-  <!-- Tira de credenciales tipo Studio: stat + nombres -->
-  <section class="bg-cream-50 border-b border-ink-200">
-    <div class="container-tight py-10 sm:py-14">
-      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-        {site.stats.map((s) => (
-          <div>
-            <p class="font-display text-3xl sm:text-4xl font-light text-ink-900 tracking-tight">
-              {s.value}
-            </p>
-            <p class="mt-2 text-xs text-ink-500 uppercase tracking-widest font-medium">
-              {s.label}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Marquee />
 
-  <!-- Trayectoria -->
-  <Timeline />
+  <AnimatedStats />
 
-  <!-- Casos seleccionados -->
+  <BentoServices />
+
   <SelectedWork />
 
-  <!-- Servicios como typography list -->
-  <ServicesList />
-
-  <!-- Cómo trabajo -->
   <HowIWork />
 
-  <!-- Marco normativo (sutil, en pie de servicios) -->
-  <section class="bg-cream-100 border-y border-ink-200">
-    <div class="container-tight py-12 sm:py-14">
-      <div class="grid md:grid-cols-[auto_1fr] gap-6 md:gap-12 items-start">
-        <div class="flex items-center gap-3">
-          <Icon name="ph:scales-bold" class="w-5 h-5 text-accent-600" />
-          <p class="section-eyebrow">Marco de trabajo</p>
-        </div>
-        <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-700">
-          {site.regulations.map((r) => (
-            <li class="flex items-center gap-2">
-              <span class="inline-block w-1 h-1 bg-ink-400" aria-hidden="true"></span>
-              <span class="font-medium">{r}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <ContactCTA
-    title="Contame qué necesitás."
-    subtitle="Te respondo personalmente. Coordinemos una visita o videollamada para evaluar tu caso, sin compromiso."
-  />
+  <ContactCTA />
 </Layout>
