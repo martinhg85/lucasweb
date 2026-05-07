@@ -13,116 +13,84 @@ interface Props {
 
 const {
   eyebrow = "Asesor en Seguridad e Higiene · CABA",
+  title,
+  subtitle,
   showCTA = true,
 } = Astro.props;
-
-// Headline en palabras separadas para stagger animation
-const headline = ["SEGURIDAD", "QUE NO", "SE NEGOCIA."];
 ---
 
-<section class="relative bg-night-900 text-ink-50 overflow-hidden">
-  <!-- Orbs de fondo -->
-  <span
-    class="orb orb-amber w-[40rem] h-[40rem]"
-    style="top:-12rem; left:-10rem;"
-    aria-hidden="true"
-  ></span>
-  <span
-    class="orb orb-deep w-[28rem] h-[28rem]"
-    style="bottom:-8rem; right:-6rem; animation-delay:-3s;"
-    aria-hidden="true"
-  ></span>
-
-  <!-- Patrón diagonal sutil sobre todo -->
-  <div class="absolute inset-0 pattern-diagonal pointer-events-none"></div>
-
-  <div class="relative container-tight pt-16 pb-24 sm:pt-24 sm:pb-32 md:pt-28 md:pb-40">
-    <div class="grid lg:grid-cols-[1fr_auto] gap-12 lg:gap-16 items-end">
-      <div class="max-w-4xl">
-        <!-- Eyebrow con dot pulsante -->
-        <div class="flex items-center gap-3 mb-8">
-          <span class="relative inline-flex w-2 h-2">
+<section class="relative bg-cream-50 overflow-hidden">
+  <div class="container-tight pt-12 pb-16 sm:pt-20 sm:pb-24 md:pt-28 md:pb-32">
+    <div class="grid md:grid-cols-[1fr_auto] gap-10 md:gap-16 items-end">
+      <!-- Texto -->
+      <div class="max-w-3xl">
+        {eyebrow && (
+          <div class="flex items-center gap-3 mb-7">
             <span
-              class="absolute inset-0 rounded-full bg-accent-500 animate-ping opacity-75"
+              class="inline-block w-8 h-px bg-accent-600"
+              aria-hidden="true"
             ></span>
-            <span class="relative rounded-full w-2 h-2 bg-accent-500"></span>
-          </span>
-          <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-accent-400">
-            {eyebrow}
+            <p class="section-eyebrow">{eyebrow}</p>
+          </div>
+        )}
+
+        {title && (
+          <h1
+            class="font-display text-[clamp(2.25rem,6vw,4.75rem)] leading-[1.02] text-ink-900 tracking-tight font-light"
+          >
+            {title}
+          </h1>
+        )}
+
+        {subtitle && (
+          <p class="mt-7 text-ink-700 text-lg sm:text-xl leading-relaxed max-w-xl">
+            {subtitle}
           </p>
-        </div>
-
-        <!-- Headline GIGANTE con stagger -->
-        <h1
-          class="font-display word-rise font-bold leading-[0.92] tracking-[-0.04em] text-ink-50 glow-amber"
-          style="font-size: clamp(3rem, 11vw, 9.5rem);"
-        >
-          {headline.map((word, i) => (
-            <span class:list={[i === headline.length - 1 && "text-accent-500"]}>
-              {word}{i < headline.length - 1 ? " " : ""}
-            </span>
-          ))}
-        </h1>
-
-        <!-- Subhead -->
-        <p
-          class="mt-10 max-w-xl text-base sm:text-lg text-ink-300 leading-relaxed reveal"
-          style="transition-delay: 1.1s;"
-        >
-          Soy <span class="text-ink-50 font-semibold">Lucas Contreras</span>,
-          Lic. en Seguridad e Higiene. Habilitaciones, mediciones e incendio en
-          CABA — yo voy, yo mido, yo firmo.
-        </p>
+        )}
 
         {showCTA && (
-          <div
-            class="mt-10 flex flex-wrap items-center gap-3 reveal"
-            style="transition-delay: 1.25s;"
-          >
+          <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <a
               href={whatsappUrl()}
               target="_blank"
               rel="noopener"
-              class="btn-neon"
+              class="inline-flex items-center gap-2 px-7 py-3.5 bg-ink-900 text-cream-50 text-sm font-semibold tracking-wide rounded-full hover:bg-accent-700 transition-colors"
             >
               <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4" />
               Hablemos por WhatsApp
             </a>
-            <a href="#servicios" class="btn-ghost">
-              Ver casos →
+            <a
+              href="/servicios"
+              class="text-sm font-semibold text-ink-800 link-underline"
+            >
+              Ver servicios →
             </a>
           </div>
         )}
       </div>
 
-      <!-- Foto compacta con frame glow -->
-      <div
-        class="hidden lg:block reveal"
-        style="transition-delay: 0.9s;"
-      >
+      <!-- Foto compacta -->
+      <div class="hidden md:block">
         <div class="relative">
           <div
-            class="relative w-64 h-80 xl:w-72 xl:h-96 overflow-hidden rounded-md border border-white/10"
-            style={`background-image: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.6) 100%), url('${site.professional.photo}'); background-size: cover; background-position: center;`}
+            class="w-56 h-72 lg:w-64 lg:h-80 bg-ink-200 rounded-md overflow-hidden"
+            style={`background-image: url('${site.professional.photo}'); background-size: cover; background-position: center;`}
             aria-label="Foto de Lucas Contreras"
           ></div>
-          <!-- Glow detrás -->
           <span
-            class="absolute -inset-2 -z-10 rounded-md blur-2xl bg-accent-500/30"
+            class="absolute -bottom-3 -left-3 w-20 h-20 rounded-full bg-accent-100 -z-10"
             aria-hidden="true"
           ></span>
-          <!-- Tag flotante "Disponible" -->
           <span
-            class="absolute -top-3 -left-3 inline-flex items-center gap-1.5 px-3 py-1.5 bg-night-800 border border-white/10 rounded-full text-[11px] font-semibold text-ink-100 shadow-2xl"
+            class="absolute -top-2 -right-2 inline-flex items-center gap-1.5 px-3 py-1 bg-cream-50 border border-ink-200 rounded-full text-[11px] font-semibold text-ink-700 shadow-sm"
           >
-            <span class="relative inline-flex w-1.5 h-1.5">
-              <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
-              <span class="relative rounded-full w-1.5 h-1.5 bg-emerald-500"></span>
-            </span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             Disponible
           </span>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="border-b border-ink-200"></div>
 </section>

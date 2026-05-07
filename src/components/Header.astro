@@ -1,50 +1,41 @@
 ---
 import { site, navLinks } from "../data/site";
 const path = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === path || (href !== "/" && path.startsWith(href));
+const isActive = (href: string) => href === path || (href !== "/" && path.startsWith(href));
 ---
 
 <header
   id="site-header"
   class="site-header fixed top-0 left-0 right-0 z-40 border-b border-transparent"
 >
-  <div
-    class="header-inner container-tight grid grid-cols-1 md:grid-cols-[auto_1fr] items-center gap-6"
-  >
-    <!-- Logo: monograma minimal -->
-    <a
-      href="/"
-      class="header-brand-link flex items-center gap-3 group"
-      aria-label={site.name}
-    >
-      <span
-        class="header-logo grid place-items-center rounded-full bg-accent-500 text-night-900 group-hover:scale-110 transition-transform"
-      >
-        <span class="font-display text-base font-bold tracking-tight">LC</span>
+  <div class="header-inner container-tight grid grid-cols-1 md:grid-cols-[auto_1fr] items-center gap-6">
+    <!-- Logo: monograma serif -->
+    <a href="/" class="header-brand-link flex items-center gap-3 group" aria-label={site.name}>
+      <span class="header-logo grid place-items-center rounded-full bg-ink-900 text-cream-50">
+        <span class="font-display text-base font-medium tracking-tight">LC</span>
       </span>
       <div class="leading-none">
-        <p class="header-brand font-display font-bold text-ink-50 tracking-tight">
+        <p class="header-brand font-display font-medium text-ink-900 tracking-tight">
           Lucas Contreras
         </p>
-        <p class="header-tagline font-medium tracking-widest uppercase text-ink-400">
+        <p class="header-tagline font-medium tracking-wide text-ink-500 normal-case">
           {site.brandTagline}
         </p>
       </div>
     </a>
 
-    <!-- Nav -->
+    <!-- Nav minimalista -->
     <nav class="md:justify-self-end overflow-x-auto">
-      <ul class="flex items-center gap-1 text-sm font-medium text-ink-300">
+      <ul class="flex items-center gap-1 text-sm font-medium text-ink-700">
         {navLinks.map((l) => (
           <li>
             <a
               href={l.href}
               class:list={[
-                "header-link block rounded-full whitespace-nowrap transition-colors",
+                "header-link block px-3 sm:px-4 rounded-full transition-colors whitespace-nowrap",
                 isActive(l.href)
-                  ? "text-accent-500 bg-white/5"
-                  : "hover:text-ink-50",
+                  ? "text-ink-900 bg-ink-100"
+                  : "hover:text-ink-900",
               ]}
             >
               {l.label.charAt(0) + l.label.slice(1).toLowerCase()}
@@ -55,13 +46,28 @@ const isActive = (href: string) =>
     </nav>
   </div>
 </header>
+<!-- Spacer: ocupa el alto del header inicial para que el contenido no quede oculto.
+     No cambia cuando el header se compacta, así no hay reflow al scrollear. -->
 <div id="header-spacer" class="header-spacer" aria-hidden="true"></div>
 
 <script is:inline>
   (function () {
     const header = document.getElementById("site-header");
-    if (!header) return;
-    const enterAt = 60;
+    const spacer = document.getElementById("header-spacer");
+    if (!header || !spacer) return;
+
+    // Medir el alto natural del header (sin "is-scrolled") y fijarlo en el spacer.
+    // Se vuelve a medir en resize para responder a cambios de breakpoint.
+    const measure = () => {
+      const wasScrolled = header.classList.contains("is-scrolled");
+      if (wasScrolled) header.classList.remove("is-scrolled");
+      spacer.style.height = header.offsetHeight + "px";
+      if (wasScrolled) header.classList.add("is-scrolled");
+    };
+
+    // Histéresis: agrega "is-scrolled" pasando 80px, lo quita debajo de 24px.
+    // Evita que el usuario quede oscilando entre estados al pararse en el medio.
+    const enterAt = 80;
     const exitAt = 24;
     let scrolled = false;
     const update = () => {
@@ -74,28 +80,10 @@ const isActive = (href: string) =>
         header.classList.toggle("is-scrolled", scrolled);
       }
     };
+
+    measure();
     update();
     window.addEventListener("scroll", update, { passive: true });
-  })();
-
-  // Reveal on scroll: agrega .is-visible a elementos con .reveal o .reveal-stagger
-  (function () {
-    const targets = document.querySelectorAll(".reveal, .reveal-stagger");
-    if (!("IntersectionObserver" in window)) {
-      targets.forEach((t) => t.classList.add("is-visible"));
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
-    );
-    targets.forEach((t) => io.observe(t));
+    window.addEventListener("resize", measure);
   })();
 </script>
