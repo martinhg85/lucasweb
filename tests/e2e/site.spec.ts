@@ -61,7 +61,26 @@ for (const route of ROUTES) {
       `horizontal overflow on ${route.path} (doc ${overflow.docW} vs win ${overflow.winW})`
     ).toBeLessThanOrEqual(1);
 
-    // Screenshot full-page para revisar
+    // Antes del screenshot: scroll completo para disparar IntersectionObserver
+    // de los elementos con .reveal/.reveal-stagger (sino quedan en opacity:0).
+    await page.evaluate(async () => {
+      await new Promise<void>((resolve) => {
+        let total = 0;
+        const distance = 300;
+        const timer = setInterval(() => {
+          window.scrollBy(0, distance);
+          total += distance;
+          if (total >= document.body.scrollHeight) {
+            clearInterval(timer);
+            resolve();
+          }
+        }, 40);
+      });
+    });
+    await page.waitForTimeout(2200); // dejar que el fallback de 2s dispare reveals
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.waitForTimeout(200);
+
     await page.screenshot({
       path: screenshotPath(testInfo.project.name, route.slug),
       fullPage: true,
