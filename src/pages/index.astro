@@ -1,32 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import SectionTitle from "../components/SectionTitle.astro";
-import ServiceTabs from "../components/ServiceTabs.astro";
-import ClientGrid from "../components/ClientGrid.astro";
-import ContactCTA from "../components/ContactCTA.astro";
+import Timeline from "../components/Timeline.astro";
+import SelectedWork from "../components/SelectedWork.astro";
+import ServicesList from "../components/ServicesList.astro";
 import HowIWork from "../components/HowIWork.astro";
-import RegulatoryStrip from "../components/RegulatoryStrip.astro";
-import Stats from "../components/Stats.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 import { Icon } from "astro-icon/components";
-
-const pillars = [
-  {
-    icon: "ph:user-focus-bold",
-    title: "Te atiendo yo",
-    text: "No vas a hablar con un comercial ni con un junior. Yo hago el diagnóstico, voy a la visita, firmo el protocolo y te explico qué hacer con cada hallazgo.",
-  },
-  {
-    icon: "ph:certificate-bold",
-    title: "Profesional matriculado",
-    text: "Licenciado en Seguridad e Higiene con posgrado en el área. Mi nombre y matrícula van en cada protocolo y en cada presentación ante el GCBA o la SRT.",
-  },
-  {
-    icon: "ph:gauge-bold",
-    title: "Mediciones interpretadas",
-    text: "Trabajo con instrumental propio calibrado. No te entrego solo el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir antes de la inspección.",
-  },
-];
+import { site } from "../data/site";
 ---
 
 <Layout
@@ -34,92 +15,63 @@ const pillars = [
   description="Asesoramiento integral en Seguridad e Higiene en CABA y GBA. Habilitaciones bajo Ley 5.920, mediciones SRT 84/12 y 85/12, sistemas contra incendio. Lic. Lucas Contreras."
 >
   <Hero
-    eyebrow="Lic. en Seguridad e Higiene"
-    title="Habilitaciones, mediciones e incendios en CABA"
-    subtitle="Te acompaño en el cumplimiento normativo de punta a punta — desde el primer relevamiento hasta la firma del protocolo. Atención personal en CABA y GBA."
-    bottomLabel="SERVICIOS"
+    eyebrow="Asesor en Seguridad e Higiene · CABA"
+    title="Habilitaciones, mediciones e incendio. Atendidos personalmente."
+    subtitle="Soy Lucas Contreras, Lic. en Seguridad e Higiene. Acompaño a comercios, oficinas y obras en el cumplimiento de la Ley 19.587, el Decreto 351/79 y la Ley 5.920 de la Ciudad."
   />
 
-  <RegulatoryStrip />
-
-  <Stats />
-
-  <!-- NOSOTROS -->
-  <section id="nosotros" class="bg-white py-20 sm:py-24">
-    <div class="container-tight">
-      <SectionTitle
-        title="Por qué trabajar conmigo"
-        subtitle="Soy un profesional, no una consultora. Eso significa trato directo, decisiones rápidas y un solo responsable de punta a punta."
-      />
-
-      <div class="grid gap-10 md:grid-cols-3 max-w-5xl mx-auto mt-4">
-        {pillars.map((b) => (
-          <div class="text-center">
-            <div class="mx-auto mb-6 w-20 h-20 text-navy-700 relative grid place-items-center">
-              <Icon name={b.icon} class="w-16 h-16" />
-              <span class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-orange-600/15 -z-10"></span>
-            </div>
-            <h3 class="font-display text-base font-bold tracking-wider uppercase text-navy-700 mb-3">
-              {b.title}
-            </h3>
-            <p class="text-ink-500 text-sm leading-relaxed">{b.text}</p>
+  <!-- Tira de credenciales tipo Studio: stat + nombres -->
+  <section class="bg-cream-50 border-b border-ink-200">
+    <div class="container-tight py-10 sm:py-14">
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        {site.stats.map((s) => (
+          <div>
+            <p class="font-display text-3xl sm:text-4xl font-light text-ink-900 tracking-tight">
+              {s.value}
+            </p>
+            <p class="mt-2 text-xs text-ink-500 uppercase tracking-widest font-medium">
+              {s.label}
+            </p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- SERVICIOS -->
-  <section id="servicios" class="bg-ink-50 py-20 sm:py-24">
-    <SectionTitle
-      title="Servicios"
-      subtitle="Tres áreas de trabajo, una sola firma. Elegí el área para ver el desglose y la normativa de referencia."
-    />
-    <ServiceTabs />
-  </section>
+  <!-- Trayectoria -->
+  <Timeline />
 
-  <!-- CÓMO TRABAJO -->
+  <!-- Casos seleccionados -->
+  <SelectedWork />
+
+  <!-- Servicios como typography list -->
+  <ServicesList />
+
+  <!-- Cómo trabajo -->
   <HowIWork />
 
-  <!-- CAPACITACIÓN -->
-  <section id="capacitacion" class="bg-ink-50 py-20 sm:py-24">
-    <div class="container-tight">
-      <SectionTitle
-        title="Capacitación"
-        subtitle="Diseño y dicto capacitaciones a medida del rubro y los riesgos reales del puesto. Sin clases enlatadas."
-      />
-
-      <div class="max-w-3xl mx-auto text-center space-y-6">
-        {[
-          "Capacitaciones in company sobre los riesgos específicos de tu actividad",
-          "Coaching y formación personalizada en puestos estratégicos",
-          "Planes anuales de capacitación en Seguridad Laboral y Salud Ocupacional",
-          "Conferencias y talleres en instituciones nacionales e internacionales",
-        ].map((t, i, arr) => (
-          <>
-            <p class="text-ink-700 text-base sm:text-lg">{t}</p>
-            {i < arr.length - 1 && (
-              <div class="mx-auto h-px w-2/3 border-t border-dashed border-ink-300"></div>
-            )}
-          </>
-        ))}
+  <!-- Marco normativo (sutil, en pie de servicios) -->
+  <section class="bg-cream-100 border-y border-ink-200">
+    <div class="container-tight py-12 sm:py-14">
+      <div class="grid md:grid-cols-[auto_1fr] gap-6 md:gap-12 items-start">
+        <div class="flex items-center gap-3">
+          <Icon name="ph:scales-bold" class="w-5 h-5 text-accent-600" />
+          <p class="section-eyebrow">Marco de trabajo</p>
+        </div>
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-700">
+          {site.regulations.map((r) => (
+            <li class="flex items-center gap-2">
+              <span class="inline-block w-1 h-1 bg-ink-400" aria-hidden="true"></span>
+              <span class="font-medium">{r}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- CLIENTES -->
-  <section id="clientes" class="bg-white py-20 sm:py-24">
-    <div class="container-tight">
-      <SectionTitle
-        title="Clientes"
-        subtitle="Comercios, oficinas, gastronomía y obras civiles que confiaron en este servicio."
-        withRule={false}
-      />
-      <div class="mt-10">
-        <ClientGrid />
-      </div>
-    </div>
-  </section>
-
-  <ContactCTA />
+  <ContactCTA
+    title="Contame qué necesitás."
+    subtitle="Te respondo personalmente. Coordinemos una visita o videollamada para evaluar tu caso, sin compromiso."
+  />
 </Layout>

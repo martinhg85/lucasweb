@@ -1,23 +1,59 @@
 ---
 interface Props {
+  eyebrow?: string;
   title: string;
   subtitle?: string;
+  align?: "left" | "center";
   withRule?: boolean;
 }
 
-const { title, subtitle, withRule = true } = Astro.props;
+const {
+  eyebrow,
+  title,
+  subtitle,
+  align = "left",
+  withRule = false,
+} = Astro.props;
+
+const wrapperClass = align === "center" ? "text-center mx-auto" : "text-left";
 ---
 
-<div class="text-center mb-10 sm:mb-14">
-  <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-wider uppercase text-navy-700 leading-tight">
+<div class:list={["mb-12 sm:mb-16 max-w-3xl", wrapperClass]}>
+  {eyebrow && (
+    <div
+      class:list={[
+        "flex items-center gap-3 mb-5",
+        align === "center" && "justify-center",
+      ]}
+    >
+      <span
+        class="inline-block w-8 h-px bg-accent-600"
+        aria-hidden="true"
+      ></span>
+      <p class="section-eyebrow">{eyebrow}</p>
+    </div>
+  )}
+  <h2
+    class="font-display font-light text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] text-ink-900 tracking-tight"
+  >
     {title}
   </h2>
   {subtitle && (
-    <p class="mt-6 text-ink-500 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
+    <p
+      class:list={[
+        "mt-5 text-ink-500 text-base sm:text-lg leading-relaxed max-w-2xl",
+        align === "center" && "mx-auto",
+      ]}
+    >
       {subtitle}
     </p>
   )}
   {withRule && (
-    <div class="mx-auto mt-8 h-px w-full max-w-xl bg-ink-300"></div>
+    <div
+      class:list={[
+        "mt-8 h-px w-full max-w-xl bg-ink-300",
+        align === "center" && "mx-auto",
+      ]}
+    ></div>
   )}
 </div>
