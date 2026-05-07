@@ -1,6 +1,6 @@
 ---
 import { site, navLinks } from "../data/site";
-import { Icon } from "astro-icon/components";
+import Logo from "./Logo.astro";
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === path || (href !== "/" && path.startsWith(href));
@@ -19,12 +19,8 @@ const isActive = (href: string) =>
       class="header-brand-link flex items-center gap-3 group"
       aria-label={site.name}
     >
-      <span class="header-logo relative grid place-items-center text-navy-700 flex-shrink-0">
-        <Icon name="ph:hard-hat-bold" class="w-full h-full" aria-hidden="true" />
-        <span
-          class="absolute left-[22%] right-[22%] top-[58%] h-[7%] bg-orange-500 rounded-sm pointer-events-none"
-          aria-hidden="true"
-        ></span>
+      <span class="header-logo grid place-items-center text-navy-700 flex-shrink-0">
+        <Logo class="w-full h-full" title={site.name} />
       </span>
       <div class="leading-none min-w-0">
         <p class="header-brand font-display font-extrabold tracking-wider text-navy-700 truncate">
