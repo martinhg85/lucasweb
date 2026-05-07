@@ -50,6 +50,37 @@ body {
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
+  @media (min-width: 768px) {
+    .container-tight {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Replica el offset que produce container-tight para alinear elementos
+     full-bleed (ej: columna izquierda del hero) al borde izquierdo del
+     container del header en cualquier viewport, incluso > 80rem. */
+  .pl-container {
+    padding-left: 1.25rem;
+  }
+  .pr-container {
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .pl-container {
+      padding-left: 2rem;
+    }
+    .pr-container {
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 80rem) {
+    .pl-container {
+      padding-left: calc((100vw - 80rem) / 2 + 2rem);
+    }
+    .pr-container {
+      padding-right: calc((100vw - 80rem) / 2 + 2rem);
+    }
+  }
 
   /* Patrón de líneas diagonales sutiles, estilo Flowork */
   .pattern-diagonal {
