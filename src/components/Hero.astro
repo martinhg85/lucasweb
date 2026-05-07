@@ -1,5 +1,5 @@
 ---
-import { site, whatsappUrl, mailtoUrl } from "../data/site";
+import { site, whatsappUrl } from "../data/site";
 import { Icon } from "astro-icon/components";
 
 interface Props {
@@ -15,108 +15,140 @@ const {
   eyebrow,
   title,
   subtitle,
-  bottomLabel = "SERVICIOS",
   showCTA = true,
   showContact = true,
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-white">
-  <div class="grid md:grid-cols-[42%_58%] min-h-[480px] md:min-h-[560px]">
-    <!-- Lado izquierdo: patrón diagonal + texto -->
-    <div class="relative pattern-diagonal flex flex-col justify-between p-8 sm:p-10 md:p-14">
-      <div>
-        {showContact && (
-          <div class="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noopener"
-              class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors"
-              aria-label="Escribir por WhatsApp"
-            >
-              <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4 text-orange-600" />
-              <span class="font-semibold tracking-wide">{site.contact.phoneDisplay}</span>
-            </a>
-            <span class="hidden sm:inline-block w-px h-4 bg-ink-300" aria-hidden="true"></span>
-            <a
-              href={mailtoUrl("Consulta desde la web")}
-              class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors break-all"
-              aria-label="Enviar mail"
-            >
-              <Icon name="ph:envelope-simple-bold" class="w-4 h-4 text-orange-600 flex-shrink-0" />
-              <span class="font-semibold tracking-wide">{site.contact.email}</span>
-            </a>
+<section class="relative bg-gradient-to-br from-sky-50 via-white to-sky-50 overflow-hidden">
+  <span
+    class="absolute -top-32 -right-32 w-[36rem] h-[36rem] rounded-full bg-sky-100/60 blur-3xl pointer-events-none"
+    aria-hidden="true"
+  ></span>
+  <span
+    class="absolute -bottom-32 -left-32 w-[28rem] h-[28rem] rounded-full bg-amber-400/10 blur-3xl pointer-events-none"
+    aria-hidden="true"
+  ></span>
+
+  <div class="relative container-tight pt-12 pb-16 sm:pt-20 sm:pb-24 md:pt-28 md:pb-32">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
+      <!-- Texto -->
+      <div class="max-w-2xl">
+        <!-- Stars rating + label -->
+        <div class="flex items-center gap-3 mb-7">
+          <div class="flex items-center gap-0.5">
+            {Array.from({ length: 5 }).map(() => (
+              <Icon
+                name="ph:star-fill"
+                class="w-4 h-4 text-amber-400"
+                aria-hidden="true"
+              />
+            ))}
           </div>
-        )}
+          <span class="text-sm font-semibold text-ink-700">
+            Atención personalizada · 100% por mí
+          </span>
+        </div>
+
         {eyebrow && (
-          <p class="text-xs font-bold tracking-[0.22em] uppercase text-orange-600 mb-4">
+          <p class="text-xs font-bold tracking-[0.18em] uppercase text-sky-600 mb-4">
             {eyebrow}
           </p>
         )}
+
         {title && (
-          <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide uppercase text-navy-700 leading-[1.15]">
+          <h1
+            class="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-ink-900 leading-[1.05] tracking-tight"
+          >
             {title}
           </h1>
         )}
+
         {subtitle && (
-          <p class="mt-5 text-ink-500 text-base sm:text-lg max-w-md leading-relaxed">
+          <p class="mt-6 text-ink-700 text-lg sm:text-xl leading-relaxed max-w-xl">
             {subtitle}
           </p>
         )}
 
         {showCTA && (
-          <div class="mt-8 flex flex-wrap gap-3">
+          <div class="mt-9 flex flex-wrap items-center gap-3">
             <a
               href={whatsappUrl()}
               target="_blank"
               rel="noopener"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white font-bold text-sm tracking-wider uppercase hover:bg-orange-700 transition-colors"
+              class="btn-primary"
             >
-              Consultar
+              <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4" />
+              Solicitar asesoramiento
             </a>
-            <a
-              href="/servicios"
-              class="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy-700 text-navy-700 font-bold text-sm tracking-wider uppercase hover:bg-navy-700 hover:text-white transition-colors"
-            >
-              Servicios
+            <a href="/servicios" class="btn-secondary">
+              Ver servicios →
             </a>
           </div>
         )}
+
+        <!-- Tagline 24h estilo HISE -->
+        <div class="mt-7 flex items-center gap-2 text-sm text-ink-500">
+          <span class="relative inline-flex w-2 h-2">
+            <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+            <span class="relative rounded-full w-2 h-2 bg-emerald-500"></span>
+          </span>
+          <span class="font-medium">Respondo en menos de 4 horas</span>
+        </div>
       </div>
 
-      {bottomLabel && (
-        <p class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest text-navy-700 mt-12">
-          {bottomLabel}
-        </p>
-      )}
-    </div>
+      <!-- Card con foto a la derecha -->
+      <div class="relative">
+        <div
+          class="relative rounded-[1.75rem] overflow-hidden bg-ink-200 aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5] shadow-2xl shadow-sky-900/15 border border-white"
+          style={`background-image: linear-gradient(180deg, transparent 55%, rgba(15,23,42,0.5) 100%), url('${site.professional.photo}'); background-size: cover; background-position: center;`}
+          aria-label="Foto de Lucas Contreras"
+        >
+          <!-- Badge flotante: Lic. + nombre -->
+          <div class="absolute bottom-5 left-5 right-5">
+            <div class="bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg shadow-sky-900/10 inline-block max-w-full">
+              <p class="text-[10px] font-bold tracking-widest uppercase text-sky-600">
+                Lic. en Seguridad e Higiene
+              </p>
+              <p class="text-sm font-bold text-ink-900 mt-0.5 leading-tight">
+                {site.professional.fullName}
+              </p>
+            </div>
+          </div>
 
-    <!-- Lado derecho: foto con cortes diagonales -->
-    <div class="relative bg-ink-200 min-h-[300px]">
-      <!-- Foto base -->
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style={`background-image: linear-gradient(135deg, rgba(15,24,73,0.25), rgba(15,24,73,0.05)), url('${site.professional.photo}');`}
-      ></div>
+          <!-- Chip "Disponible" -->
+          <span
+            class="absolute top-5 right-5 inline-flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-full text-[11px] font-semibold text-ink-900 shadow-md"
+          >
+            <span class="relative inline-flex w-1.5 h-1.5">
+              <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+              <span class="relative rounded-full w-1.5 h-1.5 bg-emerald-500"></span>
+            </span>
+            Disponible
+          </span>
+        </div>
 
-      <!-- Overlay diagonal navy izquierdo (corte diagonal hacia el lado izquierdo) -->
-      <div
-        class="absolute top-0 bottom-0 left-0 w-[18%] bg-white"
-        style="clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
-
-      <!-- Banda navy decorativa -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[14%] w-[6%] bg-navy-700/85"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
-
-      <!-- Banda con líneas blancas diagonales -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[20%] w-[8%] bg-white/60 pattern-diagonal"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
+        <!-- Floating contact card -->
+        {showContact && (
+          <div
+            class="hidden md:flex absolute -bottom-5 -left-5 lg:-left-8 bg-white rounded-2xl shadow-xl shadow-sky-900/15 border border-ink-200 px-5 py-4 gap-3 items-center"
+          >
+            <span
+              class="grid place-items-center w-10 h-10 rounded-full bg-sky-50 text-sky-600"
+            >
+              <Icon name="ph:phone-bold" class="w-5 h-5" />
+            </span>
+            <div>
+              <p class="text-[10px] font-bold tracking-widest uppercase text-ink-400">
+                WhatsApp
+              </p>
+              <p class="text-sm font-bold text-ink-900 leading-tight">
+                {site.contact.phoneDisplay}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   </div>
 </section>

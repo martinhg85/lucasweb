@@ -1,5 +1,7 @@
 ---
 import { site, navLinks } from "../data/site";
+import { Icon } from "astro-icon/components";
+import { whatsappUrl } from "../data/site";
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
   href === path || (href !== "/" && path.startsWith(href));
@@ -7,10 +9,10 @@ const isActive = (href: string) =>
 
 <header
   id="site-header"
-  class="site-header fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-ink-200"
+  class="site-header fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-ink-100"
 >
   <div
-    class="header-inner container-tight grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr] items-center gap-4 md:items-end md:gap-6"
+    class="header-inner container-tight grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr_auto] items-center gap-4"
   >
     <!-- Logo + tagline -->
     <a
@@ -19,66 +21,76 @@ const isActive = (href: string) =>
       aria-label={site.name}
     >
       <span
-        class="header-logo relative inline-grid place-items-center rounded-full border-[3px] border-navy-700 flex-shrink-0"
+        class="header-logo grid place-items-center rounded-2xl bg-gradient-to-br from-sky-500 to-sky-600 text-white flex-shrink-0 shadow-md shadow-sky-500/30"
       >
-        <span class="absolute inset-1.5 rounded-full bg-ink-200"></span>
-        <span class="relative w-3 h-3 rounded-full bg-orange-600 -translate-y-0.5"></span>
-        <span class="absolute bottom-1.5 w-7 h-1.5 bg-navy-700 rounded-sm"></span>
+        <Icon name="ph:hard-hat-bold" class="w-5 h-5" aria-hidden="true" />
       </span>
       <div class="leading-none min-w-0">
-        <p class="header-brand font-display font-extrabold tracking-wider text-navy-700 truncate">
-          {site.name.toUpperCase()}
+        <p class="header-brand font-bold tracking-tight text-ink-900 truncate">
+          Lucas Contreras
         </p>
-        <p class="header-tagline font-semibold tracking-[0.18em] uppercase text-orange-600 truncate">
+        <p class="header-tagline font-medium tracking-wide text-ink-500 truncate">
           {site.brandTagline}
         </p>
       </div>
     </a>
 
     <!-- Nav desktop -->
-    <nav class="hidden md:block md:justify-self-end">
-      <ul class="flex items-stretch gap-0 text-sm font-semibold text-navy-700">
+    <nav class="hidden md:block md:justify-self-center">
+      <ul class="flex items-center gap-1 text-sm font-semibold text-ink-700">
         {navLinks.map((l) => (
           <li>
             <a
               href={l.href}
               class:list={[
-                "header-link block px-4 sm:px-5 transition-colors tracking-wider whitespace-nowrap",
+                "header-link block px-4 rounded-full transition-colors whitespace-nowrap",
                 isActive(l.href)
-                  ? "bg-navy-700 text-white"
-                  : "hover:text-orange-600",
+                  ? "text-sky-600 bg-sky-50"
+                  : "hover:text-sky-600",
               ]}
             >
-              {l.label}
+              {l.label.charAt(0) + l.label.slice(1).toLowerCase()}
             </a>
           </li>
         ))}
       </ul>
     </nav>
 
-    <!-- Hamburger mobile -->
-    <button
-      id="mobile-menu-btn"
-      type="button"
-      class="md:hidden inline-grid place-items-center w-11 h-11 rounded-md text-navy-700 hover:bg-ink-100 transition-colors"
-      aria-label="Abrir menú"
-      aria-expanded="false"
-      aria-controls="mobile-menu-panel"
-    >
-      <svg
-        class="hamburger-icon w-6 h-6"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2.2"
-        stroke-linecap="round"
-        aria-hidden="true"
+    <!-- CTA desktop + Hamburger mobile -->
+    <div class="flex items-center gap-2 md:justify-self-end">
+      <a
+        href={whatsappUrl()}
+        target="_blank"
+        rel="noopener"
+        class="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold rounded-full shadow-md shadow-sky-500/25 transition-colors"
       >
-        <line class="line-top" x1="4" y1="7" x2="20" y2="7"></line>
-        <line class="line-mid" x1="4" y1="12" x2="20" y2="12"></line>
-        <line class="line-bot" x1="4" y1="17" x2="20" y2="17"></line>
-      </svg>
-    </button>
+        <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4" />
+        Consultar
+      </a>
+
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="md:hidden inline-grid place-items-center w-11 h-11 rounded-xl text-ink-900 hover:bg-ink-100 transition-colors"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu-panel"
+      >
+        <svg
+          class="hamburger-icon w-6 h-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <line class="line-top" x1="4" y1="7" x2="20" y2="7"></line>
+          <line class="line-mid" x1="4" y1="12" x2="20" y2="12"></line>
+          <line class="line-bot" x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
 <div id="header-spacer" class="header-spacer" aria-hidden="true"></div>
@@ -89,21 +101,19 @@ const isActive = (href: string) =>
   class="mobile-menu fixed inset-0 z-50 md:hidden"
   aria-hidden="true"
 >
-  <div class="mobile-menu-overlay absolute inset-0 bg-navy-900/60 backdrop-blur-sm"></div>
+  <div class="mobile-menu-overlay absolute inset-0 bg-ink-900/50 backdrop-blur-sm"></div>
   <aside
     class="mobile-menu-drawer absolute top-0 right-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl flex flex-col"
     role="dialog"
     aria-modal="true"
     aria-label="Menú de navegación"
   >
-    <div class="flex items-center justify-between px-5 py-4 border-b border-ink-200">
-      <p class="font-display font-extrabold text-lg tracking-wider text-navy-700">
-        Menú
-      </p>
+    <div class="flex items-center justify-between px-5 py-4 border-b border-ink-100">
+      <p class="font-bold text-lg text-ink-900 tracking-tight">Menú</p>
       <button
         id="mobile-menu-close"
         type="button"
-        class="inline-grid place-items-center w-10 h-10 rounded-md text-navy-700 hover:bg-ink-100 transition-colors"
+        class="inline-grid place-items-center w-10 h-10 rounded-xl text-ink-900 hover:bg-ink-100 transition-colors"
         aria-label="Cerrar menú"
       >
         <svg
@@ -128,10 +138,10 @@ const isActive = (href: string) =>
             <a
               href={l.href}
               class:list={[
-                "block px-4 py-4 text-base font-semibold tracking-wider rounded-md transition-colors",
+                "block px-4 py-4 text-base font-semibold rounded-xl transition-colors",
                 isActive(l.href)
-                  ? "bg-navy-700 text-white"
-                  : "text-navy-700 hover:bg-ink-100 hover:text-orange-600",
+                  ? "bg-sky-50 text-sky-600"
+                  : "text-ink-700 hover:bg-ink-100 hover:text-sky-600",
               ]}
             >
               {l.label}
@@ -141,8 +151,16 @@ const isActive = (href: string) =>
       </ul>
     </nav>
 
-    <div class="px-5 py-5 border-t border-ink-200 text-xs text-ink-500">
-      {site.brandTagline}
+    <div class="p-4 border-t border-ink-100">
+      <a
+        href={whatsappUrl()}
+        target="_blank"
+        rel="noopener"
+        class="btn-primary w-full"
+      >
+        <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4" />
+        Consultar por WhatsApp
+      </a>
     </div>
   </aside>
 </div>
@@ -173,11 +191,8 @@ const isActive = (href: string) =>
   body.menu-open {
     overflow: hidden;
   }
-  /* Hamburger to X */
   .hamburger-icon line {
-    transition:
-      transform 0.3s ease,
-      opacity 0.2s ease;
+    transition: transform 0.3s ease, opacity 0.2s ease;
     transform-origin: center;
   }
   #mobile-menu-btn[aria-expanded="true"] .line-top {
@@ -196,15 +211,13 @@ const isActive = (href: string) =>
     const header = document.getElementById("site-header");
     const spacer = document.getElementById("header-spacer");
     if (!header || !spacer) return;
-
     const measure = () => {
       const wasScrolled = header.classList.contains("is-scrolled");
       if (wasScrolled) header.classList.remove("is-scrolled");
       spacer.style.height = header.offsetHeight + "px";
       if (wasScrolled) header.classList.add("is-scrolled");
     };
-
-    const enterAt = 80;
+    const enterAt = 60;
     const exitAt = 24;
     let scrolled = false;
     const update = () => {
@@ -217,12 +230,43 @@ const isActive = (href: string) =>
         header.classList.toggle("is-scrolled", scrolled);
       }
     };
-
     measure();
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", measure);
   })();
+
+  // Reveal on scroll — esperamos DOM completo, sino el Header script corre
+  // antes que el resto del body se parsee y no encuentra los .reveal.
+  function setupReveal() {
+    const targets = document.querySelectorAll(".reveal, .reveal-stagger");
+    if (!targets.length) return;
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach((t) => t.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.1 }
+    );
+    targets.forEach((t) => io.observe(t));
+    // Fallback: si tras 2s algún reveal sigue oculto, lo marcamos visible.
+    setTimeout(() => {
+      targets.forEach((t) => t.classList.add("is-visible"));
+    }, 2000);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupReveal);
+  } else {
+    setupReveal();
+  }
 
   // Mobile menu toggle
   (function () {
@@ -230,10 +274,8 @@ const isActive = (href: string) =>
     const panel = document.getElementById("mobile-menu-panel");
     const closeBtn = document.getElementById("mobile-menu-close");
     if (!btn || !panel) return;
-
     const overlay = panel.querySelector(".mobile-menu-overlay");
     const links = panel.querySelectorAll("a");
-
     const open = () => {
       panel.classList.add("is-open");
       panel.setAttribute("aria-hidden", "false");
@@ -249,10 +291,8 @@ const isActive = (href: string) =>
       document.body.classList.remove("menu-open");
     };
     const toggle = () => {
-      if (panel.classList.contains("is-open")) close();
-      else open();
+      panel.classList.contains("is-open") ? close() : open();
     };
-
     btn.addEventListener("click", toggle);
     closeBtn?.addEventListener("click", close);
     overlay?.addEventListener("click", close);
@@ -260,7 +300,6 @@ const isActive = (href: string) =>
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && panel.classList.contains("is-open")) close();
     });
-    // Cierra el drawer si se cruza al breakpoint desktop
     const mq = window.matchMedia("(min-width: 768px)");
     mq.addEventListener("change", (e) => {
       if (e.matches) close();
