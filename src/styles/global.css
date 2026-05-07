@@ -1,32 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  /* Navy estilo Flowork */
-  --color-navy-50: #f0f2fa;
-  --color-navy-100: #d9deef;
-  --color-navy-200: #b3bce0;
-  --color-navy-500: #2a3a8c;
-  --color-navy-600: #21307a;
-  --color-navy-700: #1b2868;
-  --color-navy-800: #15205a;
-  --color-navy-900: #0f1849;
+  /* Variante INDUSTRIAL — perfil Borex/Highseg (dark premium con bento + glow) */
 
-  /* Naranja accent */
-  --color-orange-50: #fef3ec;
-  --color-orange-100: #fde0cb;
-  --color-orange-500: #ee6a26;
-  --color-orange-600: #e8602c;
-  --color-orange-700: #c94e1d;
+  /* Background dark profundo */
+  --color-night-950: #050810;
+  --color-night-900: #0b1220;
+  --color-night-800: #111a2e;
+  --color-night-700: #18233d;
+  --color-night-600: #22304f;
+  --color-night-500: #334669;
 
-  /* Grises sobrios */
-  --color-ink-900: #1a1a1a;
-  --color-ink-700: #444444;
-  --color-ink-500: #6b6b6b;
-  --color-ink-400: #9a9a9a;
-  --color-ink-300: #c8c8c8;
-  --color-ink-200: #e3e3e3;
-  --color-ink-100: #f1f1f1;
-  --color-ink-50: #f7f7f7;
+  /* "Navy" en industrial es un night más oscuro */
+  --color-navy-50: #e8eef9;
+  --color-navy-100: #c5d2ec;
+  --color-navy-200: #93a8d6;
+  --color-navy-500: #2d3f6b;
+  --color-navy-600: #22304f;
+  --color-navy-700: #18233d;
+  --color-navy-800: #111a2e;
+  --color-navy-900: #0b1220;
+
+  /* Acento naranja vibrante (lo dominante) */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+
+  /* Tinta clara sobre dark */
+  --color-ink-50: #f8fafc;
+  --color-ink-100: #e2e8f0;
+  --color-ink-200: #cbd5e1;
+  --color-ink-300: #94a3b8;
+  --color-ink-400: #64748b;
+  --color-ink-500: #475569;
+  --color-ink-700: #334155;
+  --color-ink-900: #0f172a;
 
   --font-sans: "Open Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Open Sans", ui-sans-serif, system-ui, sans-serif;
@@ -36,12 +48,14 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--color-night-900);
 }
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-ink-700);
-  background: white;
+  color: var(--color-ink-200);
+  background: var(--color-night-900);
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -50,145 +64,233 @@ body {
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
+  @media (min-width: 768px) {
+    .container-tight {
+      padding-inline: 2rem;
+    }
+  }
 
-  /* Patrón de líneas diagonales sutiles, estilo Flowork */
+  /* Pattern industrial — diagonales sutiles con glow naranja */
   .pattern-diagonal {
     background-image: repeating-linear-gradient(
       135deg,
-      rgba(0, 0, 0, 0.04) 0,
-      rgba(0, 0, 0, 0.04) 1px,
+      rgba(249, 115, 22, 0.04) 0,
+      rgba(249, 115, 22, 0.04) 1px,
       transparent 1px,
-      transparent 8px
+      transparent 14px
     );
   }
-
   .pattern-diagonal-light {
     background-image: repeating-linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.08) 0,
-      rgba(255, 255, 255, 0.08) 1px,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 1px,
       transparent 1px,
-      transparent 10px
+      transparent 14px
     );
   }
 
-  /* Header fijo con efecto shrink-on-scroll estilo Flowork.
-     Usa position:fixed + spacer para evitar reflow del contenido al cambiar de estado. */
+  /* Glow blob para fondos */
+  .glow-orange {
+    background: radial-gradient(
+      circle,
+      rgba(249, 115, 22, 0.4) 0%,
+      transparent 70%
+    );
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  /* === Header dark === */
   .site-header {
     transition:
-      box-shadow 0.35s ease,
-      background-color 0.35s ease,
-      border-color 0.35s ease;
+      box-shadow 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+    background-color: rgba(11, 18, 32, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
   .header-spacer {
-    /* Alto inicial aproximado del header. JS lo ajusta exacto al cargar y en resize. */
-    height: 6rem;
+    height: 5rem;
   }
   @media (min-width: 768px) {
     .header-spacer {
-      height: 7rem;
+      height: 5.5rem;
     }
   }
   .site-header.is-scrolled {
-    background-color: rgba(255, 255, 255, 0.96);
-    box-shadow: 0 6px 24px -10px rgba(15, 24, 73, 0.18);
-    border-bottom-color: transparent;
+    background-color: rgba(11, 18, 32, 0.94);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
   }
 
   .header-inner {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-    transition: padding 0.35s ease;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
-  @media (min-width: 768px) {
-    .header-inner {
-      padding-top: 1.75rem;
-      padding-bottom: 1.75rem;
-    }
-  }
-  .site-header.is-scrolled .header-inner {
-    padding-top: 0.65rem;
-    padding-bottom: 0.65rem;
-  }
-
   .header-logo {
-    width: 3.5rem;
-    height: 3.5rem;
-    transition: transform 0.35s ease, width 0.35s ease, height 0.35s ease;
+    width: 2.75rem;
+    height: 2.75rem;
   }
-  .site-header.is-scrolled .header-logo {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
   .header-brand {
-    font-size: 1.5rem;
-    transition: font-size 0.35s ease;
+    font-size: 1.125rem;
   }
   @media (min-width: 640px) {
     .header-brand {
-      font-size: 1.875rem;
+      font-size: 1.25rem;
     }
   }
-  .site-header.is-scrolled .header-brand {
-    font-size: 1.25rem;
-  }
-
   .header-tagline {
-    margin-top: 0.375rem;
-    font-size: 11px;
+    margin-top: 0.125rem;
+    font-size: 0.7rem;
     max-height: 1.2rem;
-    opacity: 1;
+    opacity: 0.7;
     overflow: hidden;
-    transition:
-      opacity 0.25s ease,
-      max-height 0.35s ease,
-      margin-top 0.35s ease;
-  }
-  @media (min-width: 640px) {
-    .header-tagline {
-      font-size: 0.75rem;
-    }
+    transition: opacity 0.25s ease, max-height 0.3s ease;
   }
   .site-header.is-scrolled .header-tagline {
     opacity: 0;
     max-height: 0;
-    margin-top: 0;
   }
-
   .header-link {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    transition: padding 0.35s ease, color 0.2s ease, background-color 0.2s ease;
-  }
-  .site-header.is-scrolled .header-link {
-    padding-top: 0.55rem;
-    padding-bottom: 0.55rem;
+    padding: 0.55rem 0.75rem;
   }
 
-  /* Heading section style — MAYÚSCULAS centrado con regla horizontal */
+  /* Section heading dark */
   .section-heading {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
   }
-
   .section-heading h2 {
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 400;
-    color: var(--color-navy-700);
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
+    font-size: clamp(1.875rem, 4.2vw, 3rem);
+    font-weight: 800;
+    color: var(--color-ink-50);
+    letter-spacing: -0.02em;
+    text-transform: none;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  .section-heading::after {
+    content: none;
   }
 
-  .section-heading::after {
-    content: "";
-    display: block;
-    width: 100%;
-    max-width: 36rem;
-    height: 1px;
-    background: var(--color-ink-300);
-    margin: 0 auto;
+  .section-eyebrow {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-orange-400);
+    background: rgba(249, 115, 22, 0.1);
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(249, 115, 22, 0.2);
   }
+
+  /* === Card dark con border glow en hover === */
+  .card-dark {
+    background: var(--color-night-800);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1rem;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease,
+      border-color 0.3s ease,
+      background-color 0.3s ease;
+    position: relative;
+  }
+  .card-dark:hover {
+    transform: translateY(-2px);
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 12px 40px -12px rgba(249, 115, 22, 0.2);
+  }
+  .card-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      transparent 30%,
+      rgba(249, 115, 22, 0.5) 50%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .card-dark:hover::before {
+    opacity: 1;
+  }
+
+  /* === Botones === */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.625rem;
+    background: var(--color-orange-500);
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 9999px;
+    transition: all 0.25s ease;
+    box-shadow:
+      0 0 0 0 rgba(249, 115, 22, 0),
+      0 8px 24px -6px rgba(249, 115, 22, 0.45);
+  }
+  .btn-primary:hover {
+    background: var(--color-orange-600);
+    transform: translateY(-1px);
+    box-shadow:
+      0 0 32px 0 rgba(249, 115, 22, 0.4),
+      0 12px 32px -6px rgba(249, 115, 22, 0.55);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.625rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-ink-100);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.25s ease;
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-orange-500);
+    color: var(--color-orange-400);
+    background: rgba(249, 115, 22, 0.05);
+  }
+
+  /* === Reveal on scroll === */
+  .reveal,
+  .reveal-stagger > * {
+    transition:
+      opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html.js .reveal:not(.is-visible),
+  html.js .reveal-stagger:not(.is-visible) > * {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  html.js .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  html.js .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; }
+  html.js .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; }
+  html.js .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; }
+  html.js .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; }
+  html.js .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; }
 }

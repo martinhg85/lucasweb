@@ -1,5 +1,5 @@
 ---
-import { site, whatsappUrl, mailtoUrl } from "../data/site";
+import { site, whatsappUrl } from "../data/site";
 import { Icon } from "astro-icon/components";
 
 interface Props {
@@ -15,108 +15,118 @@ const {
   eyebrow,
   title,
   subtitle,
-  bottomLabel = "SERVICIOS",
   showCTA = true,
-  showContact = true,
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-white">
-  <div class="grid md:grid-cols-[42%_58%] min-h-[480px] md:min-h-[560px]">
-    <!-- Lado izquierdo: patrón diagonal + texto -->
-    <div class="relative pattern-diagonal flex flex-col justify-between p-8 sm:p-10 md:p-14">
-      <div>
-        {showContact && (
-          <div class="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noopener"
-              class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors"
-              aria-label="Escribir por WhatsApp"
-            >
-              <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4 text-orange-600" />
-              <span class="font-semibold tracking-wide">{site.contact.phoneDisplay}</span>
-            </a>
-            <span class="hidden sm:inline-block w-px h-4 bg-ink-300" aria-hidden="true"></span>
-            <a
-              href={mailtoUrl("Consulta desde la web")}
-              class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors break-all"
-              aria-label="Enviar mail"
-            >
-              <Icon name="ph:envelope-simple-bold" class="w-4 h-4 text-orange-600 flex-shrink-0" />
-              <span class="font-semibold tracking-wide">{site.contact.email}</span>
-            </a>
-          </div>
-        )}
-        {eyebrow && (
-          <p class="text-xs font-bold tracking-[0.22em] uppercase text-orange-600 mb-4">
-            {eyebrow}
+<section class="relative bg-night-900 text-ink-100 overflow-hidden">
+  <!-- Glow blobs -->
+  <span
+    class="absolute top-[-12rem] right-[-10rem] w-[44rem] h-[44rem] glow-orange"
+    aria-hidden="true"
+  ></span>
+  <span
+    class="absolute bottom-[-12rem] left-[-8rem] w-[32rem] h-[32rem] glow-orange opacity-50"
+    aria-hidden="true"
+  ></span>
+
+  <div class="absolute inset-0 pattern-diagonal pointer-events-none"></div>
+
+  <div class="relative container-tight pt-12 pb-20 sm:pt-20 sm:pb-28 md:pt-28 md:pb-36">
+    <div class="grid lg:grid-cols-[1.15fr_1fr] gap-10 lg:gap-16 items-center">
+      <!-- Texto -->
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-3 mb-7">
+          <span class="relative inline-flex w-2 h-2">
+            <span class="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-75"></span>
+            <span class="relative rounded-full w-2 h-2 bg-orange-500"></span>
+          </span>
+          <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-orange-400">
+            {eyebrow ?? "Asesor en Seguridad e Higiene · CABA"}
           </p>
-        )}
+        </div>
+
         {title && (
-          <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide uppercase text-navy-700 leading-[1.15]">
+          <h1
+            class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold uppercase text-ink-50 leading-[0.98] tracking-[-0.02em]"
+          >
             {title}
           </h1>
         )}
+
         {subtitle && (
-          <p class="mt-5 text-ink-500 text-base sm:text-lg max-w-md leading-relaxed">
+          <p class="mt-7 text-ink-200 text-lg sm:text-xl leading-relaxed max-w-xl">
             {subtitle}
           </p>
         )}
 
         {showCTA && (
-          <div class="mt-8 flex flex-wrap gap-3">
+          <div class="mt-9 flex flex-wrap items-center gap-3">
             <a
               href={whatsappUrl()}
               target="_blank"
               rel="noopener"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white font-bold text-sm tracking-wider uppercase hover:bg-orange-700 transition-colors"
+              class="btn-primary"
             >
-              Consultar
+              <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4" />
+              Solicitar presupuesto
             </a>
-            <a
-              href="/servicios"
-              class="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy-700 text-navy-700 font-bold text-sm tracking-wider uppercase hover:bg-navy-700 hover:text-white transition-colors"
-            >
-              Servicios
+            <a href="/servicios" class="btn-secondary">
+              Ver servicios →
             </a>
           </div>
         )}
+
+        <div class="mt-7 flex items-center gap-2 text-sm text-ink-400">
+          <Icon name="ph:lightning-bold" class="w-4 h-4 text-orange-400" />
+          <span class="font-medium">Respondo en menos de 4 horas</span>
+        </div>
       </div>
 
-      {bottomLabel && (
-        <p class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest text-navy-700 mt-12">
-          {bottomLabel}
-        </p>
-      )}
-    </div>
+      <!-- Card foto iluminada -->
+      <div class="relative">
+        <div class="relative">
+          <div
+            class="relative rounded-2xl overflow-hidden bg-night-700 aspect-[4/5] shadow-2xl ring-1 ring-white/10"
+            style={`background-image: linear-gradient(180deg, transparent 50%, rgba(11,18,32,0.85) 100%), url('${site.professional.photo}'); background-size: cover; background-position: center;`}
+            aria-label="Foto de Lucas Contreras"
+          >
+            <!-- Glow detrás (border highlight) -->
+            <div class="absolute inset-0 pattern-diagonal-light pointer-events-none"></div>
 
-    <!-- Lado derecho: foto con cortes diagonales -->
-    <div class="relative bg-ink-200 min-h-[300px]">
-      <!-- Foto base -->
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style={`background-image: linear-gradient(135deg, rgba(15,24,73,0.25), rgba(15,24,73,0.05)), url('${site.professional.photo}');`}
-      ></div>
+            <!-- Badge inferior -->
+            <div class="absolute bottom-5 left-5 right-5">
+              <div class="bg-night-900/85 backdrop-blur-md border border-white/10 rounded-xl px-4 py-3 inline-block max-w-full">
+                <p class="text-[10px] font-bold tracking-widest uppercase text-orange-400">
+                  Lic. en Seguridad e Higiene
+                </p>
+                <p class="text-sm font-bold text-ink-50 mt-0.5 leading-tight">
+                  {site.professional.fullName}
+                </p>
+              </div>
+            </div>
 
-      <!-- Overlay diagonal navy izquierdo (corte diagonal hacia el lado izquierdo) -->
-      <div
-        class="absolute top-0 bottom-0 left-0 w-[18%] bg-white"
-        style="clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
+            <!-- Chip Disponible -->
+            <span
+              class="absolute top-5 right-5 inline-flex items-center gap-1.5 px-3 py-1.5 bg-night-900/85 backdrop-blur-md border border-white/10 rounded-full text-[11px] font-semibold text-ink-100"
+            >
+              <span class="relative inline-flex w-1.5 h-1.5">
+                <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+                <span class="relative rounded-full w-1.5 h-1.5 bg-emerald-500"></span>
+              </span>
+              Disponible
+            </span>
+          </div>
 
-      <!-- Banda navy decorativa -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[14%] w-[6%] bg-navy-700/85"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
-
-      <!-- Banda con líneas blancas diagonales -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[20%] w-[8%] bg-white/60 pattern-diagonal"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
+          <!-- Halo glow detrás -->
+          <span
+            class="absolute -inset-4 -z-10 rounded-2xl bg-orange-500/20 blur-2xl"
+            aria-hidden="true"
+          ></span>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="border-b border-white/5"></div>
 </section>

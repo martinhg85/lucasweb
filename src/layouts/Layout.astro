@@ -75,6 +75,11 @@ const schema = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      // Marca el documento como "JS activo" antes de pintar para evitar FOUC
+      // del reveal-on-scroll. Sin JS, todo el contenido queda visible default.
+      document.documentElement.classList.add("js");
+    </script>
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
