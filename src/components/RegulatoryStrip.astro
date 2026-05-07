@@ -10,6 +10,16 @@ interface Props {
 
 const { items = site.regulations, label = "Trabajo bajo el marco de" } =
   Astro.props;
+
+// Cada string viene como "Nombre corto — Descripción". Separamos para mostrar
+// el nombre como título y la descripción como subtítulo en cada celda del grid.
+const parsed = items.map((raw) => {
+  const [name, ...rest] = raw.split(" — ");
+  return {
+    name: name.trim(),
+    description: rest.join(" — ").trim() || undefined,
+  };
+});
 ---
 
 <aside
@@ -17,30 +27,39 @@ const { items = site.regulations, label = "Trabajo bajo el marco de" } =
   aria-label="Marco normativo"
 >
   <div class="absolute inset-0 pattern-diagonal-light opacity-40"></div>
-  <div class="container-tight py-8 sm:py-10 relative">
-    <div class="flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
-      <div class="flex items-center gap-3 flex-shrink-0">
-        <Icon
-          name="ph:scales-bold"
-          class="w-6 h-6 text-orange-500"
-          aria-hidden="true"
-        />
-        <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-orange-500">
-          {label}
-        </p>
-      </div>
 
-      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-xs sm:text-sm text-white/90">
-        {items.map((r) => (
-          <li class="flex items-center gap-2">
-            <span
-              class="inline-block w-1.5 h-1.5 bg-orange-500 flex-shrink-0"
-              aria-hidden="true"
-            ></span>
-            <span class="font-medium tracking-wide">{r}</span>
-          </li>
-        ))}
-      </ul>
+  <div class="container-tight py-14 sm:py-16 relative">
+    <!-- Encabezado centrado: ícono + eyebrow -->
+    <div class="flex items-center justify-center gap-3 mb-6">
+      <Icon
+        name="ph:shield-check-bold"
+        class="w-6 h-6 text-orange-500"
+        aria-hidden="true"
+      />
+      <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-orange-500">
+        {label}
+      </p>
     </div>
+
+    <!-- Línea divisoria suave -->
+    <div class="mx-auto max-w-md border-t border-white/15 mb-12"></div>
+
+    <!-- Grid 3x2 simétrico -->
+    <ul
+      class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-10 max-w-5xl mx-auto"
+    >
+      {parsed.map((r) => (
+        <li class="text-center">
+          <p class="font-display text-sm sm:text-base font-bold tracking-wide uppercase text-white leading-tight">
+            {r.name}
+          </p>
+          {r.description && (
+            <p class="mt-2 text-xs text-white/70 leading-relaxed">
+              {r.description}
+            </p>
+          )}
+        </li>
+      ))}
+    </ul>
   </div>
 </aside>
