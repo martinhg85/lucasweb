@@ -21,102 +21,106 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-white">
-  <div class="grid md:grid-cols-[42%_58%] min-h-[480px] md:min-h-[560px]">
-    <!-- Lado izquierdo: patrón diagonal + texto -->
-    <div class="relative pattern-diagonal flex flex-col justify-between pl-container pr-5 py-8 sm:py-10 md:pr-8 md:py-14">
-      <div>
-        {showContact && (
-          <div class="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noopener"
-              class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors"
-              aria-label="Escribir por WhatsApp"
-            >
-              <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4 text-orange-600" />
-              <span class="font-semibold tracking-wide">{site.contact.phoneDisplay}</span>
-            </a>
-            <span class="hidden sm:inline-block w-px h-4 bg-ink-300" aria-hidden="true"></span>
-            <a
-              href={mailtoUrl("Consulta desde la web")}
-              class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors break-all"
-              aria-label="Enviar mail"
-            >
-              <Icon name="ph:envelope-simple-bold" class="w-4 h-4 text-orange-600 flex-shrink-0" />
-              <span class="font-semibold tracking-wide">{site.contact.email}</span>
-            </a>
-          </div>
-        )}
-        {eyebrow && (
-          <p class="text-xs font-bold tracking-[0.22em] uppercase text-orange-600 mb-4">
-            {eyebrow}
-          </p>
-        )}
-        {title && (
-          <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide uppercase text-navy-700 leading-[1.15]">
-            {title}
-          </h1>
-        )}
-        {subtitle && (
-          <p class="mt-5 text-ink-500 text-base sm:text-lg max-w-md leading-relaxed">
-            {subtitle}
-          </p>
-        )}
+<section class="relative overflow-hidden bg-white min-h-[560px] md:min-h-[640px]">
+  <!-- Foto background full-bleed -->
+  <div
+    class="absolute inset-0 bg-cover"
+    style={`background-image: url('${site.professional.photo}'); background-position: 75% center;`}
+    aria-hidden="true"
+  ></div>
 
-        {showCTA && (
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white font-bold text-sm tracking-wider uppercase hover:bg-orange-700 transition-colors"
-            >
-              Consultar
-            </a>
-            <a
-              href="/servicios"
-              class="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy-700 text-navy-700 font-bold text-sm tracking-wider uppercase hover:bg-navy-700 hover:text-white transition-colors"
-            >
-              Servicios
-            </a>
-          </div>
-        )}
-      </div>
+  <!-- Overlay gradient: blanco sólido a la izquierda → transparente a la derecha.
+       Mantiene la legibilidad del texto izquierdo y deja la foto visible a la derecha. -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: linear-gradient(to right, rgb(255 255 255) 0%, rgb(255 255 255) 38%, rgb(255 255 255 / 0.85) 52%, rgb(255 255 255 / 0.4) 68%, transparent 88%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Pattern diagonal decorativo solo del lado izquierdo (sobre el overlay sólido) -->
+  <div
+    class="absolute inset-y-0 left-0 right-1/2 pattern-diagonal pointer-events-none"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Banda decorativa diagonal navy (transición visual entre overlay y foto) -->
+  <div
+    class="hidden md:block absolute top-0 bottom-0 right-[18%] w-[5%] bg-navy-700/85 pointer-events-none"
+    style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="hidden md:block absolute top-0 bottom-0 right-[10%] w-[7%] bg-white/55 pattern-diagonal pointer-events-none"
+    style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Contenido en container alineado al navbar -->
+  <div class="relative container-tight py-12 sm:py-16 md:py-24">
+    <div class="max-w-2xl">
+      {showContact && (
+        <div class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener"
+            class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors"
+            aria-label="Escribir por WhatsApp"
+          >
+            <Icon name="ph:whatsapp-logo-bold" class="w-4 h-4 text-orange-600" />
+            <span class="font-semibold tracking-wide">{site.contact.phoneDisplay}</span>
+          </a>
+          <span class="hidden sm:inline-block w-px h-4 bg-ink-300" aria-hidden="true"></span>
+          <a
+            href={mailtoUrl("Consulta desde la web")}
+            class="group inline-flex items-center gap-2 hover:text-orange-600 transition-colors break-all"
+            aria-label="Enviar mail"
+          >
+            <Icon name="ph:envelope-simple-bold" class="w-4 h-4 text-orange-600 flex-shrink-0" />
+            <span class="font-semibold tracking-wide">{site.contact.email}</span>
+          </a>
+        </div>
+      )}
+      {eyebrow && (
+        <p class="text-xs font-bold tracking-[0.22em] uppercase text-orange-600 mb-4">
+          {eyebrow}
+        </p>
+      )}
+      {title && (
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide uppercase text-navy-700 leading-[1.15]">
+          {title}
+        </h1>
+      )}
+      {subtitle && (
+        <p class="mt-5 text-ink-700 text-base sm:text-lg max-w-md leading-relaxed">
+          {subtitle}
+        </p>
+      )}
+
+      {showCTA && (
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white font-bold text-sm tracking-wider uppercase hover:bg-orange-700 transition-colors"
+          >
+            Consultar
+          </a>
+          <a
+            href="/servicios"
+            class="inline-flex items-center gap-2 px-6 py-3 border-2 border-navy-700 text-navy-700 font-bold text-sm tracking-wider uppercase bg-white/80 hover:bg-navy-700 hover:text-white transition-colors"
+          >
+            Servicios
+          </a>
+        </div>
+      )}
 
       {bottomLabel && (
-        <p class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest text-navy-700 mt-12">
+        <p class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest text-navy-700 mt-16">
           {bottomLabel}
         </p>
       )}
-    </div>
-
-    <!-- Lado derecho: foto con cortes diagonales -->
-    <div class="relative bg-ink-200 min-h-[300px]">
-      <!-- Foto base -->
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style={`background-image: linear-gradient(135deg, rgba(15,24,73,0.25), rgba(15,24,73,0.05)), url('${site.professional.photo}');`}
-      ></div>
-
-      <!-- Overlay diagonal navy izquierdo (corte diagonal hacia el lado izquierdo) -->
-      <div
-        class="absolute top-0 bottom-0 left-0 w-[18%] bg-white"
-        style="clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
-
-      <!-- Banda navy decorativa -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[14%] w-[6%] bg-navy-700/85"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
-
-      <!-- Banda con líneas blancas diagonales -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[20%] w-[8%] bg-white/60 pattern-diagonal"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
     </div>
   </div>
 </section>
