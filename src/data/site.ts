@@ -1,11 +1,13 @@
 // Configuración central del sitio. Todo lo editable arranca acá.
 
 export const site = {
-  name: "Lucas Contreras",
-  // Tagline corto bajo el logo (estilo "ESPECIALISTAS EN HIGIENE OCUPACIONAL" de Flowork)
-  brandTagline: "Asesor en Seguridad e Higiene",
+  // Marca paraguas (= dominio chwork.com.ar). El profesional firmante es
+  // Lucas Contreras y aparece como tagline al lado.
+  name: "chwork",
+  // Tagline al lado del wordmark — asocia la marca con la persona detrás
+  brandTagline: "por Lic. Lucas Contreras · Asesor en Seguridad e Higiene",
   tagline: "Asesoramiento integral en Seguridad e Higiene",
-  url: "https://lucascontreras.com.ar",
+  url: "https://chwork.com.ar",
   locale: "es-AR",
 
   professional: {
