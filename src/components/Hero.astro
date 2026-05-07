@@ -21,13 +21,19 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-white">
-  <div class="grid md:grid-cols-[42%_58%] min-h-[480px] md:min-h-[560px]">
-    <!-- Lado izquierdo: patrón diagonal + texto -->
-    <div class="relative pattern-diagonal flex flex-col justify-between pl-container pr-5 py-8 sm:py-10 md:pr-8 md:py-14">
-      <div>
+<section class="relative bg-white overflow-hidden">
+  <!-- Pattern diagonal sutil de fondo solo del lado izquierdo -->
+  <div
+    class="absolute inset-y-0 left-0 right-1/2 pattern-diagonal pointer-events-none"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative container-tight py-12 sm:py-16 md:py-20">
+    <div class="grid md:grid-cols-[1.15fr_1fr] gap-10 md:gap-12 lg:gap-16 items-center">
+      <!-- Texto -->
+      <div class="max-w-2xl">
         {showContact && (
-          <div class="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
+          <div class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
             <a
               href={whatsappUrl()}
               target="_blank"
@@ -83,40 +89,61 @@ const {
             </a>
           </div>
         )}
+
+        {bottomLabel && (
+          <p class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest text-navy-700 mt-12">
+            {bottomLabel}
+          </p>
+        )}
       </div>
 
-      {bottomLabel && (
-        <p class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest text-navy-700 mt-12">
-          {bottomLabel}
-        </p>
-      )}
-    </div>
+      <!-- Foto encuadrada -->
+      <div class="relative">
+        <!-- Frame con bordes industriales: 2 capas decorativas -->
+        <div
+          class="absolute -top-3 -right-3 w-full h-full bg-orange-600 -z-10"
+          aria-hidden="true"
+        ></div>
 
-    <!-- Lado derecho: foto con cortes diagonales -->
-    <div class="relative bg-ink-200 min-h-[300px]">
-      <!-- Foto base -->
-      <div
-        class="absolute inset-0 bg-cover bg-center"
-        style={`background-image: linear-gradient(135deg, rgba(15,24,73,0.25), rgba(15,24,73,0.05)), url('${site.professional.photo}');`}
-      ></div>
+        <div
+          class="relative aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5] overflow-hidden bg-ink-200 border-2 border-navy-700"
+          style={`background-image: linear-gradient(180deg, transparent 50%, rgba(15,24,73,0.5) 100%), url('${site.professional.photo}'); background-size: cover; background-position: center;`}
+          aria-label="Foto de Lucas Contreras"
+        >
+          <!-- Banda diagonal decorativa industrial superior izquierda -->
+          <div
+            class="absolute top-0 left-0 w-32 h-12 bg-navy-700/85"
+            style="clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);"
+            aria-hidden="true"
+          ></div>
 
-      <!-- Overlay diagonal navy izquierdo (corte diagonal hacia el lado izquierdo) -->
-      <div
-        class="absolute top-0 bottom-0 left-0 w-[18%] bg-white"
-        style="clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
+          <!-- Chip "Disponible" arriba a la derecha -->
+          <span
+            class="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-ink-200 rounded-full text-[11px] font-semibold text-navy-700 shadow-md"
+          >
+            <span class="relative inline-flex w-1.5 h-1.5">
+              <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
+              <span class="relative rounded-full w-1.5 h-1.5 bg-emerald-500"></span>
+            </span>
+            Disponible
+          </span>
 
-      <!-- Banda navy decorativa -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[14%] w-[6%] bg-navy-700/85"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
-
-      <!-- Banda con líneas blancas diagonales -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[20%] w-[8%] bg-white/60 pattern-diagonal"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-      ></div>
+          <!-- Badge inferior con título y nombre -->
+          <div class="absolute bottom-4 left-4 right-4">
+            <div class="bg-white/95 backdrop-blur-sm border border-navy-700/10 px-4 py-3 inline-block max-w-full">
+              <p class="text-[10px] font-bold tracking-widest uppercase text-orange-600">
+                Lic. en Seguridad e Higiene
+              </p>
+              <p class="text-sm font-extrabold tracking-tight text-navy-700 mt-0.5 leading-tight">
+                {site.professional.fullName}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Línea fina al pie del hero -->
+  <div class="border-b border-ink-200"></div>
 </section>
