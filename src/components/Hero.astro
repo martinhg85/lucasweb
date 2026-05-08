@@ -20,7 +20,7 @@ const {
 ---
 
 <section class="relative overflow-hidden bg-white pattern-diagonal">
-  <div class="grid md:grid-cols-[42%_58%] min-h-[480px] md:min-h-[560px]">
+  <div class="grid md:grid-cols-[55%_45%] min-h-[480px] md:min-h-[560px]">
     <!-- Lado izquierdo: texto sobre patrón -->
     <div class="relative flex flex-col justify-between p-8 sm:p-10 md:p-14">
       <div>
@@ -96,24 +96,17 @@ const {
         aria-hidden="true"
       ></div>
 
-      <!-- Banda blanca de transición desde el lado izquierdo -->
+      <!-- Banda navy decorativa diagonal en el borde izquierdo de la imagen -->
       <div
-        class="absolute top-0 bottom-0 left-0 w-[18%] bg-white"
-        style="clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);"
+        class="hidden md:block absolute top-0 bottom-0 left-0 w-[8%] bg-navy-700/90"
+        style="clip-path: polygon(0 0, 100% 0, 50% 100%, 0% 100%);"
         aria-hidden="true"
       ></div>
 
-      <!-- Banda navy decorativa -->
+      <!-- Banda naranja decorativa angosta -->
       <div
-        class="hidden md:block absolute top-0 bottom-0 left-[14%] w-[6%] bg-navy-700/85"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
-        aria-hidden="true"
-      ></div>
-
-      <!-- Banda naranja decorativa -->
-      <div
-        class="hidden md:block absolute top-0 bottom-0 left-[20%] w-[3%] bg-orange-600/70"
-        style="clip-path: polygon(40% 0, 100% 0, 60% 100%, 0% 100%);"
+        class="hidden md:block absolute top-0 bottom-0 left-[6%] w-[3%] bg-orange-600/80"
+        style="clip-path: polygon(0 0, 100% 0, 50% 100%, 0% 100%);"
         aria-hidden="true"
       ></div>
     </div>
