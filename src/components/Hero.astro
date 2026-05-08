@@ -85,23 +85,20 @@ const {
 
     </div>
 
-    <!-- Lado derecho: imagen genérica del rubro (banner industrial / herramientas)
-         con cortes diagonales que se mezclan con el patrón del hero.
-         Para activar imagen: dropear /public/syh-banner.jpg (1200×1200+, vertical
-         o cuadrada) y descomentar la capa de fondo.  Hasta que llegue, los cortes
-         diagonales sobre el patrón ya forman un hero geométrico válido. -->
+    <!-- Lado derecho: banner industrial del rubro (instrumental, casco, clipboard)
+         con cortes diagonales decorativos por encima. Se mezcla con el patrón
+         del hero a través de la banda blanca de transición. -->
     <div class="relative min-h-[300px]">
-      <!-- Imagen del rubro (placeholder hasta tener archivo real) -->
-      <!--
+      <!-- Imagen genérica del rubro -->
       <div
         class="absolute inset-0 bg-cover bg-center"
-        style="background-image: linear-gradient(135deg, rgba(15,24,73,0.35), rgba(15,24,73,0.15)), url('/syh-banner.jpg');"
+        style="background-image: linear-gradient(90deg, rgba(255,255,255,0.0) 60%, rgba(15,24,73,0.05) 100%), url('/syh-banner-h.jpg');"
+        aria-hidden="true"
       ></div>
-      -->
 
       <!-- Banda blanca de transición desde el lado izquierdo -->
       <div
-        class="absolute top-0 bottom-0 left-0 w-[18%] bg-white/85"
+        class="absolute top-0 bottom-0 left-0 w-[18%] bg-white"
         style="clip-path: polygon(0 0, 100% 0, 60% 100%, 0% 100%);"
         aria-hidden="true"
       ></div>
