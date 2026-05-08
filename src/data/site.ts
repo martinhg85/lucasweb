@@ -11,12 +11,16 @@ export const site = {
   locale: "es-AR",
 
   professional: {
-    fullName: "Lic. Lucas Contreras",
-    title: "Licenciado en Seguridad e Higiene",
-    // TODO: completar con el posgrado real
-    postgrado: "Posgrado en [completar]",
-    // TODO: completar matrícula profesional
-    matricula: "Mat. [completar]",
+    fullName: "Lic. Lucas Aníbal Contreras",
+    title: "Licenciado en Higiene y Seguridad en el Trabajo",
+    universidad: "Universidad Nacional de Lomas de Zamora",
+    fechaTitulo: "Marzo 2022",
+    // Doble matrícula: diferencial fuerte vs. competencia que solo tiene una.
+    // Le permite firmar y presentar en CABA y en Provincia sin intermediarios.
+    matriculas: [
+      { numero: "L003619", colegio: "COPIME", jurisdiccion: "CABA" },
+      { numero: "LHS-007573", colegio: "CPSH", jurisdiccion: "Provincia de Buenos Aires" },
+    ],
     photo: "/lucas.jpg",
   },
 
@@ -31,8 +35,7 @@ export const site = {
 
   coverage: {
     primary: "CABA",
-    extended: "CABA y Gran Buenos Aires",
-    // TODO: confirmar zona real de cobertura
+    extended: "CABA y Provincia de Buenos Aires",
   },
 
   // Para schema.org LocalBusiness — clave para SEO local
@@ -64,10 +67,11 @@ export const site = {
     "Resolución SRT 886/15 — Ergonomía",
   ],
 
-  // Números para reforzar autoridad. TODO: confirmar con Lucas valores reales,
-  // mientras tanto van como placeholders entre corchetes para que sean fáciles de detectar.
+  // Números para reforzar autoridad. "+5 años" es inferido de la inscripción al
+  // Registro de Profesionales H&ST (29/10/2020). Los otros dos siguen pendientes
+  // de confirmación con Lucas — placeholders entre corchetes para detectarlos rápido.
   stats: [
-    { value: "[+X] años", label: "ejerciendo en CABA" },
+    { value: "+5 años", label: "ejerciendo profesionalmente" },
     { value: "[+X]", label: "habilitaciones gestionadas" },
     { value: "[+X]", label: "mediciones realizadas" },
     { value: "100%", label: "atendido personalmente" },
@@ -161,10 +165,13 @@ export const services: ServiceGroup[] = [
   },
 ];
 
-// TODO: completar con clientes reales — los logos/nombres son lo que más convierte
+// Clientes confirmados por Lucas. Logos descargados de las webs oficiales en /public/clients/.
 export const clients: { name: string; logo?: string }[] = [
-  // { name: "Cliente 1", logo: "/clients/cliente1.svg" },
-  // { name: "Cliente 2", logo: "/clients/cliente2.svg" },
+  { name: "Bajda SRL", logo: "/clients/bajda.jpg" },
+  { name: "Revestimientos Cerámicos", logo: "/clients/revestimientos-ceramicos.png" },
+  { name: "Ranko SRL", logo: "/clients/ranko.png" },
+  { name: "truFFa café especial", logo: "/clients/truffa.png" },
+  { name: "Cabarco", logo: "/clients/cabarco.png" },
 ];
 
 // "Cómo trabajo" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
