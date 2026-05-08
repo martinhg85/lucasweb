@@ -7,7 +7,15 @@ import { clients } from "../data/site";
     {clients.map((c) => (
       <div class="flex items-center justify-center w-40 sm:w-44 h-24 px-6 py-4 border border-ink-200 rounded-xl bg-white">
         {c.logo ? (
-          <img src={c.logo} alt={c.name} class="max-h-12 max-w-full w-auto opacity-90" loading="lazy" />
+          <img
+            src={c.logo}
+            alt={c.name}
+            class:list={[
+              "max-w-full w-auto opacity-90",
+              c.aspect === "square" ? "max-h-16" : "max-h-12",
+            ]}
+            loading="lazy"
+          />
         ) : (
           <span class="text-ink-500 font-semibold tracking-wide text-center text-sm">{c.name}</span>
         )}
