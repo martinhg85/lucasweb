@@ -4,7 +4,10 @@ import { defineConfig, devices } from "@playwright/test";
 const VARIANTS = [
   { name: "clasica", baseURL: "http://localhost:4321" },
   { name: "industrial", baseURL: "http://localhost:4322" },
-  { name: "moderna", baseURL: "http://localhost:4323" },
+  { name: "premium", baseURL: "http://localhost:4323" },
+  { name: "original", baseURL: "http://localhost:4324" },
+  { name: "chwork", baseURL: "http://localhost:4325" },
+  { name: "original-framed", baseURL: "http://localhost:4326" },
 ];
 
 const VIEWPORTS = [
