@@ -3,16 +3,16 @@ import { clients } from "../data/site";
 ---
 
 {clients.length > 0 ? (
-  <div class="flex flex-wrap justify-center gap-4 sm:gap-5">
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
     {clients.map((c) => (
-      <div class="flex items-center justify-center w-40 sm:w-44 h-24 px-6 py-4 border border-ink-200 rounded-xl bg-white">
+      <div class="flex items-center justify-center h-28 sm:h-32 px-8 py-5 border border-ink-200 rounded-xl bg-white">
         {c.logo ? (
           <img
             src={c.logo}
             alt={c.name}
             class:list={[
               "max-w-full w-auto opacity-90",
-              c.aspect === "square" ? "max-h-16" : "max-h-12",
+              c.aspect === "square" ? "max-h-20" : "max-h-16",
             ]}
             loading="lazy"
           />
@@ -23,9 +23,9 @@ import { clients } from "../data/site";
     ))}
   </div>
 ) : (
-  <div class="flex flex-wrap justify-center gap-4 sm:gap-5 opacity-50">
+  <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto opacity-50">
     {Array.from({ length: 6 }).map((_, i) => (
-      <div class="w-40 sm:w-44 h-24 border border-dashed border-ink-300 grid place-items-center text-[10px] text-ink-400 tracking-widest uppercase rounded-xl">
+      <div class="h-28 sm:h-32 border border-dashed border-ink-300 grid place-items-center text-[10px] text-ink-400 tracking-widest uppercase rounded-xl">
         Logo {i + 1}
       </div>
     ))}
