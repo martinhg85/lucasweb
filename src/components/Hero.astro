@@ -85,28 +85,28 @@ const {
 
     </div>
 
-    <!-- Lado derecho: banner industrial del rubro (instrumental, casco, clipboard)
-         con cortes diagonales decorativos por encima. Se mezcla con el patrón
-         del hero a través de la banda blanca de transición. -->
+    <!-- Lado derecho: banner industrial del rubro con corte diagonal en su borde
+         izquierdo. La zona triangular que queda libre deja ver el pattern del
+         <section> detrás, dándole continuidad visual a las dos columnas. -->
     <div class="relative min-h-[300px]">
-      <!-- Imagen genérica del rubro -->
+      <!-- Imagen con corte diagonal a partir de md: -->
       <div
-        class="absolute inset-0 bg-cover bg-center"
+        class="absolute inset-0 bg-cover bg-center md:[clip-path:polygon(14%_0,100%_0,100%_100%,0%_100%)]"
         style="background-image: linear-gradient(90deg, rgba(255,255,255,0.0) 60%, rgba(15,24,73,0.05) 100%), url('/syh-banner-h.jpg');"
         aria-hidden="true"
       ></div>
 
-      <!-- Banda navy decorativa diagonal en el borde izquierdo de la imagen -->
+      <!-- Línea navy fina siguiendo el corte diagonal (acento) -->
       <div
-        class="hidden md:block absolute top-0 bottom-0 left-0 w-[8%] bg-navy-700/90"
-        style="clip-path: polygon(0 0, 100% 0, 50% 100%, 0% 100%);"
+        class="hidden md:block absolute inset-0 bg-navy-700"
+        style="clip-path: polygon(13.4% 0, 14% 0, 0% 100%, 0% 99.4%);"
         aria-hidden="true"
       ></div>
 
-      <!-- Banda naranja decorativa angosta -->
+      <!-- Acento naranja chiquito en el vértice superior del corte -->
       <div
-        class="hidden md:block absolute top-0 bottom-0 left-[6%] w-[3%] bg-orange-600/80"
-        style="clip-path: polygon(0 0, 100% 0, 50% 100%, 0% 100%);"
+        class="hidden md:block absolute inset-0 bg-orange-600"
+        style="clip-path: polygon(11% 0, 13.4% 0, 7% 18%, 5% 18%);"
         aria-hidden="true"
       ></div>
     </div>
