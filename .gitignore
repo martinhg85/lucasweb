@@ -22,3 +22,13 @@ pnpm-debug.log*
 # editors
 .vscode/
 .idea/
+
+# playwright outputs (no se commitean — son artefactos por corrida)
+screenshots/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# material privado de Lucas (credenciales con DNI/firma, etc.) — NO commitear
+WhatsApp Image*
+info-lucas.txt
