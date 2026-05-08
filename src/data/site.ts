@@ -173,7 +173,7 @@ export const clients: { name: string; logo?: string; aspect?: "wide" | "square" 
   { name: "Ranko SRL", logo: "/clients/ranko.png" },
   { name: "Truffa's café gourmet", logo: "/clients/truffa.png" },
   { name: "Cabarco", logo: "/clients/cabarco.png" },
-  { name: "Vicente Parrilla Restaurante", logo: "/clients/vicente-parrilla.jpg", aspect: "square" },
+  { name: "Vicente Parrilla Restaurante", logo: "/clients/vicente-parrilla.jpg" },
 ];
 
 // "Cómo trabajo" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
