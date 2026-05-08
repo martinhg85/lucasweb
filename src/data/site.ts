@@ -4,7 +4,7 @@ export const site = {
   name: "Lucas Contreras",
   // Tagline corto bajo el logo (estilo "ESPECIALISTAS EN HIGIENE OCUPACIONAL" de Flowork)
   brandTagline: "Asesor en Seguridad e Higiene",
-  tagline: "Asesoramiento integral en Seguridad e Higiene",
+  tagline: "Asesoramiento en Higiene y Seguridad en el Trabajo",
   url: "https://lucascontreras.com.ar",
   locale: "es-AR",
 
@@ -92,9 +92,9 @@ export const services: ServiceGroup[] = [
     slug: "habilitaciones",
     title: "Habilitaciones y obra en CABA",
     short:
-      "Gestión integral de habilitaciones, permisos de obra, excavación y reformas ante el GCBA.",
+      "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA. Presento, firmo y acompaño hasta el certificado.",
     description:
-      "Te acompaño en cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico inicial hasta el certificado final. Trabajo con comercios, oficinas, locales gastronómicos, viviendas y obras civiles, bajo el marco de la Ley 5.920 de Sistema de Autoprotección y la normativa de habilitaciones del GCBA.",
+      "Acompaño cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico al certificado final. Trabajo con comercios, oficinas, locales gastronómicos, viviendas y obras civiles bajo Ley 5.920 (Sistema de Autoprotección) y la normativa de habilitaciones del GCBA. La presentación la hago yo y la firmo con mi matrícula.",
     items: [
       "Habilitación comercial (rubros simples y con condiciones)",
       "Permiso de obra y aviso de obra",
@@ -116,9 +116,9 @@ export const services: ServiceGroup[] = [
     slug: "mediciones",
     title: "Mediciones ambientales",
     short:
-      "Mediciones técnicas con instrumental propio calibrado y protocolos firmados, listos para presentar a la SRT.",
+      "Iluminación, ruido y carga térmica. Hago la medición, la interpreto y te dejo el plan de corrección.",
     description:
-      "Realizo personalmente las mediciones obligatorias bajo las Resoluciones SRT 84/12 y 85/12, y normativa ergonómica vigente. No solo entrego el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir. Cada protocolo lleva mi firma y matrícula.",
+      "Hago personalmente las mediciones obligatorias bajo las Resoluciones SRT 84/12 (iluminación), 85/12 (ruido) y la normativa ergonómica vigente. No te entrego solo el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir. Cada protocolo lleva mi firma y matrícula.",
     items: [
       "Iluminación general y localizada en puestos de trabajo",
       "Nivel sonoro continuo equivalente (LAeq)",
@@ -142,9 +142,9 @@ export const services: ServiceGroup[] = [
     slug: "incendios",
     title: "Sistemas contra incendio",
     short:
-      "Proyecto, instalación, mantenimiento y certificación de sistemas de protección contra incendio.",
+      "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordino la obra y firmo la presentación.",
     description:
-      "Cubro el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordino una red de instaladores y matriculados de confianza, y supervisó la entrega para que pase inspección de Bomberos y AGC sin observaciones.",
+      "Cubro el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordino con una red de instaladores y matriculados de confianza, y superviso la entrega para que pase inspección de Bomberos y AGC sin observaciones. La memoria técnica y la presentación van con mi firma.",
     items: [
       "Recarga y mantenimiento de matafuegos",
       "Red de hidrantes (proyecto, obra y mantenimiento)",
