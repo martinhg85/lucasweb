@@ -94,9 +94,9 @@ export const services: ServiceGroup[] = [
     slug: "habilitaciones",
     title: "Habilitaciones y obra en CABA",
     short:
-      "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA. Presento, firmo y acompaño hasta el certificado.",
+      "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA. Acompañamos cada trámite hasta el certificado.",
     description:
-      "Acompaño cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico al certificado final. Trabajo con comercios, oficinas, locales gastronómicos, viviendas y obras civiles bajo Ley 5.920 (Sistema de Autoprotección) y la normativa de habilitaciones del GCBA. La presentación la hago yo y la firmo con mi matrícula.",
+      "Acompañamos cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico al certificado final. Trabajamos con comercios, oficinas, locales gastronómicos, viviendas y obras civiles bajo Ley 5.920 (Sistema de Autoprotección) y la normativa de habilitaciones del GCBA. La presentación la firma el Lic. Lucas Contreras con matrícula COPIME.",
     items: [
       "Habilitación comercial (rubros simples y con condiciones)",
       "Permiso de obra y aviso de obra",
@@ -118,9 +118,9 @@ export const services: ServiceGroup[] = [
     slug: "mediciones",
     title: "Mediciones ambientales",
     short:
-      "Iluminación, ruido y carga térmica. Hago la medición, la interpreto y te dejo el plan de corrección.",
+      "Iluminación, ruido y carga térmica. Hacemos la medición, la interpretamos y te dejamos el plan de corrección.",
     description:
-      "Hago personalmente las mediciones obligatorias bajo las Resoluciones SRT 84/12 (iluminación), 85/12 (ruido) y la normativa ergonómica vigente. No te entrego solo el protocolo: te explico qué dice, qué riesgos detectó y qué hay que corregir. Cada protocolo lleva mi firma y matrícula.",
+      "Hacemos las mediciones obligatorias bajo las Resoluciones SRT 84/12 (iluminación), 85/12 (ruido) y la normativa ergonómica vigente. No entregamos solo el protocolo: te explicamos qué dice, qué riesgos detectó y qué hay que corregir. Cada protocolo lleva la firma del Lic. Lucas Contreras (matrículas COPIME y CPSH).",
     items: [
       "Iluminación general y localizada en puestos de trabajo",
       "Nivel sonoro continuo equivalente (LAeq)",
@@ -144,9 +144,9 @@ export const services: ServiceGroup[] = [
     slug: "incendios",
     title: "Sistemas contra incendio",
     short:
-      "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordino la obra y firmo la presentación.",
+      "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordinamos la obra; el matriculado firma la presentación.",
     description:
-      "Cubro el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordino con una red de instaladores y matriculados de confianza, y superviso la entrega para que pase inspección de Bomberos y AGC sin observaciones. La memoria técnica y la presentación van con mi firma.",
+      "Cubrimos el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordinamos con una red de instaladores y matriculados de confianza, y supervisamos la entrega para que pase inspección de Bomberos y AGC sin observaciones. La memoria técnica y la presentación las firma el Lic. Lucas Contreras.",
     items: [
       "Recarga y mantenimiento de matafuegos",
       "Red de hidrantes (proyecto, obra y mantenimiento)",
@@ -172,6 +172,7 @@ export const clients: { name: string; logo?: string }[] = [
   { name: "Ranko SRL", logo: "/clients/ranko.png" },
   { name: "truFFa café especial", logo: "/clients/truffa.png" },
   { name: "Cabarco", logo: "/clients/cabarco.png" },
+  { name: "Vicente Parrilla Restaurante", logo: "/clients/vicente-parrilla.jpg" },
 ];
 
 // "Cómo trabajo" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
@@ -180,22 +181,22 @@ export const howIWork: { icon: string; title: string; text: string }[] = [
   {
     icon: "ph:magnifying-glass-bold",
     title: "Diagnóstico",
-    text: "Te llamo o nos juntamos por videollamada. Entiendo el caso, reviso lo que ya tenés y te digo qué hace falta — sin compromiso.",
+    text: "Hablamos por WhatsApp o nos juntamos por videollamada. Entendemos el caso, revisamos lo que ya tenés y te decimos qué hace falta — sin compromiso.",
   },
   {
     icon: "ph:hard-hat-bold",
     title: "Visita técnica",
-    text: "Voy yo a tu local u obra. Hago el relevamiento, las mediciones con instrumental propio y registro todo lo que hay que corregir.",
+    text: "Vamos a tu local u obra. Hacemos el relevamiento, las mediciones con instrumental propio y registramos todo lo que hay que corregir.",
   },
   {
     icon: "ph:list-checks-bold",
     title: "Plan de acción",
-    text: "Te entrego un informe con prioridades, plazos y costos estimados. Vos decidís qué se ejecuta primero según el riesgo y el presupuesto.",
+    text: "Te entregamos un informe con prioridades, plazos y costos estimados. Vos decidís qué se ejecuta primero según el riesgo y el presupuesto.",
   },
   {
     icon: "ph:repeat-bold",
     title: "Seguimiento",
-    text: "Coordino las correcciones, presento los trámites y vuelvo a inspeccionar antes de la fiscalización oficial. No te dejo solo en la inspección.",
+    text: "Coordinamos las correcciones, presentamos los trámites y volvemos a inspeccionar antes de la fiscalización oficial. No te dejamos solo en la inspección.",
   },
 ];
 
