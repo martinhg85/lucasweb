@@ -79,9 +79,11 @@ Hoy explícito en:
 
 ### Clientes (logos)
 
-- [x] **5 logos cargados** en `/public/clients/` (Bajda, Revestimientos Cerámicos, Ranko, truFFa, Cabarco) — bajados de webs oficiales el 2026-05-07.
+- [x] **6 logos cargados** en `/public/clients/` (Bajda, Revestimientos Cerámicos, Ranko, truFFa, Cabarco, Vicente Parrilla Restaurante) — bajados de webs oficiales el 2026-05-07/08.
 - [ ] **Autorización explícita de cada cliente** para mostrar logo + nombre. Pendiente confirmar con Lucas.
 - [ ] Logos en mejor calidad (SVG/PNG hi-res) si los clientes los aportan. El de Bajda quedó chico (238×63 jpg, fondo blanco) porque el del sitio actual es para fondo oscuro.
+- [ ] **Truffa pendiente de re-verificación**: Lucas avisó que `truffa.png` (truFFa café especial, Av. Asamblea 1552) NO es el cliente correcto. El share `8Gu0UXpNDUA2I4pO6` ahora resuelve a una página vacía de Google que sugiere "Truffas café gourmet" pero no se encontró ningún negocio con ese nombre exacto en CABA. Pedirle a Lucas el nombre/URL correcto antes de cambiar el logo.
+- Vicente Parrilla Restaurante: logo recibido como imagen local (sin URL fuente); imagen 1484×1600 jpg. Ubicado en Dr. Pedro Ignacio Rivera 3801, Coghlan (CABA). IG: @vicente_resto. Sin sitio web oficial.
 
 ### Textos por sección
 

@@ -170,6 +170,7 @@ export const clients: { name: string; logo?: string }[] = [
   { name: "Ranko SRL", logo: "/clients/ranko.png" },
   { name: "truFFa café especial", logo: "/clients/truffa.png" },
   { name: "Cabarco", logo: "/clients/cabarco.png" },
+  { name: "Vicente Parrilla Restaurante", logo: "/clients/vicente-parrilla.jpg" },
 ];
 
 // "Cómo trabajo" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
