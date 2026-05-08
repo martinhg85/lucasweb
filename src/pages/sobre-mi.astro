@@ -9,7 +9,7 @@ import { site } from "../data/site";
 
 <Layout
   title="Nosotros"
-  description="Lic. Lucas Contreras: Licenciado en Seguridad e Higiene matriculado, con experiencia en habilitaciones, mediciones ambientales y sistemas contra incendio en CABA y GBA."
+  description="Lic. Lucas Aníbal Contreras: Licenciado en Higiene y Seguridad en el Trabajo (UNLZ) con doble matrícula COPIME (CABA) y CPSH (PBA). Habilitaciones, mediciones ambientales y sistemas contra incendio."
 >
   <section class="bg-white py-20 sm:py-24">
     <div class="container-tight">
@@ -36,16 +36,15 @@ import { site } from "../data/site";
             {site.professional.fullName}
           </h1>
           <p class="mt-2 text-ink-500 text-base">
-            {site.professional.postgrado}
+            {site.professional.universidad} · {site.professional.fechaTitulo}
           </p>
 
           <div class="mt-8 space-y-4 text-ink-700 leading-relaxed">
-            {/* TODO: ajustar con datos reales de Lucas (años, casos emblemáticos, etc.) */}
             <p>
-              Hace [X] años trabajo asesorando a comercios, oficinas, locales gastronómicos, viviendas y obras civiles en todo lo que hace al cumplimiento de la Ley 19.587, el Decreto 351/79 y la Ley 5.920 de la Ciudad. Atiendo personalmente cada caso de principio a fin.
+              Hace más de cinco años acompaño a comercios, oficinas, locales gastronómicos, viviendas y obras civiles en todo lo que hace al cumplimiento de la Ley 19.587, el Decreto 351/79 y la Ley 5.920 de la Ciudad. Atiendo personalmente cada caso de principio a fin.
             </p>
             <p>
-              Mi formación es en Seguridad e Higiene, con posgrado y matrícula vigente. Me especializo en mediciones ambientales y en la gestión de habilitaciones ante el GCBA — los dos frentes donde más se traba la actividad cuando algo no está en regla.
+              Soy Licenciado en Higiene y Seguridad en el Trabajo por la Universidad Nacional de Lomas de Zamora, con doble matrícula vigente: <strong>COPIME</strong> en CABA y <strong>CPSH</strong> en la Provincia de Buenos Aires. Eso me permite firmar y presentar trámites en ambas jurisdicciones, sin tercerizar ni depender de intermediarios.
             </p>
             <p>
               Trabajo con instrumental propio calibrado para iluminación y ruido (la base de los protocolos exigidos por la SRT) y coordino una red de matriculados e instaladores de confianza para las obras de incendio. Cada protocolo lleva mi firma y matrícula. Cada presentación ante el GCBA, también.
@@ -57,8 +56,13 @@ import { site } from "../data/site";
 
           <div class="mt-8 grid gap-3 sm:grid-cols-2">
             <div class="border border-ink-200 p-4 bg-ink-50">
-              <p class="text-[10px] font-bold tracking-widest uppercase text-orange-600 mb-1">Matrícula</p>
-              <p class="font-semibold text-navy-700">{site.professional.matricula}</p>
+              <p class="text-[10px] font-bold tracking-widest uppercase text-orange-600 mb-1">Matrículas</p>
+              {site.professional.matriculas.map((m) => (
+                <p class="font-semibold text-navy-700 text-sm leading-snug">
+                  {m.colegio} {m.numero}
+                  <span class="text-ink-500 font-normal"> · {m.jurisdiccion}</span>
+                </p>
+              ))}
             </div>
             <div class="border border-ink-200 p-4 bg-ink-50">
               <p class="text-[10px] font-bold tracking-widest uppercase text-orange-600 mb-1">Zona</p>

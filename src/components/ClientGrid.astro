@@ -3,20 +3,21 @@ import { clients } from "../data/site";
 ---
 
 {clients.length > 0 ? (
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-12 items-center justify-items-center">
+  <div class="flex flex-wrap justify-center gap-4 sm:gap-5">
     {clients.map((c) => (
-      c.logo ? (
-        <img src={c.logo} alt={c.name} class="h-10 sm:h-12 w-auto opacity-90" loading="lazy" />
-      ) : (
-        <span class="text-ink-500 font-semibold tracking-wide text-center">{c.name}</span>
-      )
+      <div class="flex items-center justify-center w-40 sm:w-44 h-24 px-6 py-4 border border-ink-200 rounded-xl bg-white">
+        {c.logo ? (
+          <img src={c.logo} alt={c.name} class="max-h-12 max-w-full w-auto opacity-90" loading="lazy" />
+        ) : (
+          <span class="text-ink-500 font-semibold tracking-wide text-center text-sm">{c.name}</span>
+        )}
+      </div>
     ))}
   </div>
 ) : (
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-8 gap-y-12 items-center justify-items-center opacity-50">
-    {/* TODO: cargar logos reales en /public/clients/ y completar src/data/site.ts */}
-    {Array.from({ length: 12 }).map((_, i) => (
-      <div class="w-28 h-12 border border-dashed border-ink-300 grid place-items-center text-[10px] text-ink-400 tracking-widest uppercase">
+  <div class="flex flex-wrap justify-center gap-4 sm:gap-5 opacity-50">
+    {Array.from({ length: 6 }).map((_, i) => (
+      <div class="w-40 sm:w-44 h-24 border border-dashed border-ink-300 grid place-items-center text-[10px] text-ink-400 tracking-widest uppercase rounded-xl">
         Logo {i + 1}
       </div>
     ))}
