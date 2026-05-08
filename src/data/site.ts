@@ -165,13 +165,15 @@ export const services: ServiceGroup[] = [
 ];
 
 // Clientes confirmados por Lucas. Logos descargados de las webs oficiales en /public/clients/.
-export const clients: { name: string; logo?: string }[] = [
+// `aspect: "square"` marca logos cuadrados o casi cuadrados (ratio < 1.5) para que
+// el grid les dé más altura y queden visualmente equilibrados con los wordmarks.
+export const clients: { name: string; logo?: string; aspect?: "wide" | "square" }[] = [
   { name: "Bajda SRL", logo: "/clients/bajda.jpg" },
   { name: "Revestimientos Cerámicos", logo: "/clients/revestimientos-ceramicos.png" },
   { name: "Ranko SRL", logo: "/clients/ranko.png" },
-  { name: "truFFa café especial", logo: "/clients/truffa.png" },
+  { name: "Truffa's café gourmet", logo: "/clients/truffa.png" },
   { name: "Cabarco", logo: "/clients/cabarco.png" },
-  { name: "Vicente Parrilla Restaurante", logo: "/clients/vicente-parrilla.jpg" },
+  { name: "Vicente Parrilla Restaurante", logo: "/clients/vicente-parrilla.jpg", aspect: "square" },
 ];
 
 // "Cómo trabajo" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
