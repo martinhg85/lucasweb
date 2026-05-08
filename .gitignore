@@ -28,3 +28,7 @@ screenshots/
 test-results/
 playwright-report/
 playwright/.cache/
+
+# material privado de Lucas (credenciales con DNI/firma, etc.) — NO commitear
+WhatsApp Image*
+info-lucas.txt
