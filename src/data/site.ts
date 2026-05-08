@@ -1,11 +1,12 @@
 // Configuración central del sitio. Todo lo editable arranca acá.
 
 export const site = {
-  name: "Lucas Contreras",
-  // Tagline corto bajo el logo (estilo "ESPECIALISTAS EN HIGIENE OCUPACIONAL" de Flowork)
-  brandTagline: "Asesor en Seguridad e Higiene",
+  // Marca paraguas. El profesional firmante (DT) es Lucas Contreras y se
+  // presenta en la página "Sobre mí" + footer legal.
+  name: "chwork",
+  brandTagline: "Higiene y Seguridad en el Trabajo",
   tagline: "Asesoramiento en Higiene y Seguridad en el Trabajo",
-  url: "https://lucascontreras.com.ar",
+  url: "https://chwork.com.ar",
   locale: "es-AR",
 
   professional: {
@@ -94,7 +95,7 @@ export const services: ServiceGroup[] = [
     short:
       "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA. Acompañamos cada trámite hasta el certificado.",
     description:
-      "Acompañamos cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico al certificado final. Trabajamos con comercios, oficinas, locales gastronómicos, viviendas y obras civiles bajo Ley 5.920 (Sistema de Autoprotección) y la normativa de habilitaciones del GCBA. La presentación la firma el Lic. Lucas Contreras con matrícula COPIME.",
+      "Acompañamos cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico al certificado final. Trabajamos con comercios, oficinas, locales gastronómicos, viviendas y obras civiles bajo Ley 5.920 (Sistema de Autoprotección) y la normativa de habilitaciones del GCBA.",
     items: [
       "Habilitación comercial (rubros simples y con condiciones)",
       "Permiso de obra y aviso de obra",
@@ -118,7 +119,7 @@ export const services: ServiceGroup[] = [
     short:
       "Iluminación, ruido y carga térmica. Hacemos la medición, la interpretamos y te dejamos el plan de corrección.",
     description:
-      "Hacemos las mediciones obligatorias bajo las Resoluciones SRT 84/12 (iluminación), 85/12 (ruido) y la normativa ergonómica vigente. No entregamos solo el protocolo: te explicamos qué dice, qué riesgos detectó y qué hay que corregir. Cada protocolo lleva la firma del Lic. Lucas Contreras (matrículas COPIME y CPSH).",
+      "Realizamos las mediciones obligatorias bajo las Resoluciones SRT 84/12 (iluminación), 85/12 (ruido) y la normativa ergonómica vigente. No entregamos solo el protocolo: te explicamos qué dice, qué riesgos detectó y qué hay que corregir.",
     items: [
       "Iluminación general y localizada en puestos de trabajo",
       "Nivel sonoro continuo equivalente (LAeq)",
@@ -144,7 +145,7 @@ export const services: ServiceGroup[] = [
     short:
       "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordinamos la obra y la presentación ante AGC y Bomberos.",
     description:
-      "Cubrimos el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordinamos con una red de instaladores y matriculados de confianza, y supervisamos la entrega para que pase inspección de Bomberos y AGC sin observaciones. La memoria técnica y la presentación las firma el Lic. Lucas Contreras.",
+      "Cubrimos el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordinamos con una red de instaladores y matriculados de confianza, y supervisamos la entrega para que pase inspección de Bomberos y AGC sin observaciones.",
     items: [
       "Recarga y mantenimiento de matafuegos",
       "Red de hidrantes (proyecto, obra y mantenimiento)",
