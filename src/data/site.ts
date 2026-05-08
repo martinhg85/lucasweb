@@ -144,7 +144,7 @@ export const services: ServiceGroup[] = [
     slug: "incendios",
     title: "Sistemas contra incendio",
     short:
-      "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordinamos la obra; el matriculado firma la presentación.",
+      "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordinamos la obra y la presentación ante AGC y Bomberos.",
     description:
       "Cubrimos el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordinamos con una red de instaladores y matriculados de confianza, y supervisamos la entrega para que pase inspección de Bomberos y AGC sin observaciones. La memoria técnica y la presentación las firma el Lic. Lucas Contreras.",
     items: [
