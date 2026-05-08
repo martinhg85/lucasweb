@@ -6,7 +6,6 @@ interface Props {
   eyebrow?: string;
   title?: string;
   subtitle?: string;
-  bottomLabel?: string;
   showCTA?: boolean;
   showContact?: boolean;
 }
@@ -15,7 +14,6 @@ const {
   eyebrow,
   title,
   subtitle,
-  bottomLabel = "SERVICIOS",
   showCTA = true,
   showContact = true,
 } = Astro.props;
@@ -92,26 +90,36 @@ const {
           </div>
         )}
 
-        {bottomLabel && (
-          <p class="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-widest text-navy-700 mt-12">
-            {bottomLabel}
-          </p>
-        )}
       </div>
 
-      <!-- Foto encuadrada -->
+      <!-- Card encuadrado con imagen genérica del rubro
+           (banner industrial: instrumental, casco, clipboard, etc.).
+           Para activar imagen: dropear /public/syh-banner.jpg
+           (idealmente 1200×1500+, vertical 4:5) y descomentar la
+           capa de fondo. Hasta que llegue, queda card vacío con
+           bandas decorativas que sigue funcionando como hero. -->
       <div class="relative">
-        <!-- Frame con bordes industriales: 2 capas decorativas -->
+        <!-- Sombra naranja offset (efecto encuadrado) -->
         <div
           class="absolute -top-3 -right-3 w-full h-full bg-orange-600 -z-10"
           aria-hidden="true"
         ></div>
 
         <div
-          class="relative aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5] overflow-hidden bg-ink-200 border-2 border-navy-700"
-          style={`background-image: linear-gradient(180deg, transparent 50%, rgba(15,24,73,0.5) 100%), url('${site.professional.photo}'); background-size: cover; background-position: 57% 30%;`}
-          aria-label="Foto de Lucas Contreras"
+          class="relative aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5] overflow-hidden bg-ink-100 border-2 border-navy-700"
+          aria-label="Banner — Higiene y Seguridad en el Trabajo"
         >
+          <!-- Imagen genérica del rubro (placeholder hasta tener archivo) -->
+          <!--
+          <div
+            class="absolute inset-0 bg-cover bg-center"
+            style="background-image: linear-gradient(180deg, transparent 40%, rgba(15,24,73,0.45) 100%), url('/syh-banner.jpg'); background-position: center;"
+          ></div>
+          -->
+
+          <!-- Patrón diagonal de fondo mientras no haya imagen -->
+          <div class="absolute inset-0 pattern-diagonal" aria-hidden="true"></div>
+
           <!-- Banda diagonal decorativa industrial superior izquierda -->
           <div
             class="absolute top-0 left-0 w-32 h-12 bg-navy-700/85"
@@ -119,28 +127,12 @@ const {
             aria-hidden="true"
           ></div>
 
-          <!-- Chip "Disponible" arriba a la derecha -->
-          <span
-            class="absolute top-4 right-4 inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-ink-200 rounded-full text-[11px] font-semibold text-navy-700 shadow-md"
-          >
-            <span class="relative inline-flex w-1.5 h-1.5">
-              <span class="absolute inset-0 rounded-full bg-emerald-500 animate-ping opacity-75"></span>
-              <span class="relative rounded-full w-1.5 h-1.5 bg-emerald-500"></span>
-            </span>
-            Disponible
-          </span>
-
-          <!-- Badge inferior con título y nombre -->
-          <div class="absolute bottom-4 left-4 right-4">
-            <div class="bg-white/95 backdrop-blur-sm border border-navy-700/10 px-4 py-3 inline-block max-w-full">
-              <p class="text-[10px] font-bold tracking-widest uppercase text-orange-600">
-                Lic. en Seguridad e Higiene
-              </p>
-              <p class="text-sm font-extrabold tracking-tight text-navy-700 mt-0.5 leading-tight">
-                {site.professional.fullName}
-              </p>
-            </div>
-          </div>
+          <!-- Banda naranja decorativa inferior derecha -->
+          <div
+            class="absolute bottom-0 right-0 w-24 h-10 bg-orange-600/80"
+            style="clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);"
+            aria-hidden="true"
+          ></div>
         </div>
       </div>
     </div>
