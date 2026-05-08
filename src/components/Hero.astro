@@ -19,13 +19,21 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-white pattern-diagonal">
-  <div class="grid md:grid-cols-2 min-h-[480px] md:min-h-[560px]">
-    <!-- Lado izquierdo: texto sobre patrón -->
-    <div class="relative flex flex-col justify-between p-8 sm:p-10 md:p-14">
-      <div>
+<section class="relative bg-white overflow-hidden">
+  <!-- Pattern diagonal sutil cubriendo toda la sección.
+       Como la foto está encima, el pattern se ve solo donde no hay foto:
+       todo el lado izquierdo + el espacio debajo de la foto al pie del hero. -->
+  <div
+    class="absolute inset-0 pattern-diagonal pointer-events-none"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative container-tight pt-6 pb-12 sm:pt-8 sm:pb-16 md:pt-10 md:pb-20">
+    <div class="grid md:grid-cols-[1.5fr_1fr] gap-10 md:gap-12 lg:gap-16 items-center">
+      <!-- Texto -->
+      <div class="max-w-2xl">
         {showContact && (
-          <div class="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
+          <div class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-navy-700">
             <a
               href={whatsappUrl()}
               target="_blank"
@@ -81,34 +89,51 @@ const {
             </a>
           </div>
         )}
+
       </div>
 
-    </div>
+      <!-- Card encuadrado con imagen genérica del rubro
+           (banner industrial: instrumental, casco, clipboard, etc.).
+           Para activar imagen: dropear /public/syh-banner.jpg
+           (idealmente 1200×1500+, vertical 4:5) y descomentar la
+           capa de fondo. Hasta que llegue, queda card vacío con
+           bandas decorativas que sigue funcionando como hero. -->
+      <div class="relative">
+        <!-- Sombra naranja offset (efecto encuadrado) -->
+        <div
+          class="absolute -top-3 -right-3 w-full h-full bg-orange-600 -z-10"
+          aria-hidden="true"
+        ></div>
 
-    <!-- Lado derecho: banner industrial del rubro con corte diagonal en su borde
-         izquierdo. La zona triangular que queda libre deja ver el pattern del
-         <section> detrás, dándole continuidad visual a las dos columnas. -->
-    <div class="relative min-h-[300px]">
-      <!-- Imagen con corte diagonal a partir de md: -->
-      <div
-        class="absolute inset-0 bg-cover bg-center md:[clip-path:polygon(14%_0,100%_0,100%_100%,0%_100%)]"
-        style="background-image: linear-gradient(90deg, rgba(255,255,255,0.0) 60%, rgba(15,24,73,0.05) 100%), url('/syh-banner-h.jpg');"
-        aria-hidden="true"
-      ></div>
+        <div
+          class="relative aspect-[4/5] sm:aspect-[5/6] lg:aspect-[4/5] overflow-hidden bg-ink-100 border-2 border-navy-700"
+          aria-label="Banner — Higiene y Seguridad en el Trabajo"
+        >
+          <!-- Imagen genérica del rubro -->
+          <div
+            class="absolute inset-0 bg-cover bg-center"
+            style="background-image: linear-gradient(180deg, transparent 50%, rgba(15,24,73,0.35) 100%), url('/syh-banner-v.jpg'); background-position: center;"
+            aria-hidden="true"
+          ></div>
 
-      <!-- Línea navy fina siguiendo el corte diagonal (acento) -->
-      <div
-        class="hidden md:block absolute inset-0 bg-navy-700"
-        style="clip-path: polygon(13.4% 0, 14% 0, 0% 100%, 0% 99.4%);"
-        aria-hidden="true"
-      ></div>
+          <!-- Banda diagonal decorativa industrial superior izquierda -->
+          <div
+            class="absolute top-0 left-0 w-32 h-12 bg-navy-700/85"
+            style="clip-path: polygon(0 0, 100% 0, 70% 100%, 0% 100%);"
+            aria-hidden="true"
+          ></div>
 
-      <!-- Acento naranja chiquito en el vértice superior del corte -->
-      <div
-        class="hidden md:block absolute inset-0 bg-orange-600"
-        style="clip-path: polygon(11% 0, 13.4% 0, 7% 18%, 5% 18%);"
-        aria-hidden="true"
-      ></div>
+          <!-- Banda naranja decorativa inferior derecha -->
+          <div
+            class="absolute bottom-0 right-0 w-24 h-10 bg-orange-600/80"
+            style="clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);"
+            aria-hidden="true"
+          ></div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!-- Línea fina al pie del hero -->
+  <div class="border-b border-ink-200"></div>
 </section>
