@@ -37,3 +37,6 @@ info-lucas.txt
 presentacion/node_modules/
 presentacion/dist/
 presentacion/.slidev/
+
+# Claude Code (config local + worktrees de agente)
+.claude/
