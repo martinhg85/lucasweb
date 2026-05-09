@@ -1,0 +1,370 @@
+/* Tema chwork — base profesional con grid y rhythm consistente
+ *
+ * Sistema:
+ *   - Safe area: 64px vertical, 80px horizontal en todos los slides
+ *   - Vertical rhythm: múltiplos de 8 (8, 16, 24, 32, 48, 64)
+ *   - Type scale fijo (cover, h2, body, caption, micro)
+ *   - Color discipline: naranja SOLO en regla y acentos pequeños;
+ *     navy en headings y datos clave; ink en body y meta.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --color-navy-700: #1b2868;
+  --color-navy-800: #15205a;
+  --color-navy-900: #0f1849;
+  --color-orange-500: #ee6a26;
+  --color-orange-600: #e8602c;
+  --color-ink-900: #1a1a1a;
+  --color-ink-700: #444444;
+  --color-ink-500: #6b6b6b;
+  --color-ink-300: #c8c8c8;
+  --color-ink-200: #e3e3e3;
+  --color-ink-100: #f1f1f1;
+  --color-ink-50: #f7f7f7;
+}
+
+.slidev-layout,
+.slidev-layout * {
+  font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+.slidev-layout {
+  color: var(--color-ink-700);
+  background: white;
+  padding: 64px 80px !important;
+  position: relative;
+  height: 100% !important;
+  min-height: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Pattern diagonal MUY sutil, decorativo */
+.pattern {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.025) 0,
+    rgba(0, 0, 0, 0.025) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+ * Type system
+ * ───────────────────────────────────────── */
+
+.cover-name {
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  color: var(--color-navy-700);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.cover-tag {
+  margin: 12px 0 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-orange-600);
+}
+
+.h2 {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--color-navy-700);
+  margin: 0;
+}
+
+.lead {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--color-ink-700);
+  max-width: 640px;
+  margin: 0;
+}
+
+.body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-ink-700);
+  margin: 0;
+}
+
+.caption {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
+  margin: 0;
+}
+
+.micro {
+  font-size: 11px;
+  color: var(--color-ink-500);
+  margin: 0;
+}
+
+.text-right { text-align: right; }
+
+/* ─────────────────────────────────────────
+ * Componentes reutilizables
+ * ───────────────────────────────────────── */
+
+.rule {
+  display: block;
+  width: 64px;
+  height: 3px;
+  background: var(--color-orange-600);
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--color-ink-200);
+  margin: 0;
+}
+
+/* Logo CH/work — replica del SVG del header del sitio */
+.logo {
+  width: 72px;
+  height: 72px;
+  position: relative;
+  flex-shrink: 0;
+  background: var(--color-navy-700);
+  display: grid;
+  place-items: center;
+  color: white;
+  text-align: center;
+}
+.logo::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22%;
+  height: 22%;
+  background: var(--color-orange-500);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+.logo .ch {
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 1;
+}
+.logo .work {
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  margin-top: 3px;
+}
+
+/* ─────────────────────────────────────────
+ * Layout: portada
+ * ───────────────────────────────────────── */
+
+/* Layout portada: positioning absoluto para distribuir top / center / bottom */
+
+.chwork-portada,
+.slidev-layout.chwork-portada {
+  position: relative !important;
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+.chwork-portada > .brand-unit {
+  position: absolute;
+  top: 64px;
+  left: 80px;
+}
+
+.chwork-portada > .cover-body {
+  position: absolute;
+  top: 50%;
+  left: 80px;
+  right: 80px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.chwork-portada > .footer {
+  position: absolute;
+  bottom: 64px;
+  left: 80px;
+  right: 80px;
+}
+
+.brand-unit {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────
+ * Layout: slide interior
+ * ───────────────────────────────────────── */
+
+/* Layout slide interior: positioning absoluto */
+
+.chwork-slide,
+.slidev-layout.chwork-slide {
+  position: relative !important;
+  height: 100% !important;
+  min-height: 100% !important;
+}
+
+.chwork-slide > .slide-header {
+  position: absolute;
+  top: 64px;
+  left: 80px;
+  right: 80px;
+}
+
+.chwork-slide > .slide-title {
+  position: absolute;
+  top: 120px;
+  left: 80px;
+  right: 80px;
+}
+
+.chwork-slide > .services-grid {
+  position: absolute;
+  top: 240px;
+  bottom: 96px;
+  left: 80px;
+  right: 80px;
+}
+
+.chwork-slide > .slide-footer {
+  position: absolute;
+  bottom: 64px;
+  left: 80px;
+  right: 80px;
+}
+
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  position: relative;
+}
+
+.slide-title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────
+ * Footer común (portada + slides)
+ * ───────────────────────────────────────── */
+
+.footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-ink-200);
+  gap: 24px;
+}
+
+.footer-name {
+  margin: 8px 0 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-navy-700);
+  line-height: 1.3;
+}
+
+.footer-meta {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: var(--color-ink-500);
+}
+
+/* Footer fino (slides interiores, sin tantos datos) */
+.slide-footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--color-ink-500);
+  border-top: 1px solid var(--color-ink-200);
+  padding-top: 12px;
+}
+
+/* ─────────────────────────────────────────
+ * Cards de servicios
+ * ───────────────────────────────────────── */
+
+.services-grid {
+  flex: 1;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 16px;
+  padding: 28px 24px 24px;
+  background: var(--color-ink-50);
+  border-top: 3px solid var(--color-navy-700);
+}
+
+.service-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--color-ink-300);
+  margin: 0;
+}
+
+.service-title {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-navy-700);
+  margin: 0;
+}
+
+.service-body {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--color-ink-700);
+  margin: 0;
+}
+
+.service-norms {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-navy-700);
+  margin: 0;
+  align-self: end;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-ink-200);
+}
