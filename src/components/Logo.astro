@@ -1,0 +1,51 @@
+---
+// chwork — monograma apilado: "CH" grande arriba, "work" chico tracked abajo.
+// Mantiene el cuadrado navy con corner cut naranja.
+// Backup del diseño previo (centrado "ch") en Logo-monogram.astro.
+
+interface Props {
+  class?: string;
+  title?: string;
+}
+
+const {
+  class: className = "",
+  title = "chwork — Asesor en Seguridad e Higiene",
+} = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={title}
+>
+  <title>{title}</title>
+
+  <path d="M 4 4 H 50 L 60 14 V 60 H 4 Z" fill="currentColor" />
+  <path d="M 50 4 H 60 V 14 Z" fill="var(--color-orange-500)" />
+
+  <text
+    x="32"
+    y="38"
+    font-family="Open Sans, system-ui, sans-serif"
+    font-size="26"
+    font-weight="900"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="0"
+  >CH</text>
+
+  <text
+    x="32"
+    y="52"
+    font-family="Open Sans, system-ui, sans-serif"
+    font-size="11"
+    font-weight="700"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="1.8"
+  >work</text>
+</svg>

@@ -1,0 +1,67 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+import { Icon } from "astro-icon/components";
+
+const steps = [
+  {
+    icon: "ph:magnifying-glass-bold",
+    num: "01",
+    title: "Diagnóstico",
+    body: "Hablamos por WhatsApp o videollamada. Revisamos lo que ya tenés y te decimos qué hace falta. Sin compromiso.",
+  },
+  {
+    icon: "ph:hard-hat-bold",
+    num: "02",
+    title: "Visita técnica",
+    body: "Vamos al local u obra. Hacemos el relevamiento, las mediciones con instrumental propio y registramos todo lo que hay que corregir.",
+  },
+  {
+    icon: "ph:list-checks-bold",
+    num: "03",
+    title: "Plan de acción",
+    body: "Entregamos un informe con prioridades, plazos y costos estimados. El cliente decide qué se ejecuta primero según riesgo y presupuesto.",
+  },
+  {
+    icon: "ph:repeat-bold",
+    num: "04",
+    title: "Seguimiento",
+    body: "Coordinamos las correcciones, presentamos los trámites y volvemos a inspeccionar antes de la fiscalización oficial.",
+  },
+];
+---
+
+<PresentacionLayout title="Cómo trabajamos" pageNum={3}>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Proceso</p>
+      <p class="caption">03 / 05</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Cómo trabajamos en 4 pasos</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <div style="position:absolute; top:240px; bottom:104px; left:80px; right:80px; display:grid; grid-template-columns:repeat(4, 1fr); gap:24px;">
+      {steps.map((s) => (
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div style="width:56px; height:56px; background:var(--navy-700); color:white; display:grid; place-items:center; border-radius:6px;">
+              <Icon name={s.icon} style="width:28px; height:28px;" />
+            </div>
+            <span style="font-size:24px; font-weight:900; color:var(--orange-600); line-height:1;">{s.num}</span>
+          </div>
+          <h3 class="h3">{s.title}</h3>
+          <p class="body">{s.body}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="slide-footer">
+      <span>chwork — Higiene y Seguridad en el Trabajo</span>
+      <span>Lic. Lucas Aníbal Contreras · COPIME L003619 · CPSH LHS-007573</span>
+    </div>
+  </div>
+</PresentacionLayout>

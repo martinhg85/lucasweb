@@ -1,0 +1,72 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+import { clients } from "../../data/site";
+---
+
+<PresentacionLayout title="Clientes y contacto" pageNum={5}>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Clientes y contacto</p>
+      <p class="caption">05 / 05</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Confiaron en mi trabajo</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <!-- Grid de logos -->
+    <div style="position:absolute; top:240px; left:80px; right:80px; display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
+      {clients.map((c) => (
+        <div style="display:flex; align-items:center; justify-content:center; height:96px; padding:18px 28px; border:1px solid var(--ink-200); background:white;">
+          {c.logo ? (
+            <img
+              src={c.logo}
+              alt={c.name}
+              style={`max-width:100%; width:auto; opacity:0.95; max-height:${c.aspect === "square" ? "72px" : "60px"};`}
+              loading="eager"
+            />
+          ) : (
+            <span style="font-size:13px; color:var(--ink-500); font-weight:600; text-align:center;">{c.name}</span>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Contacto -->
+    <div style="position:absolute; bottom:104px; left:80px; right:80px; padding-top:24px; border-top:1px solid var(--ink-200); display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px;">
+
+      <div>
+        <p class="caption-orange" style="margin-bottom:10px;">WhatsApp</p>
+        <p style="font-size:16px; font-weight:700; color:var(--navy-700);">
+          +54 9 11 0000-0000
+        </p>
+        <p class="micro" style="margin-top:4px;">Te respondo en horario hábil</p>
+      </div>
+
+      <div>
+        <p class="caption-orange" style="margin-bottom:10px;">Email</p>
+        <p style="font-size:16px; font-weight:700; color:var(--navy-700); word-break:break-all;">
+          contacto@lucascontreras.com.ar
+        </p>
+        <p class="micro" style="margin-top:4px;">Consultas y presupuestos</p>
+      </div>
+
+      <div>
+        <p class="caption-orange" style="margin-bottom:10px;">Profesional firmante</p>
+        <p style="font-size:16px; font-weight:700; color:var(--navy-700);">
+          Lic. Lucas A. Contreras
+        </p>
+        <p class="micro" style="margin-top:4px;">COPIME L003619 · CPSH LHS-007573</p>
+      </div>
+
+    </div>
+
+    <div class="slide-footer">
+      <span>Lic. Lucas Contreras — Higiene y Seguridad en el Trabajo</span>
+      <span>lucascontreras.com.ar</span>
+    </div>
+  </div>
+</PresentacionLayout>

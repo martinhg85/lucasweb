@@ -1,0 +1,54 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+import Logo from "../../components/Logo.astro";
+---
+
+<PresentacionLayout title="Portada" pageNum={1}>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <!-- Brand unit arriba a la izquierda -->
+    <div style="position:absolute; top:64px; left:80px;">
+      <div class="brand-unit">
+        <div style="width:80px; height:80px; color:var(--navy-700); flex-shrink:0;">
+          <Logo class="w-full h-full" title="chwork" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">chwork</span>
+          <span class="brand-tag">Higiene y Seguridad en el Trabajo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloque central: rule + lead -->
+    <div style="position:absolute; top:50%; left:80px; right:80px; transform:translateY(-50%); display:flex; flex-direction:column; gap:24px;">
+      <span class="rule"></span>
+      <p class="lead" style="max-width:680px;">
+        Asesoramiento profesional para licitaciones públicas y privadas
+        en CABA y Provincia de Buenos Aires.
+      </p>
+    </div>
+
+    <!-- Footer: DT + Matrículas -->
+    <div style="position:absolute; bottom:48px; left:80px; right:80px; display:flex; justify-content:space-between; gap:24px; padding-top:16px; border-top:1px solid var(--ink-200);">
+      <div>
+        <p class="caption">Director Técnico</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          Lic. Lucas Aníbal Contreras
+        </p>
+        <p style="margin-top:4px; font-size:12px; color:var(--ink-500);">
+          Universidad Nacional de Lomas de Zamora · Marzo 2022
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <p class="caption">Matrículas</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          COPIME L003619 · CPSH LHS-007573
+        </p>
+        <p style="margin-top:4px; font-size:12px; color:var(--ink-500);">
+          CABA y Provincia de Buenos Aires
+        </p>
+      </div>
+    </div>
+  </div>
+</PresentacionLayout>
