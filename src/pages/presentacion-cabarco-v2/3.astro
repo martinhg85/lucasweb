@@ -1,0 +1,40 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+---
+
+<PresentacionLayout
+  title="Nuestro enfoque"
+  pageNum={3}
+  pageTotal={6}
+  basePath="/presentacion-cabarco-v2"
+  navLabel="CHWORK · CABARCO · V2"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Nuestro enfoque</p>
+      <p class="caption">03 / 06</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Servicio de excelencia, demostrado con acciones concretas</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <!-- Cita central — texto 3 del WhatsApp, literal -->
+    <div style="position:absolute; top:50%; left:80px; right:80px; transform:translateY(-40%); display:flex; flex-direction:column; gap:32px; align-items:flex-start;">
+      <span style="font-family:Georgia, serif; font-size:120px; line-height:0.8; color:var(--orange-600); font-weight:700;">“</span>
+      <p style="font-size:28px; line-height:1.4; color:var(--navy-700); font-weight:600; max-width:1000px; margin-top:-32px;">
+        Nuestra Empresa se adapta a las necesidades y estructura de
+        nuestros Clientes, brindando un <strong>Servicio de Excelencia</strong>
+        que demostramos con acciones concretas.
+      </p>
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Asesoría integral en seguridad e higiene del trabajo</span>
+      <span>CABA y Provincia de Buenos Aires · chwork.com.ar</span>
+    </div>
+  </div>
+</PresentacionLayout>

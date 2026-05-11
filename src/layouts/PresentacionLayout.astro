@@ -9,9 +9,18 @@ interface Props {
   title?: string;
   pageNum?: number;
   pageTotal?: number;
+  // Permite reutilizar el layout para distintas presentaciones (chwork, cabarco, etc.).
+  basePath?: string;
+  navLabel?: string;
 }
 
-const { title, pageNum, pageTotal = 5 } = Astro.props;
+const {
+  title,
+  pageNum,
+  pageTotal = 5,
+  basePath = "/presentacion",
+  navLabel = "chwork · presentación",
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -303,9 +312,9 @@ const { title, pageNum, pageTotal = 5 } = Astro.props;
   <body>
     {pageNum && (
       <nav class="nav-controls">
-        <span class="label">chwork · presentación</span>
+        <span class="label">{navLabel}</span>
         {Array.from({ length: pageTotal }, (_, i) => i + 1).map((n) => (
-          <a href={`/presentacion/${n}`} class={n === pageNum ? "active" : ""}>{n}</a>
+          <a href={`${basePath}/${n}`} class={n === pageNum ? "active" : ""}>{n}</a>
         ))}
       </nav>
     )}
