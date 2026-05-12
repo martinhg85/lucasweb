@@ -1,0 +1,50 @@
+---
+// Monograma "ch" (chwork) en cuadrado navy con corner cut diagonal naranja.
+// Inspirado en marcas profesionales tipo Stripe / Deloitte.
+// Heredá color principal del padre (text-navy-700 → currentColor para el cuadrado).
+
+interface Props {
+  class?: string;
+  title?: string;
+}
+
+const {
+  class: className = "",
+  title = "chwork — Asesoría en Seguridad e Higiene",
+} = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label={title}
+>
+  <title>{title}</title>
+
+  <!-- Cuadrado navy con esquina superior derecha cortada -->
+  <path
+    d="M 4 4 H 50 L 60 14 V 60 H 4 Z"
+    fill="currentColor"
+  />
+
+  <!-- Triángulo naranja en la esquina cortada -->
+  <path
+    d="M 50 4 H 60 V 14 Z"
+    fill="var(--color-orange-500)"
+  />
+
+  <!-- Iniciales "ch" lowercase blancas -->
+  <text
+    x="32"
+    y="46"
+    font-family="Open Sans, system-ui, sans-serif"
+    font-size="32"
+    font-weight="800"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="-1.5"
+  >ch</text>
+</svg>

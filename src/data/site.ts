@@ -1,34 +1,18 @@
 // Configuración central del sitio. Todo lo editable arranca acá.
 
 export const site = {
-  name: "Lucas Contreras",
-  // Tagline corto bajo el logo (estilo "ESPECIALISTAS EN HIGIENE OCUPACIONAL" de Flowork)
-  brandTagline: "Asesor en Seguridad e Higiene",
-  tagline: "Asesoramiento en Higiene y Seguridad en el Trabajo",
-  url: "https://lucascontreras.com.ar",
+  name: "chwork",
+  brandTagline: "Asesoría integral en seguridad e higiene del trabajo",
+  tagline: "Asesoría integral en Seguridad e Higiene del Trabajo",
+  url: "https://chwork.com.ar",
   locale: "es-AR",
 
-  professional: {
-    fullName: "Lic. Lucas Aníbal Contreras",
-    title: "Licenciado en Higiene y Seguridad en el Trabajo",
-    universidad: "Universidad Nacional de Lomas de Zamora",
-    fechaTitulo: "Marzo 2022",
-    // Doble matrícula: diferencial fuerte vs. competencia que solo tiene una.
-    // Le permite firmar y presentar en CABA y en Provincia sin intermediarios.
-    matriculas: [
-      { numero: "L003619", colegio: "COPIME", jurisdiccion: "CABA" },
-      { numero: "LHS-007573", colegio: "CPSH", jurisdiccion: "Provincia de Buenos Aires" },
-    ],
-    photo: "/lucas.jpg",
-  },
-
   contact: {
-    // TODO: reemplazar con datos reales
-    email: "contacto@lucascontreras.com.ar",
-    phoneDisplay: "+54 9 11 0000-0000",
-    phoneE164: "5491100000000", // sin "+" ni espacios, formato wa.me
+    email: "prevencion@chwork.com.ar",
+    phoneDisplay: "+54 9 11 3083-2781",
+    phoneE164: "5491130832781",
     whatsappMessage:
-      "Hola Lucas, me gustaría consultarte por un servicio de Seguridad e Higiene.",
+      "Hola, me gustaría consultarles por un servicio de Seguridad e Higiene.",
   },
 
   coverage: {
@@ -36,20 +20,17 @@ export const site = {
     extended: "CABA y Provincia de Buenos Aires",
   },
 
-  // Para schema.org LocalBusiness — clave para SEO local
+  // Para schema.org Organization — clave para SEO local
   business: {
     addressLocality: "Ciudad Autónoma de Buenos Aires",
     addressRegion: "CABA",
     addressCountry: "AR",
-    // TODO: si Lucas atiende en oficina, completar dirección
     streetAddress: "",
     postalCode: "",
-    // Si no hay oficina física, usamos areaServed
     areaServed: ["Ciudad Autónoma de Buenos Aires", "Gran Buenos Aires"],
   },
 
   social: {
-    // TODO: completar si Lucas tiene perfiles
     linkedin: "",
     instagram: "",
   },
@@ -65,14 +46,12 @@ export const site = {
     "Resolución SRT 886/15 — Ergonomía",
   ],
 
-  // Números para reforzar autoridad. "+5 años" es inferido de la inscripción al
-  // Registro de Profesionales H&ST (29/10/2020). Los otros dos siguen pendientes
-  // de confirmación con Lucas — placeholders entre corchetes para detectarlos rápido.
+  // Las 5 áreas son las que figuran en la presentación CABARCO (slide 4).
   stats: [
-    { value: "+5 años", label: "ejerciendo profesionalmente" },
-    { value: "[+X]", label: "habilitaciones gestionadas" },
-    { value: "[+X]", label: "mediciones realizadas" },
-    { value: "100%", label: "atendido personalmente" },
+    { value: "5", label: "áreas de especialización" },
+    { value: "+5 años", label: "de trayectoria" },
+    { value: "CABA + PBA", label: "cobertura territorial" },
+    { value: "100%", label: "casos con seguimiento" },
   ],
 } as const;
 
@@ -94,7 +73,7 @@ export const services: ServiceGroup[] = [
     short:
       "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA. Acompañamos cada trámite hasta el certificado.",
     description:
-      "Acompañamos cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico al certificado final. Trabajamos con comercios, oficinas, locales gastronómicos, viviendas y obras civiles bajo Ley 5.920 (Sistema de Autoprotección) y la normativa de habilitaciones del GCBA. La presentación la firma el Lic. Lucas Contreras con matrícula COPIME.",
+      "Acompañamos cada etapa del trámite ante el Gobierno de la Ciudad: del diagnóstico al certificado final. Trabajamos con comercios, oficinas, locales gastronómicos, viviendas y obras civiles bajo Ley 5.920 (Sistema de Autoprotección) y la normativa de habilitaciones del GCBA.",
     items: [
       "Habilitación comercial (rubros simples y con condiciones)",
       "Permiso de obra y aviso de obra",
@@ -118,7 +97,7 @@ export const services: ServiceGroup[] = [
     short:
       "Iluminación, ruido y carga térmica. Hacemos la medición, la interpretamos y te dejamos el plan de corrección.",
     description:
-      "Hacemos las mediciones obligatorias bajo las Resoluciones SRT 84/12 (iluminación), 85/12 (ruido) y la normativa ergonómica vigente. No entregamos solo el protocolo: te explicamos qué dice, qué riesgos detectó y qué hay que corregir. Cada protocolo lleva la firma del Lic. Lucas Contreras (matrículas COPIME y CPSH).",
+      "Realizamos las mediciones obligatorias bajo las Resoluciones SRT 84/12 (iluminación), 85/12 (ruido) y la normativa ergonómica vigente. No entregamos solo el protocolo: te explicamos qué dice, qué riesgos detectó y qué hay que corregir.",
     items: [
       "Iluminación general y localizada en puestos de trabajo",
       "Nivel sonoro continuo equivalente (LAeq)",
@@ -144,7 +123,7 @@ export const services: ServiceGroup[] = [
     short:
       "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordinamos la obra y la presentación ante AGC y Bomberos.",
     description:
-      "Cubrimos el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordinamos con una red de instaladores y matriculados de confianza, y supervisamos la entrega para que pase inspección de Bomberos y AGC sin observaciones. La memoria técnica y la presentación las firma el Lic. Lucas Contreras.",
+      "Cubrimos el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordinamos con una red de instaladores y matriculados de confianza, y supervisamos la entrega para que pase inspección de Bomberos y AGC sin observaciones.",
     items: [
       "Recarga y mantenimiento de matafuegos",
       "Red de hidrantes (proyecto, obra y mantenimiento)",
@@ -163,7 +142,7 @@ export const services: ServiceGroup[] = [
   },
 ];
 
-// Clientes confirmados por Lucas. Logos descargados de las webs oficiales en /public/clients/.
+// Logos descargados de las webs oficiales en /public/clients/.
 // `aspect: "square"` marca logos cuadrados o casi cuadrados (ratio < 1.5) para que
 // el grid les dé más altura y queden visualmente equilibrados con los wordmarks.
 export const clients: { name: string; logo?: string; aspect?: "wide" | "square" }[] = [
@@ -175,13 +154,13 @@ export const clients: { name: string; logo?: string; aspect?: "wide" | "square" 
   { name: "Vicente Parrilla Restaurante", logo: "/clients/vicente-parrilla.jpg" },
 ];
 
-// "Cómo trabajo" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
+// "Cómo trabajamos" — proceso en 4 pasos. Diferenciador clave: ningún competidor en CABA
 // lo tiene bien hecho (HISE es el único que se acerca, con 4 pasos genéricos).
 export const howIWork: { icon: string; title: string; text: string }[] = [
   {
     icon: "ph:magnifying-glass-bold",
     title: "Diagnóstico",
-    text: "Hablamos por WhatsApp o nos juntamos por videollamada. Entendemos el caso, revisamos lo que ya tenés y te decimos qué hace falta — sin compromiso.",
+    text: "Hablamos por WhatsApp o coordinamos una videollamada. Entendemos el caso, revisamos lo que ya tenés y te decimos qué hace falta — sin compromiso.",
   },
   {
     icon: "ph:hard-hat-bold",
@@ -202,7 +181,7 @@ export const howIWork: { icon: string; title: string; text: string }[] = [
 
 export const navLinks = [
   { href: "/", label: "INICIO" },
-  { href: "/sobre-mi", label: "NOSOTROS" },
+  { href: "/nosotros", label: "NOSOTROS" },
   { href: "/servicios", label: "SERVICIOS" },
   { href: "/capacitacion", label: "CAPACITACIÓN" },
   { href: "/clientes", label: "CLIENTES" },

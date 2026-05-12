@@ -1,0 +1,117 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import HowIWork from "../components/HowIWork.astro";
+import RegulatoryStrip from "../components/RegulatoryStrip.astro";
+import { Icon } from "astro-icon/components";
+
+const especialidades = [
+  { icon: "ph:gauge-bold", title: "Higiene Ocupacional", subtitle: "Mediciones ambientales" },
+  { icon: "ph:person-arms-spread-bold", title: "Ergonomía", subtitle: "Estudios por puesto" },
+  { icon: "ph:first-aid-kit-bold", title: "Primeros Auxilios", subtitle: "Capacitación y planes" },
+  { icon: "ph:scales-bold", title: "Peritaje", subtitle: "Informes técnicos" },
+  { icon: "ph:fire-extinguisher-bold", title: "Instalaciones contra incendio", subtitle: "Proyecto y certificación" },
+];
+---
+
+<Layout
+  title="Nosotros"
+  description="chwork es una empresa de asesoría integral en seguridad e higiene del trabajo. Equipo de Licenciados y Técnicos especializados por área, con cobertura en CABA y Provincia de Buenos Aires."
+>
+  <!-- Quiénes somos -->
+  <section class="bg-white py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle
+        title="Quiénes somos"
+        subtitle="Una empresa de asesoría integral en Seguridad e Higiene Laboral, con cobertura en CABA y Provincia de Buenos Aires."
+      />
+
+      <div class="grid gap-10 md:grid-cols-2 max-w-5xl mx-auto mt-4">
+        <article class="p-8 bg-white">
+          <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-orange-600 mb-4">
+            Nuestro alcance
+          </p>
+          <p class="text-ink-700 text-base sm:text-lg leading-relaxed">
+            Brindamos soluciones en todas las áreas relacionadas a
+            <strong class="text-navy-700">Seguridad e Higiene Laboral</strong>:
+            habilitaciones, mediciones, sistemas contra incendio, ergonomía y peritaje.
+          </p>
+        </article>
+
+        <article class="p-8 bg-ink-50 border-l-4 border-orange-600">
+          <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-orange-600 mb-4">
+            Nuestra convicción
+          </p>
+          <p class="text-ink-700 text-base sm:text-lg leading-relaxed italic">
+            Lo hacemos conscientes, porque estamos seguros de que una buena gestión
+            en prevención de riesgos contribuye con la formación de una compañía sólida.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nuestro enfoque (cita) -->
+  <section class="bg-ink-50 py-20 sm:py-24 border-y border-ink-200">
+    <div class="container-tight max-w-4xl">
+      <p class="text-[11px] font-bold tracking-[0.22em] uppercase text-orange-600 mb-6">
+        Nuestro enfoque
+      </p>
+      <p
+        class="font-serif text-6xl sm:text-7xl text-orange-600 leading-none mb-4"
+        aria-hidden="true"
+      >“</p>
+      <p class="text-navy-700 text-xl sm:text-2xl md:text-3xl font-semibold leading-snug max-w-3xl">
+        Nuestra empresa se adapta a las necesidades y estructura de nuestros clientes,
+        brindando un <strong>Servicio de Excelencia</strong> que demostramos con
+        acciones concretas.
+      </p>
+    </div>
+  </section>
+
+  <!-- Nuestro equipo + especialidades -->
+  <section class="bg-white py-20 sm:py-24">
+    <div class="container-tight">
+      <SectionTitle
+        title="Nuestro equipo"
+        subtitle="Licenciados y Técnicos en Higiene y Seguridad Laboral, cada uno especializado en un área específica."
+      />
+
+      <p class="max-w-3xl mx-auto text-center text-ink-500 text-base sm:text-lg leading-relaxed mt-2">
+        Nos diferenciamos por ser una <strong class="text-navy-700">empresa</strong> — y
+        cada uno de nosotros, además de tener conocimiento integral en la materia,
+        está <strong class="text-navy-700">especializado en un tema en particular</strong>,
+        conformando un equipo perfecto.
+      </p>
+
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5 max-w-6xl mx-auto mt-12">
+        {especialidades.map((e) => (
+          <li class="bg-white border border-ink-200 border-t-[3px] border-t-orange-600 p-6 text-center flex flex-col items-center">
+            <div class="w-14 h-14 bg-navy-700 text-white grid place-items-center rounded-md mb-5 flex-shrink-0">
+              <Icon name={e.icon} class="w-7 h-7" />
+            </div>
+            <h3 class="font-display text-sm font-bold tracking-wider uppercase text-navy-700 leading-tight">
+              {e.title}
+            </h3>
+            <p class="mt-2 text-[11px] font-semibold tracking-wide text-ink-500">
+              {e.subtitle}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <RegulatoryStrip label="Trabajamos bajo el marco de" />
+
+  <HowIWork
+    title="Cómo trabajamos"
+    subtitle="Mismo método para cada cliente. Cuatro pasos, de principio a fin."
+  />
+
+  <ContactCTA
+    title="¿HABLAMOS DE TU OBRA O LOCAL?"
+    subtitle="Coordinemos una primera visita o videollamada sin cargo. Te respondemos a la brevedad."
+  />
+</Layout>
