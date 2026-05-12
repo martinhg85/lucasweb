@@ -15,7 +15,7 @@ interface Props {
 
 const {
   title,
-  description = "Asesoramiento en Higiene y Seguridad en el Trabajo en CABA y Provincia de Buenos Aires. Habilitaciones, mediciones ambientales y sistemas contra incendio. Lic. Lucas Contreras, matriculado COPIME y CPSH.",
+  description = "chwork — Asesoría integral en seguridad e higiene del trabajo en CABA y Provincia de Buenos Aires. Habilitaciones, mediciones ambientales, sistemas contra incendio, ergonomía y peritaje. Equipo de Licenciados y Técnicos especializados por área.",
   ogImage = "/og-default.jpg",
   canonical,
   noindex = false,
@@ -27,17 +27,17 @@ const fullTitle = title
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.url).toString();
 
-// Schema.org structured data — LocalBusiness + ProfessionalService.
-// Esto es lo que le dice a Google "soy un profesional local que ofrece estos servicios".
+// Schema.org structured data — Organization + LocalBusiness + ProfessionalService.
+// Esto es lo que le dice a Google "somos una empresa local que ofrece estos servicios".
 const schema = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ProfessionalService"],
-  name: site.professional.fullName,
+  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+  name: site.name,
+  legalName: "chwork",
   description,
   url: site.url,
   email: site.contact.email,
   telephone: site.contact.phoneDisplay,
-  image: new URL(site.professional.photo, site.url).toString(),
   address: {
     "@type": "PostalAddress",
     addressLocality: site.business.addressLocality,

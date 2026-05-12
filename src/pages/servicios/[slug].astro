@@ -20,8 +20,9 @@ const serviceSchema = {
   serviceType: service.title,
   description: service.description,
   provider: {
-    "@type": "ProfessionalService",
-    name: "Lic. Lucas Contreras",
+    "@type": "Organization",
+    name: "chwork",
+    url: "https://chwork.com.ar",
   },
   areaServed: ["Ciudad Autónoma de Buenos Aires", "Gran Buenos Aires"],
 };
@@ -29,7 +30,7 @@ const serviceSchema = {
 
 <Layout
   title={service.title}
-  description={`${service.short} Servicio profesional en CABA y GBA por el Lic. Lucas Contreras.`}
+  description={`${service.short} Servicio profesional en CABA y Provincia de Buenos Aires por chwork.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="default" />
 
@@ -80,7 +81,7 @@ const serviceSchema = {
 
       <div class="text-center mt-12">
         <a
-          href={whatsappUrl(`Hola Lucas, te consulto por: ${service.title}`)}
+          href={whatsappUrl(`Hola, les consulto por: ${service.title}`)}
           target="_blank"
           rel="noopener"
           class="inline-flex items-center gap-2 px-8 py-3 bg-orange-600 text-white font-bold text-sm tracking-wider uppercase hover:bg-orange-700 transition-colors"
