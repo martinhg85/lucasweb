@@ -11,12 +11,12 @@ const isActive = (href: string) =>
   class="site-header fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-ink-200"
 >
   <div
-    class="header-inner container-tight grid grid-cols-[auto_1fr_auto] md:grid-cols-[auto_1fr] items-center gap-4 md:items-end md:gap-6"
+    class="header-inner container-tight flex md:grid md:grid-cols-[auto_1fr] items-center md:items-end gap-4 md:gap-6"
   >
     <!-- Logo + tagline -->
     <a
       href="/"
-      class="header-brand-link flex items-center gap-3 group"
+      class="header-brand-link flex items-center gap-3 group min-w-0 mr-auto md:mr-0"
       aria-label={site.name}
     >
       <span class="header-logo grid place-items-center text-navy-700 flex-shrink-0">
@@ -26,7 +26,7 @@ const isActive = (href: string) =>
         <p class="header-brand font-display font-extrabold tracking-wider text-navy-700 truncate">
           {site.name.toUpperCase()}
         </p>
-        <p class="header-tagline font-semibold tracking-[0.18em] uppercase text-orange-600 truncate">
+        <p class="header-tagline hidden md:block font-semibold tracking-[0.18em] uppercase text-orange-600 truncate">
           {site.brandTagline}
         </p>
       </div>
