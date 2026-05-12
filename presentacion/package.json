@@ -1,0 +1,18 @@
+{
+  "name": "chwork-presentacion",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --open --port 3030",
+    "build": "slidev build",
+    "export": "slidev export --format pdf --output ../screenshots/chwork-presentacion.pdf",
+    "export-1page": "slidev export --format pdf --range 1 --output ../screenshots/chwork-ficha-1pagina.pdf"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.49.0",
+    "@slidev/theme-default": "^0.21.0",
+    "playwright-chromium": "^1.40.0",
+    "vue": "^3.4.0"
+  }
+}

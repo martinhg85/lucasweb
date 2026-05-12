@@ -1,0 +1,62 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+import Logo from "../../components/Logo.astro";
+---
+
+<PresentacionLayout
+  title="Portada — CABARCO"
+  pageNum={1}
+  pageTotal={6}
+  basePath="/presentacion-cabarco-v2"
+  navLabel="CHWORK · CABARCO · V2"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <!-- Eyebrow superior -->
+    <div class="slide-header">
+      <p class="caption-orange">Propuesta de servicios</p>
+      <p class="caption">Higiene y Seguridad Laboral</p>
+    </div>
+
+    <!-- Bloque de marca: top-left, compacto. Misma proporción CABARCO/CHWORK que la v1. -->
+    <div style="position:absolute; top:112px; left:80px; display:flex; flex-direction:column; align-items:flex-start; gap:24px;">
+      <img
+        src="/clients/cabarco.png"
+        alt="CABARCO — Cámara Argentina de Bares de Coctelería"
+        style="width:280px; height:auto; display:block;"
+      />
+
+      <span class="rule" style="width:48px;"></span>
+
+      <!-- CHWORK debajo, escalado proporcional al tamaño nuevo de CABARCO -->
+      <div class="brand-unit" style="gap:12px;">
+        <div style="width:40px; height:40px; color:var(--navy-700); flex-shrink:0;">
+          <Logo class="w-full h-full" title="CHWORK" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name" style="font-size:22px;">CHWORK</span>
+          <span class="brand-tag" style="margin-top:4px; font-size:8px;">
+            Asesoría integral en seguridad e higiene del trabajo
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer: Cobertura + Áreas de trabajo -->
+    <div style="position:absolute; bottom:48px; left:80px; right:80px; display:flex; justify-content:space-between; gap:24px; padding-top:16px; border-top:1px solid var(--ink-200);">
+      <div>
+        <p class="caption">Cobertura</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          CABA y Provincia de Buenos Aires
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <p class="caption">Áreas de trabajo</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          Higiene Ocupacional · Ergonomía · Primeros Auxilios · Peritaje · Incendio
+        </p>
+      </div>
+    </div>
+  </div>
+</PresentacionLayout>

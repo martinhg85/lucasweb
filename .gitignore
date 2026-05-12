@@ -32,3 +32,11 @@ playwright/.cache/
 # material privado de Lucas (credenciales con DNI/firma, etc.) — NO commitear
 WhatsApp Image*
 info-lucas.txt
+
+# slidev artifacts (presentacion/)
+presentacion/node_modules/
+presentacion/dist/
+presentacion/.slidev/
+
+# Claude Code (config local + worktrees de agente)
+.claude/

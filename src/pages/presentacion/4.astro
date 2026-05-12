@@ -1,0 +1,106 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+
+const matriculas = [
+  { num: "L003619", colegio: "COPIME", jurisdiccion: "Capital Federal" },
+  { num: "LHS-007573", colegio: "CPSH", jurisdiccion: "Provincia de Buenos Aires" },
+];
+
+const normativas = [
+  { ley: "Ley Nacional 19.587", desc: "Higiene y Seguridad en el Trabajo" },
+  { ley: "Decreto 351/79", desc: "Reglamentación de la Ley 19.587" },
+  { ley: "Ley 5.920 CABA", desc: "Sistema de Autoprotección" },
+  { ley: "Res. SRT 84/12", desc: "Iluminación" },
+  { ley: "Res. SRT 85/12", desc: "Ruido" },
+  { ley: "Res. SRT 886/15", desc: "Ergonomía" },
+  { ley: "Res. SRT 900/15", desc: "Puesta a tierra" },
+  { ley: "IRAM 3517 / 3546 / 3597", desc: "Sistemas contra incendio" },
+];
+---
+
+<PresentacionLayout title="Capacidades técnicas" pageNum={4}>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Capacidades</p>
+      <p class="caption">04 / 05</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Doble matrícula y marco normativo completo</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <!-- Layout en 2 columnas: izquierda matrículas + cobertura, derecha normativa -->
+    <div style="position:absolute; top:240px; bottom:104px; left:80px; right:80px; display:grid; grid-template-columns:1fr 1.2fr; gap:48px;">
+
+      <!-- Columna izquierda -->
+      <div style="display:flex; flex-direction:column; gap:32px;">
+
+        <!-- Matrículas -->
+        <div>
+          <p class="caption-orange" style="margin-bottom:14px;">Matrículas vigentes</p>
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            {matriculas.map((m) => (
+              <div style="padding:18px 20px; background:var(--ink-50); border-left:3px solid var(--orange-600);">
+                <p style="font-size:20px; font-weight:800; color:var(--navy-700); letter-spacing:0.02em;">
+                  {m.colegio} {m.num}
+                </p>
+                <p style="margin-top:4px; font-size:12px; color:var(--ink-500);">
+                  {m.jurisdiccion}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Cobertura -->
+        <div>
+          <p class="caption-orange" style="margin-bottom:14px;">Cobertura</p>
+          <p style="font-size:18px; font-weight:700; color:var(--navy-700);">
+            CABA y Provincia de Buenos Aires
+          </p>
+          <p class="body" style="margin-top:8px;">
+            La doble matrícula nos permite firmar y presentar trámites en
+            ambas jurisdicciones sin tercerizar ni depender de intermediarios.
+          </p>
+        </div>
+
+        <!-- Instrumental -->
+        <div>
+          <p class="caption-orange" style="margin-bottom:14px;">Instrumental propio calibrado</p>
+          <p class="body">
+            Mediciones de iluminación, ruido (LAeq y dosimetrías) y carga
+            térmica (TGBH) con equipo propio. Cada protocolo lleva firma
+            del Director Técnico.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Columna derecha: normativa -->
+      <div>
+        <p class="caption-orange" style="margin-bottom:14px;">Marco normativo de referencia</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px;">
+          {normativas.map((n) => (
+            <div style="display:flex; flex-direction:column; padding:12px 0; border-bottom:1px solid var(--ink-200);">
+              <span style="font-size:13px; font-weight:700; color:var(--navy-700);">
+                {n.ley}
+              </span>
+              <span style="font-size:11px; color:var(--ink-500); margin-top:2px;">
+                {n.desc}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Higiene y Seguridad en el Trabajo</span>
+      <span>Lic. Lucas Aníbal Contreras · COPIME L003619 · CPSH LHS-007573</span>
+    </div>
+  </div>
+</PresentacionLayout>

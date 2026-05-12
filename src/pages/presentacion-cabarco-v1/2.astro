@@ -1,0 +1,53 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+---
+
+<PresentacionLayout
+  title="Quiénes somos"
+  pageNum={2}
+  basePath="/presentacion-cabarco-v1"
+  navLabel="CHWORK · CABARCO · V1"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Quiénes somos</p>
+      <p class="caption">02 / 05</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Soluciones integrales en Seguridad e Higiene Laboral</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <!-- Dos bloques de copy en columnas, alineados al top — empujados hacia el centro vertical -->
+    <div style="position:absolute; top:240px; bottom:104px; left:80px; right:80px; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start;">
+
+      <!-- Bloque 1: alcance (texto 1 del WhatsApp) — padding superior aumentado para centrar verticalmente -->
+      <article style="padding:96px 0; display:flex; flex-direction:column; gap:24px;">
+        <p class="caption-orange">Nuestro alcance</p>
+        <p class="lead">
+          Brindamos soluciones en todas las áreas relacionadas a
+          <strong style="color:var(--navy-700);">Seguridad e Higiene Laboral</strong>.
+        </p>
+      </article>
+
+      <!-- Bloque 2: convicción (texto 2 del WhatsApp) — mismo padding superior que el bloque 1 para mantener captions alineados -->
+      <article style="padding:96px 32px; background:var(--ink-50); border-left:3px solid var(--orange-600); display:flex; flex-direction:column; gap:24px;">
+        <p class="caption-orange">Nuestra convicción</p>
+        <p class="lead" style="font-style:italic;">
+          Lo hacemos conscientes, porque estamos seguros de que una buena
+          gestión en prevención de riesgos contribuye con la formación de
+          una compañía sólida.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Asesoría integral en seguridad e higiene del trabajo</span>
+      <span>CABA y Provincia de Buenos Aires · chwork.com.ar</span>
+    </div>
+  </div>
+</PresentacionLayout>

@@ -1,0 +1,58 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+
+const services = [
+  {
+    num: "01",
+    title: "Habilitaciones y obra en CABA",
+    body: "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA. Plan de Autoprotección Ley 5.920, plano de incendio para AGC y Bomberos, trámites ante AGC, ADI y Defensa Civil.",
+    norms: "Ley 5.920 CABA · Decreto 351/79",
+  },
+  {
+    num: "02",
+    title: "Mediciones ambientales",
+    body: "Iluminación, ruido (LAeq y dosimetrías), carga térmica (TGBH), puesta a tierra, carga de fuego y ergonomía. Entregamos protocolo + interpretación + plan de corrección, no solo el papel.",
+    norms: "Res. SRT 84/12 · 85/12 · 886/15 · 900/15",
+  },
+  {
+    num: "03",
+    title: "Sistemas contra incendio",
+    body: "Proyecto, instalación, mantenimiento y certificación. Matafuegos, red de hidrantes, detección, iluminación de emergencia, carga de fuego y memoria técnica. Coordinamos con instaladores matriculados.",
+    norms: "Decreto 351/79 (Cap. 18) · IRAM 3517 / 3546 / 3597",
+  },
+];
+---
+
+<PresentacionLayout title="Servicios" pageNum={2}>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Servicios</p>
+      <p class="caption">02 / 05</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Tres áreas de trabajo, una sola firma</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <div style="position:absolute; top:240px; bottom:104px; left:80px; right:80px; display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;">
+      {services.map((s) => (
+        <article style="display:flex; flex-direction:column; gap:14px; padding:28px 24px 22px; background:var(--ink-50); border-top:3px solid var(--navy-700);">
+          <p style="font-size:11px; font-weight:700; letter-spacing:0.18em; color:var(--ink-300); margin:0;">{s.num}</p>
+          <h3 class="h3">{s.title}</h3>
+          <p class="body" style="flex:1;">{s.body}</p>
+          <p style="margin-top:auto; padding-top:14px; border-top:1px solid var(--ink-200); font-size:10.5px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--navy-700);">
+            {s.norms}
+          </p>
+        </article>
+      ))}
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Higiene y Seguridad en el Trabajo</span>
+      <span>Lic. Lucas Aníbal Contreras · COPIME L003619 · CPSH LHS-007573</span>
+    </div>
+  </div>
+</PresentacionLayout>

@@ -1,0 +1,50 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+---
+
+<PresentacionLayout title="Portada" pageNum={1}>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <!-- Brand text-only arriba a la izquierda (sin logo CH/work) -->
+    <div style="position:absolute; top:64px; left:80px; right:80px;">
+      <p class="caption-orange" style="margin-bottom:16px;">Lic. en Higiene y Seguridad en el Trabajo</p>
+      <p class="display" style="font-size:64px;">Lic. Lucas Contreras</p>
+      <span class="rule" style="margin-top:24px;"></span>
+    </div>
+
+    <!-- Bloque central: lead -->
+    <div style="position:absolute; top:50%; left:80px; right:80px; transform:translateY(-50%); display:flex; flex-direction:column; gap:16px;">
+      <p class="lead" style="max-width:680px;">
+        Asesoramiento profesional para licitaciones públicas y privadas
+        en CABA y Provincia de Buenos Aires.
+      </p>
+      <p class="body" style="max-width:680px; color:var(--ink-500);">
+        Acompaño a comercios, oficinas y obras civiles a estar en regla
+        con la Ley 19.587, el Decreto 351/79 y la Ley 5.920 CABA.
+      </p>
+    </div>
+
+    <!-- Footer: formación + matrículas -->
+    <div style="position:absolute; bottom:48px; left:80px; right:80px; display:grid; grid-template-columns:1fr 1fr; gap:24px; padding-top:16px; border-top:1px solid var(--ink-200);">
+      <div>
+        <p class="caption">Formación</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          Universidad Nacional de Lomas de Zamora
+        </p>
+        <p style="margin-top:4px; font-size:12px; color:var(--ink-500);">
+          Licenciatura en Higiene y Seguridad en el Trabajo · Marzo 2022
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <p class="caption">Matrículas vigentes</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          COPIME L003619 · CPSH LHS-007573
+        </p>
+        <p style="margin-top:4px; font-size:12px; color:var(--ink-500);">
+          CABA y Provincia de Buenos Aires
+        </p>
+      </div>
+    </div>
+  </div>
+</PresentacionLayout>
