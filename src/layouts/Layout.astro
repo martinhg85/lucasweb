@@ -18,8 +18,12 @@ const {
   description = "chwork — Asesoría integral en seguridad e higiene del trabajo en CABA y Provincia de Buenos Aires. Habilitaciones, mediciones ambientales, sistemas contra incendio, ergonomía y peritaje. Equipo de Licenciados y Técnicos especializados por área.",
   ogImage = "/og-default.jpg",
   canonical,
-  noindex = false,
+  noindex: noindexProp = false,
 } = Astro.props;
+
+// PUBLIC_STAGING=true fuerza noindex global en todo el sitio (deploy a staging.chwork.com.ar).
+const isStaging = import.meta.env.PUBLIC_STAGING === "true";
+const noindex = noindexProp || isStaging;
 
 const fullTitle = title
   ? `${title} | ${site.name} — Seguridad e Higiene`
