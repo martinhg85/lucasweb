@@ -12,10 +12,10 @@ import { PDFDocument } from "pdf-lib";
 import { mkdir, readdir, writeFile } from "node:fs/promises";
 
 const ARG = (process.argv[2] || "").toLowerCase();
-const VERSIONS = ARG ? [ARG] : ["v1", "v2", "v3"];
+const VERSIONS = ARG ? [ARG] : ["v1", "v2", "v3", "v4"];
 for (const v of VERSIONS) {
-  if (!["v1", "v2", "v3"].includes(v)) {
-    console.error(`Versión inválida: "${v}". Usar v1, v2 o v3.`);
+  if (!["v1", "v2", "v3", "v4"].includes(v)) {
+    console.error(`Versión inválida: "${v}". Usar v1, v2, v3 o v4.`);
     process.exit(1);
   }
 }

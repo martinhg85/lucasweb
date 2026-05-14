@@ -9,7 +9,7 @@ import { chromium } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 
 const VERSION = (process.argv[2] || "v2").toLowerCase();
-if (!["v1", "v2", "v3"].includes(VERSION)) {
+if (!["v1", "v2", "v3", "v4"].includes(VERSION)) {
   console.error(`Versión inválida: "${VERSION}". Usar v1 o v2.`);
   process.exit(1);
 }
