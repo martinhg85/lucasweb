@@ -1,0 +1,85 @@
+---
+import PresentacionLayout from "../../../layouts/PresentacionLayout.astro";
+import Logo from "../../../components/Logo.astro";
+---
+
+<PresentacionLayout
+  title="Diferencial y contacto — Preventiva"
+  pageNum={3}
+  pageTotal={3}
+  basePath="/presentacion-v3-feedback/preventiva"
+  navLabel="CHWORK · CABARCO · PREVENTIVA"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Nuestro diferencial</p>
+      <p class="caption">03 / 03</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Conocimiento integral con especialización por área</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <div style="position:absolute; top:228px; left:80px; right:80px;">
+      <p class="lead" style="max-width:980px;">
+        Nos diferenciamos por ser una <strong style="color:var(--navy-700);">empresa</strong> —
+        y cada uno de nosotros, además de ser profesional con
+        conocimiento integral en la materia, está
+        <strong style="color:var(--navy-700);">especializado en un tema en particular</strong>,
+        conformando un equipo perfecto.
+      </p>
+    </div>
+
+    <div style="position:absolute; bottom:104px; left:80px; right:80px; padding-top:32px; border-top:1px solid var(--ink-200);">
+
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
+        <div style="width:40px; height:40px; color:var(--navy-700); flex-shrink:0;">
+          <Logo class="w-full h-full" title="CHWORK" />
+        </div>
+        <div>
+          <p style="font-size:18px; font-weight:900; color:var(--navy-700); letter-spacing:-0.01em; line-height:1;">
+            CHWORK
+          </p>
+          <p style="margin-top:4px; font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange-600);">
+            Asesoría integral en seguridad e higiene del trabajo
+          </p>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px;">
+        <div>
+          <p class="caption-orange" style="margin-bottom:10px;">WhatsApp</p>
+          <p style="font-size:16px; font-weight:700; color:var(--navy-700);">
+            +54 9 11 3083-2781
+          </p>
+          <p class="micro" style="margin-top:4px;">Respuesta en horario hábil</p>
+        </div>
+
+        <div>
+          <p class="caption-orange" style="margin-bottom:10px;">Email</p>
+          <p style="font-size:16px; font-weight:700; color:var(--navy-700); word-break:break-all;">
+            prevencion@chwork.com.ar
+          </p>
+          <p class="micro" style="margin-top:4px;">Consultas y presupuestos</p>
+        </div>
+
+        <div>
+          <p class="caption-orange" style="margin-bottom:10px;">Cobertura</p>
+          <p style="font-size:16px; font-weight:700; color:var(--navy-700);">
+            CABA y Provincia de Buenos Aires
+          </p>
+          <p class="micro" style="margin-top:4px;">Visitas técnicas y trámites</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Asesoría integral en seguridad e higiene del trabajo</span>
+      <span>chwork.com.ar</span>
+    </div>
+  </div>
+</PresentacionLayout>

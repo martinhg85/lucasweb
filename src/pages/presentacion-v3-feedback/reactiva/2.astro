@@ -1,0 +1,73 @@
+---
+import PresentacionLayout from "../../../layouts/PresentacionLayout.astro";
+import { Icon } from "astro-icon/components";
+
+// Las 2 áreas paraguas del texto que mandó Lucas (párrafo 3):
+//   "Gestión de Emergencias y Coordinación en las acciones de respuesta reactiva
+//    ante cualquier suceso de inspección"
+const areas = [
+  {
+    icon: "ph:siren-bold",
+    title: "Gestión de Emergencias",
+    body: "Atención y análisis técnico en el sitio del incidente, en el momento en que ocurre el hecho.",
+  },
+  {
+    icon: "ph:handshake-bold",
+    title: "Coordinación en respuesta reactiva",
+    body: "Acciones coordinadas ante cualquier suceso de inspección, con confección de informes técnicos en el lugar.",
+  },
+];
+---
+
+<PresentacionLayout
+  title="Acciones reactivas"
+  pageNum={2}
+  pageTotal={3}
+  basePath="/presentacion-v3-feedback/reactiva"
+  navLabel="CHWORK · CABARCO · REACTIVA"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Acciones reactivas</p>
+      <p class="caption">02 / 03</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Gestión de emergencias y respuesta reactiva</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <!-- Texto base: párrafo 2 de Lucas (el objetivo, en presente). -->
+    <div style="position:absolute; top:228px; left:80px; right:80px;">
+      <p class="lead" style="max-width:1000px;">
+        Hacemos foco al conjunto de acciones que realizamos en el instante en que
+        <strong style="color:var(--navy-700);">ocurre el hecho</strong> —
+        incidente inspectivo. Nuestro objetivo: analizar las causas, gestionar la
+        emergencia y evitar la repetición del suceso, confeccionando
+        <strong style="color:var(--navy-700);">informes técnicos en el momento</strong>.
+      </p>
+    </div>
+
+    <!-- 2 bloques grandes: las dos áreas paraguas del párrafo 3 de Lucas -->
+    <div style="position:absolute; top:400px; bottom:140px; left:80px; right:80px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
+      {areas.map((a) => (
+        <article style="display:flex; flex-direction:column; padding:36px 36px; background:var(--ink-50); border-left:3px solid var(--orange-600); gap:20px;">
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:48px; height:48px; background:var(--navy-700); color:white; display:grid; place-items:center; border-radius:6px; flex-shrink:0;">
+              <Icon name={a.icon} style="width:24px; height:24px;" />
+            </div>
+            <h3 class="h3" style="font-size:20px; line-height:1.2;">{a.title}</h3>
+          </div>
+          <p class="body" style="margin-top:4px;">{a.body}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Asesoría integral en seguridad e higiene del trabajo</span>
+      <span>Reactiva · Gestión de emergencias y coordinación</span>
+    </div>
+  </div>
+</PresentacionLayout>

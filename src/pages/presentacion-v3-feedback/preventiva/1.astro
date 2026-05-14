@@ -1,0 +1,72 @@
+---
+import PresentacionLayout from "../../../layouts/PresentacionLayout.astro";
+import Logo from "../../../components/Logo.astro";
+---
+
+<PresentacionLayout
+  title="Portada — Preventiva"
+  pageNum={1}
+  pageTotal={3}
+  basePath="/presentacion-v3-feedback/preventiva"
+  navLabel="CHWORK · CABARCO · PREVENTIVA"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Propuesta de servicios</p>
+      <p class="caption">Preventiva</p>
+    </div>
+
+    <div style="position:absolute; top:112px; bottom:140px; left:80px; right:80px; display:grid; grid-template-columns:1.35fr 1fr; gap:64px; align-items:start;">
+
+      <div style="display:flex; flex-direction:column; gap:24px; align-items:flex-start;">
+        <img
+          src="/clients/cabarco.png"
+          alt="CABARCO — Cámara Argentina de Bares de Coctelería"
+          style="width:280px; max-width:100%; height:auto; display:block;"
+        />
+
+        <span class="rule" style="width:48px;"></span>
+
+        <div class="brand-unit" style="gap:12px;">
+          <div style="width:40px; height:40px; color:var(--navy-700); flex-shrink:0;">
+            <Logo class="w-full h-full" title="CHWORK" />
+          </div>
+          <div class="brand-text">
+            <span class="brand-name" style="font-size:22px;">CHWORK</span>
+            <span class="brand-tag" style="margin-top:4px; font-size:8px;">
+              Asesoría integral en seguridad e higiene del trabajo
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative; width:100%; max-width:340px; justify-self:end; align-self:center;">
+        <div style="position:absolute; top:-12px; right:-12px; width:100%; height:100%; background:var(--orange-600); z-index:0;"></div>
+
+        <div style="position:relative; z-index:1; aspect-ratio:4/5; overflow:hidden; background:var(--ink-100); border:2px solid var(--navy-700);">
+          <div style="position:absolute; inset:0; background-image:linear-gradient(180deg, transparent 50%, rgba(27,40,104,0.35) 100%), url('/syh-banner-v.jpg'); background-size:cover; background-position:center;"></div>
+          <div style="position:absolute; top:0; left:0; width:128px; height:48px; background:rgba(27,40,104,0.85); clip-path:polygon(0 0, 100% 0, 70% 100%, 0% 100%);"></div>
+          <div style="position:absolute; bottom:0; right:0; width:96px; height:40px; background:rgba(232,96,44,0.80); clip-path:polygon(30% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="position:absolute; bottom:48px; left:80px; right:80px; display:flex; justify-content:space-between; gap:24px; padding-top:16px; border-top:1px solid var(--ink-200);">
+      <div>
+        <p class="caption">Cobertura</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          CABA y Provincia de Buenos Aires
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <p class="caption">Áreas preventivas</p>
+        <p style="margin-top:8px; font-size:15px; font-weight:700; color:var(--navy-700);">
+          Higiene Ocupacional · Ergonomía · Primeros Auxilios · Peritaje · Incendio
+        </p>
+      </div>
+    </div>
+  </div>
+</PresentacionLayout>
