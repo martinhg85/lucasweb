@@ -58,6 +58,11 @@ export const site = {
 export type ServiceGroup = {
   slug: string;
   title: string;
+  // Capa SEO: si se definen, se usan SOLO en <title>/<meta description> de la
+  // página de detalle. NO afectan ningún texto visible (el H1 sigue siendo `title`).
+  // Construidos con vocabulario ya presente en el contenido del servicio.
+  seoTitle?: string;
+  seoDescription?: string;
   short: string;
   description: string;
   items: string[];
@@ -73,6 +78,9 @@ export const services: ServiceGroup[] = [
   {
     slug: "habilitaciones",
     title: "Habilitaciones y obra en CABA",
+    seoTitle: "Habilitaciones comerciales y permisos de obra en CABA",
+    seoDescription:
+      "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA en CABA. Plan de Autoprotección Ley 5.920. Acompañamos cada trámite hasta el certificado.",
     short:
       "Habilitaciones comerciales, permisos de obra, excavación y reformas ante el GCBA. Acompañamos cada trámite hasta el certificado.",
     description:
@@ -97,6 +105,9 @@ export const services: ServiceGroup[] = [
   {
     slug: "mediciones",
     title: "Mediciones ambientales",
+    seoTitle: "Mediciones ambientales de iluminación y ruido en CABA",
+    seoDescription:
+      "Mediciones ambientales obligatorias en CABA y Provincia de Buenos Aires: iluminación (Res. SRT 84/12), ruido (Res. SRT 85/12), carga térmica y ergonomía. Medición, interpretación y plan de corrección.",
     short:
       "Iluminación, ruido y carga térmica. Hacemos la medición, la interpretamos y te dejamos el plan de corrección.",
     description:
@@ -123,6 +134,9 @@ export const services: ServiceGroup[] = [
   {
     slug: "incendios",
     title: "Sistemas contra incendio",
+    seoTitle: "Sistemas contra incendio en CABA: proyecto y mantenimiento",
+    seoDescription:
+      "Proyecto, instalación, mantenimiento y certificación de sistemas contra incendio en CABA. Coordinamos la obra y la presentación ante AGC y Bomberos.",
     short:
       "Proyecto, instalación, mantenimiento y certificación contra incendio. Coordinamos la obra y la presentación ante AGC y Bomberos.",
     description:
@@ -144,6 +158,9 @@ export const services: ServiceGroup[] = [
   {
     slug: "matafuegos",
     title: "Matafuegos certificados IRAM",
+    seoTitle: "Recarga y mantenimiento de matafuegos en CABA y Buenos Aires",
+    seoDescription:
+      "Venta, mantenimiento y recarga de matafuegos y extintores certificados con sello IRAM, en taller propio. Consorcios, comercios e industrias en CABA y Provincia de Buenos Aires.",
     short:
       "Venta, mantenimiento y recarga de matafuegos certificados con sello IRAM, en taller propio. Para consorcios, comercios e industrias en CABA y PBA.",
     description:

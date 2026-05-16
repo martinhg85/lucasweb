@@ -30,8 +30,9 @@ const serviceSchema = {
 ---
 
 <Layout
-  title={service.title}
-  description={`${service.short} Servicio profesional en CABA y Provincia de Buenos Aires por chwork.`}
+  title={service.seoTitle ?? service.title}
+  description={service.seoDescription ??
+    `${service.short} Servicio profesional en CABA y Provincia de Buenos Aires por chwork.`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="default" />
 
