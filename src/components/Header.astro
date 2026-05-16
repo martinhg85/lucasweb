@@ -11,12 +11,12 @@ const isActive = (href: string) =>
   class="site-header fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-ink-200"
 >
   <div
-    class="header-inner container-tight flex md:grid md:grid-cols-[auto_1fr] items-center md:items-end gap-4 md:gap-6"
+    class="header-inner container-tight flex lg:grid lg:grid-cols-[auto_1fr] items-center lg:items-end gap-4 lg:gap-6"
   >
     <!-- Logo + tagline -->
     <a
       href="/"
-      class="header-brand-link flex items-center gap-3 group min-w-0 mr-auto md:mr-0"
+      class="header-brand-link flex items-center gap-3 group min-w-0 mr-auto lg:mr-0"
       aria-label={site.name}
     >
       <span class="header-logo grid place-items-center text-navy-700 flex-shrink-0">
@@ -26,14 +26,14 @@ const isActive = (href: string) =>
         <p class="header-brand font-display font-extrabold tracking-wider text-navy-700 truncate">
           {site.name.toUpperCase()}
         </p>
-        <p class="header-tagline hidden md:block font-semibold tracking-[0.18em] uppercase text-orange-600 truncate">
+        <p class="header-tagline hidden lg:block font-semibold tracking-[0.18em] uppercase text-orange-600 truncate">
           {site.brandTagline}
         </p>
       </div>
     </a>
 
     <!-- Nav desktop -->
-    <nav class="hidden md:block md:justify-self-end">
+    <nav class="hidden lg:block lg:justify-self-end">
       <ul class="flex items-stretch gap-0 text-sm font-semibold text-navy-700">
         {navLinks.map((l) => (
           <li>
@@ -57,7 +57,7 @@ const isActive = (href: string) =>
     <button
       id="mobile-menu-btn"
       type="button"
-      class="md:hidden inline-grid place-items-center w-11 h-11 rounded-md text-navy-700 hover:bg-ink-100 transition-colors"
+      class="lg:hidden inline-grid place-items-center w-11 h-11 rounded-md text-navy-700 hover:bg-ink-100 transition-colors"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="mobile-menu-panel"
@@ -83,7 +83,7 @@ const isActive = (href: string) =>
 <!-- Mobile menu panel -->
 <div
   id="mobile-menu-panel"
-  class="mobile-menu fixed inset-0 z-50 md:hidden"
+  class="mobile-menu fixed inset-0 z-50 lg:hidden"
   aria-hidden="true"
 >
   <div class="mobile-menu-overlay absolute inset-0 bg-navy-900/60 backdrop-blur-sm"></div>
@@ -258,7 +258,7 @@ const isActive = (href: string) =>
       if (e.key === "Escape" && panel.classList.contains("is-open")) close();
     });
     // Cierra el drawer si se cruza al breakpoint desktop
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     mq.addEventListener("change", (e) => {
       if (e.matches) close();
     });

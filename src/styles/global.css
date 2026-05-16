@@ -89,7 +89,7 @@ body {
     /* Alto inicial aproximado del header. JS lo ajusta exacto al cargar y en resize. */
     height: 6rem;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .header-spacer {
       height: 7rem;
     }
@@ -105,7 +105,7 @@ body {
     padding-bottom: 1.25rem;
     transition: padding 0.35s ease;
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .header-inner {
       padding-top: 1.75rem;
       padding-bottom: 1.75rem;
@@ -152,7 +152,7 @@ body {
   }
   @media (min-width: 640px) {
     .header-tagline {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
     }
   }
   .site-header.is-scrolled .header-tagline {
