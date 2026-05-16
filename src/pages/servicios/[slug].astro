@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import SectionTitle from "../../components/SectionTitle.astro";
 import ServiceTabs from "../../components/ServiceTabs.astro";
 import ContactCTA from "../../components/ContactCTA.astro";
+import { Icon } from "astro-icon/components";
 import { services, whatsappUrl } from "../../data/site";
 
 export function getStaticPaths() {
@@ -62,6 +63,22 @@ const serviceSchema = {
           </li>
         ))}
       </ul>
+
+      {service.iconCards && service.iconCards.length > 0 && (
+        <div class="max-w-4xl mx-auto mt-16">
+          <h3 class="font-display text-xl sm:text-2xl font-bold tracking-wide uppercase text-navy-700 text-center mb-10">
+            Matafuegos certificados — venta, mantenimiento y recarga
+          </h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-ink-200 border border-ink-200">
+            {service.iconCards.map((c) => (
+              <div class="flex flex-col items-center text-center gap-4 bg-white px-6 py-10">
+                <Icon name={c.icon} class="w-10 h-10 text-orange-600" />
+                <p class="text-ink-700 leading-relaxed" set:html={c.text} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {service.regulations && service.regulations.length > 0 && (
         <div class="max-w-3xl mx-auto mt-10 p-6 bg-white border border-ink-200">

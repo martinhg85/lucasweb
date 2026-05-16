@@ -63,6 +63,9 @@ export type ServiceGroup = {
   items: string[];
   // Normativa específica del servicio. Aparece en la card y en la página de detalle.
   regulations?: string[];
+  // Bloque destacado tipo grid de íconos (estilo "tarjetas con ícono").
+  // Si está presente, se renderiza en la página de detalle del servicio.
+  iconCards?: { icon: string; text: string }[];
   highlight?: boolean;
 };
 
@@ -125,12 +128,10 @@ export const services: ServiceGroup[] = [
     description:
       "Cubrimos el ciclo completo: del proyecto y la obra al mantenimiento periódico exigido por normativa. Coordinamos con una red de instaladores y matriculados de confianza, y supervisamos la entrega para que pase inspección de Bomberos y AGC sin observaciones.",
     items: [
-      "Recarga y mantenimiento de matafuegos",
       "Red de hidrantes (proyecto, obra y mantenimiento)",
       "Sistemas de detección y alarma temprana",
       "Iluminación de emergencia y señalización",
       "Estudio de carga de fuego y memoria técnica",
-      "Capacitación al personal en uso de extintores",
       "Inspección anual y plan de mantenimiento",
       "Certificaciones para inspección AGC / Bomberos",
     ],
@@ -138,6 +139,51 @@ export const services: ServiceGroup[] = [
       "Ley 19.587 — Decreto 351/79 (Cap. 18)",
       "IRAM 3517 / 3546 / 3597",
       "Código de Edificación CABA",
+    ],
+  },
+  {
+    slug: "matafuegos",
+    title: "Matafuegos certificados IRAM",
+    short:
+      "Venta, mantenimiento y recarga de matafuegos certificados con sello IRAM, en taller propio. Para consorcios, comercios e industrias en CABA y PBA.",
+    description:
+      "Comercializamos, instalamos y mantenemos extintores certificados que cumplen las normas y ordenanzas vigentes. Trabajamos en taller propio bajo licencia IRAM (Norma 3517-2) y contamos con el Registro de Recargadores y Mantenedores del GCBA. Equipamos desde grandes empresas y consorcios hasta pequeños negocios.",
+    items: [
+      "Matafuegos ABC, CO₂, agua y espuma — todas las capacidades",
+      "Plan de mantenimiento anual para consorcios y empresas",
+      "Tarjeta de control y oblea reglamentaria",
+      "Atención de urgencias las 24 hs",
+    ],
+    regulations: [
+      "IRAM 3517-2 (mantenimiento y recarga)",
+      "Ordenanza GCBA 40473/85",
+      "Registro de Recargadores GCBA Nº 0083/DAP95",
+    ],
+    iconCards: [
+      {
+        icon: "ph:fire-extinguisher-bold",
+        text: "Provisión de extintores manuales y rodantes de todo tipo y capacidad.",
+      },
+      {
+        icon: "ph:calendar-check-bold",
+        text: "Controles periódicos de mantenimiento y recarga.",
+      },
+      {
+        icon: "ph:truck-bold",
+        text: "Traslado e instalación de extintores.",
+      },
+      {
+        icon: "ph:clipboard-text-bold",
+        text: "Relevamiento y presentación de informes <strong>sin cargo</strong>.",
+      },
+      {
+        icon: "ph:identification-card-bold",
+        text: "Registro de Recargadores y Mantenedores de extintores en G.C.B.A. Nº 0083/DAP95 (ordenanza 40473/85.3).",
+      },
+      {
+        icon: "ph:shield-check-bold",
+        text: "Licencia <strong>IRAM</strong> para servicio de control, mantenimiento y recarga de extintores (Norma 3517-2), en taller propio.",
+      },
     ],
   },
 ];
