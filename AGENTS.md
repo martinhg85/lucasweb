@@ -183,6 +183,27 @@ npx wrangler@latest pages deploy dist/ \
 
 **Importante**: el flag `PUBLIC_STAGING=true` activa el `<meta robots="noindex,nofollow">` en todas las páginas (ver `src/layouts/Layout.astro`). Es **obligatorio** para builds que apunten a `staging.chwork.com.ar` — si no, Google indexa la versión preview y arruina el lanzamiento real.
 
+### Control de indexación (noindex + robots.txt)
+
+La protección contra indexación es **configurable por entorno vía el flag `PUBLIC_STAGING`** y tiene **dos capas (defensa en profundidad)**:
+
+| Capa | Archivo | Staging (`PUBLIC_STAGING=true`) | Producción (sin flag) |
+|---|---|---|---|
+| Meta robots | `src/layouts/Layout.astro` | `<meta robots="noindex,nofollow">` en todas las páginas | ausente |
+| `robots.txt` | `src/pages/robots.txt.ts` (endpoint dinámico, **no** archivo estático) | `User-agent: * / Disallow: /` (sin sitemap) | `Allow: /` + `Sitemap: https://chwork.com.ar/sitemap-index.xml` |
+
+- El `robots.txt` se genera en build leyendo `import.meta.env.PUBLIC_STAGING`. **No existe `public/robots.txt`** — fue reemplazado por el endpoint para que sea staging-aware. No recrear el archivo estático.
+- El dominio del sitemap sale de `astro.config.mjs` → `site` (debe ser `https://chwork.com.ar`, **no** `lucascontreras.com.ar`). El canonical, en cambio, sale de `site.url` en `src/data/site.ts`.
+- Verificación post-build: `cat dist/robots.txt` y `grep noindex dist/index.html` deben coincidir con la columna del entorno que se está deployando.
+
+### Presentaciones (NO se publican en el sitio)
+
+Las presentaciones / pitches del cliente viven en `src/pages/_presentacion*` (carpetas **prefijadas con `_`**). Astro **ignora** todo path con `_` → no se buildean, no entran al sitemap, no son indexables. Es intencional: son material interno, solo se usaron para generar PDF/PPTX (ya guardados en `output/`).
+
+- **No quitar el prefijo `_`** salvo necesidad puntual de regenerar un export.
+- **Para regenerar un PDF/PPTX**: renombrar temporalmente la carpeta puntual sacándole el `_` (ej: `git mv src/pages/_presentacion-cabarco-v4 src/pages/presentacion-cabarco-v4`), correr el script correspondiente en `scripts/` (apuntan a las URLs sin `_`), y **volver a ponerle el `_`** antes de commitear/deployar.
+- El sitio público real son solo ~10 páginas (home, servicios, nosotros, capacitación, clientes, contacto). Verificar con `grep -o '<loc>' dist/sitemap-0.xml | wc -l`.
+
 ### Flujo de launch (cuando esté listo para producción)
 
 Dos caminos posibles:
