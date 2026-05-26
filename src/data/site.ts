@@ -89,11 +89,10 @@ export const services: ServiceGroup[] = [
       "Habilitación comercial (rubros simples y con condiciones)",
       "Permiso de obra y aviso de obra",
       "Permiso de demolición y excavación",
-      "Reformas y permisos de construcción",
       "Plan de Autoprotección (Ley 5.920 CABA)",
-      "Plano de incendio para AGC y Bomberos",
+      "Plano de incendio conforme a obra",
       "Plan de evacuación y señalización",
-      "Trámites ante AGC, ADI y Defensa Civil",
+      "Trámites ante organismos públicos",
       "Acta de constatación y descargos por inspección",
     ],
     regulations: [
