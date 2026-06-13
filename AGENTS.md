@@ -139,10 +139,24 @@ git log version/clasica --oneline              # historia de una variante
 
 | Entorno | Dominio | Sirve | Proyecto Pages |
 |---|---|---|---|
-| **Holding** | `chwork.com.ar` + `www.chwork.com.ar` | `holding/index.html` ("Próximamente", noindex) | `chwork-holding` |
+| **Producción** | `chwork.com.ar` + `www.chwork.com.ar` | Sitio Astro completo build SIN `PUBLIC_STAGING` (indexable) — **live desde 2026-06-13** | `chwork-holding` |
 | **Staging** | `staging.chwork.com.ar` | Sitio Astro completo build con `PUBLIC_STAGING=true` (noindex global) | `chwork-staging` |
 
+> El proyecto se sigue llamando `chwork-holding` por razones históricas (antes servía el placeholder "Próximamente"), pero **ahora sirve el sitio de producción**. El HTML standalone `holding/index.html` quedó obsoleto tras el launch.
+
 Ambos proyectos viven en **Cloudflare Pages** (free tier). DNS gestionado en la misma cuenta de Cloudflare (zona `chwork.com.ar`), records proxied (nubecita naranja) → CF actúa como CDN + SSL + WAF. SSL automático vía Cloudflare (cert Google), auto-renovado.
+
+### Configuración post-launch (Cloudflare, ya aplicada 2026-06-13)
+
+Hardening y medición configurados tras el launch. **Importante**: el `CLOUDFLARE_API_TOKEN` del `.env` **no** tiene permisos para Redirect Rules ni Web Analytics (devuelve `Authentication error` 10000); esas se gestionan desde el dashboard. Sí tiene permiso para `security_header` (HSTS) vía `Zone Settings:Edit`.
+
+| Config | Qué hace | Dónde se gestiona |
+|---|---|---|
+| **Redirect `www` → apex (301)** | `www.chwork.com.ar/*` → `chwork.com.ar/*` (preserva ruta + query). URL canónica única, sin contenido duplicado. | Dashboard → zona → Rules → Redirect Rules (plantilla "Redirect from WWW to root"). **No** vía API (token sin permiso `Dynamic Redirect`). |
+| **HSTS** | `Strict-Transport-Security: max-age=15552000` (6 meses, sin `includeSubDomains`, sin `preload`, `nosniff` on). Fuerza HTTPS a nivel navegador. | API `PATCH /zones/{id}/settings/security_header` (token OK). Subir a 1 año + subdominios más adelante si todo va bien. |
+| **Cloudflare Web Analytics** | Beacon privacy-first (sin cookies, sin banner). Inyección **automática** a nivel edge (solo en requests de navegador, no en curl). Site token `819c89cc...`. | Dashboard → cuenta → Web Analytics. **No** vía API (token sin permiso `Account Analytics`). Ya estaba activo desde ~2026-05. |
+
+> Verificación rápida de estos: `curl -I https://www.chwork.com.ar` (debe dar 301 a apex), `curl -I https://chwork.com.ar | grep -i strict-transport` (debe mostrar `max-age=15552000`), y el beacon se ve con `curl -A "Mozilla/5.0 ... Chrome" https://chwork.com.ar | grep cloudflareinsights` (requiere User-Agent de navegador).
 
 ### Credenciales
 
@@ -204,15 +218,25 @@ Las presentaciones / pitches del cliente viven en `src/pages/_presentacion*` (ca
 - **Para regenerar un PDF/PPTX**: renombrar temporalmente la carpeta puntual sacándole el `_` (ej: `git mv src/pages/_presentacion-cabarco-v4 src/pages/presentacion-cabarco-v4`), correr el script correspondiente en `scripts/` (apuntan a las URLs sin `_`), y **volver a ponerle el `_`** antes de commitear/deployar.
 - El sitio público real son solo ~10 páginas (home, servicios, nosotros, capacitación, clientes, contacto). Verificar con `grep -o '<loc>' dist/sitemap-0.xml | wc -l`.
 
-### Flujo de launch (cuando esté listo para producción)
+### Flujo de launch — ✅ EJECUTADO (2026-06-13, Opción B)
 
-Dos caminos posibles:
+> **Estado**: el launch **ya ocurrió**. El sitio completo está live e indexable en `chwork.com.ar` + `www.chwork.com.ar`. Esta sección queda como referencia histórica del procedimiento.
 
-**Opción A (recomendada)**: pasar el custom domain `chwork.com.ar` del proyecto `chwork-holding` al `chwork-staging` (renombrándolo a `chwork-production` o dejándolo). El holding queda archivado.
+Se eligió la **Opción B**: se buildeó `dist/` sin `PUBLIC_STAGING` y se deployó al proyecto `chwork-holding` (que ya tenía ambos custom domains), sobreescribiendo el placeholder "Próximamente". Los proyectos mantienen sus dominios actuales: `chwork-holding` ahora sirve el sitio completo y `chwork-staging` sigue como entorno de pruebas con noindex.
 
-**Opción B**: deployar el `dist/` (sin `PUBLIC_STAGING`) al proyecto `chwork-holding`, sobreescribiendo el placeholder. Mantiene los proyectos con sus dominios actuales.
+Pre-flight verificado antes del cutover: build sin `PUBLIC_STAGING`, `noindex` ausente en todas las páginas (solo presente en `404.html`), `robots.txt` con `Allow: /` + `Sitemap`, titles/descriptions/canonical/OG/favicon completos, sitemap con 10 URLs reales.
 
-Cualquiera que se elija, antes del cutover: build sin `PUBLIC_STAGING`, verificar que no hay `noindex` en el HTML final, comprobar metadata SEO en `/`, `/servicios/*`, etc.
+**Comando del cutover** (para repetir un redeploy de producción tras nuevos cambios):
+
+```bash
+set -a; source .env; set +a
+export CLOUDFLARE_ACCOUNT_ID="$ACCOUNT_ID"
+npm run build   # SIN PUBLIC_STAGING → build indexable de producción
+npx wrangler@latest pages deploy dist/ \
+  --project-name=chwork-holding --branch=main --commit-dirty=true
+```
+
+> **Opción A (no usada)**: pasar el custom domain `chwork.com.ar` de `chwork-holding` a `chwork-staging`. Se descartó porque el proyecto staging sirve builds con noindex (`PUBLIC_STAGING=true`); mantener proyectos separados (holding=prod, staging=pruebas) es más limpio.
 
 ### Setup inicial de custom domains (referencia, ya hecho)
 
@@ -249,14 +273,15 @@ Para futuras instancias o si hay que rehacer:
 - ✅ Variante `empresa-framed` elegida y mergeada a `main` (otras archivadas como tags `archive/*`)
 - ✅ Voz "empresa" aplicada (sin DT personal, schema.org Organization, equipo de Licenciados y Técnicos)
 - ✅ Dominio `chwork.com.ar` registrado y apuntando a Cloudflare DNS
-- ✅ Holding live en `chwork.com.ar` + `www.chwork.com.ar`
-- ✅ Sitio completo en `staging.chwork.com.ar` (con noindex)
+- ✅ Sitio completo en `staging.chwork.com.ar` (con noindex) — entorno de pruebas
 - ✅ Fixes mobile (header flex + hamburguesa + botones 50/50)
+- ✅ **LAUNCH (2026-06-13)**: sitio completo live e indexable en `chwork.com.ar` + `www.chwork.com.ar` (deploy de `dist/` sin `PUBLIC_STAGING` a `chwork-holding`, Opción B). Placeholder "Próximamente" reemplazado.
+- ✅ Google Search Console: propiedad de **Dominio** `chwork.com.ar` verificada (TXT vía integración Cloudflare↔GSC) + sitemap `sitemap-index.xml` enviado y leído OK (status "Success", 10 páginas descubiertas — 2026-06-13)
+- ✅ Hardening + medición post-launch (2026-06-13): redirect `www`→apex (301), HSTS (6 meses), Cloudflare Web Analytics activo (ver "Configuración post-launch")
 - ⏳ Pendiente: contenido final del cliente (textos definitivos, logos clientes faltantes, foto/imagen genérica del rubro)
-- ⏳ Pendiente: definir hosting de producción (Cloudflare Pages vs DonWeb para handover)
-- ⏳ Pendiente: GitHub Action para auto-deploy de staging en cada push a `main`
+- ⏳ Pendiente: GitHub Action para auto-deploy en cada push a `main`
 - ⏳ Pendiente: redirects defensivos `lcwork.com.ar` y `lucascontreras.com.ar` → `chwork.com.ar`
-- ⏳ Pendiente: launch (cutover holding → sitio completo)
+- ⏳ Pendiente: hosting de handover a definir (Cloudflare Pages vs DonWeb) y traspaso de GSC a cuenta de Lucas cuando la tenga
 
 ## Reglas de oro para agentes que trabajen acá
 
