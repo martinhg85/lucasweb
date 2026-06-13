@@ -155,8 +155,18 @@ Hardening y medición configurados tras el launch. **Importante**: el `CLOUDFLAR
 | **Redirect `www` → apex (301)** | `www.chwork.com.ar/*` → `chwork.com.ar/*` (preserva ruta + query). URL canónica única, sin contenido duplicado. | Dashboard → zona → Rules → Redirect Rules (plantilla "Redirect from WWW to root"). **No** vía API (token sin permiso `Dynamic Redirect`). |
 | **HSTS** | `Strict-Transport-Security: max-age=15552000` (6 meses, sin `includeSubDomains`, sin `preload`, `nosniff` on). Fuerza HTTPS a nivel navegador. | API `PATCH /zones/{id}/settings/security_header` (token OK). Subir a 1 año + subdominios más adelante si todo va bien. |
 | **Cloudflare Web Analytics** | Beacon privacy-first (sin cookies, sin banner). Inyección **automática** a nivel edge (solo en requests de navegador, no en curl). Site token `819c89cc...`. | Dashboard → cuenta → Web Analytics. **No** vía API (token sin permiso `Account Analytics`). Ya estaba activo desde ~2026-05. |
+| **Security headers** | CSP (con hash SHA-256 del `<script>` inline + allowlist Google Fonts y beacon CF), `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options`. En staging suma `X-Robots-Tag: noindex`. | Archivo `dist/_headers` **generado en build** por `scripts/gen-headers.mjs` (hook `postbuild`). Ver abajo. |
 
-> Verificación rápida de estos: `curl -I https://www.chwork.com.ar` (debe dar 301 a apex), `curl -I https://chwork.com.ar | grep -i strict-transport` (debe mostrar `max-age=15552000`), y el beacon se ve con `curl -A "Mozilla/5.0 ... Chrome" https://chwork.com.ar | grep cloudflareinsights` (requiere User-Agent de navegador).
+> Verificación rápida: `curl -I https://www.chwork.com.ar` (301 a apex), `curl -I https://chwork.com.ar | grep -i strict-transport` (`max-age=15552000`), `curl -I https://chwork.com.ar | grep -i content-security` (CSP presente, sin `X-Robots-Tag` en prod), y el beacon con `curl -A "Mozilla/5.0 ... Chrome" https://chwork.com.ar | grep cloudflareinsights` (requiere User-Agent de navegador).
+
+#### `dist/_headers` se genera en build — NO crear `public/_headers`
+
+`scripts/gen-headers.mjs` corre automáticamente tras `astro build` (script `postbuild` en `package.json`) y escribe `dist/_headers` (formato Cloudflare Pages). Razón de hacerlo en build y no como archivo estático:
+
+- **El CSP usa el hash SHA-256 del `<script>` inline** (el del header/menú, idéntico en todas las páginas). Generarlo en build lo mantiene **auto-sincronizado**: si cambia ese JS, el hash se recalcula solo. Si fuera estático quedaría desfasado y el navegador bloquearía el script.
+- **`X-Robots-Tag: noindex` solo se agrega cuando `PUBLIC_STAGING=true`** — un `public/_headers` estático no puede ser condicional por entorno y arruinaría la indexación de prod.
+
+Si tocás el CSP, editá `scripts/gen-headers.mjs` (no busques un `_headers` en `public/`, no existe). Tras cambiarlo, **probá en staging con un navegador real** (no solo curl): cargá las páginas y revisá que no haya violaciones de CSP en consola (el beacon, las fuentes y el script inline deben cargar).
 
 ### Credenciales
 
@@ -199,12 +209,13 @@ npx wrangler@latest pages deploy dist/ \
 
 ### Control de indexación (noindex + robots.txt)
 
-La protección contra indexación es **configurable por entorno vía el flag `PUBLIC_STAGING`** y tiene **dos capas (defensa en profundidad)**:
+La protección contra indexación es **configurable por entorno vía el flag `PUBLIC_STAGING`** y tiene **tres capas (defensa en profundidad)**:
 
 | Capa | Archivo | Staging (`PUBLIC_STAGING=true`) | Producción (sin flag) |
 |---|---|---|---|
 | Meta robots | `src/layouts/Layout.astro` | `<meta robots="noindex,nofollow">` en todas las páginas | ausente |
 | `robots.txt` | `src/pages/robots.txt.ts` (endpoint dinámico, **no** archivo estático) | `User-agent: * / Disallow: /` (sin sitemap) | `Allow: /` + `Sitemap: https://chwork.com.ar/sitemap-index.xml` |
+| `X-Robots-Tag` header | `dist/_headers` (vía `scripts/gen-headers.mjs`) | `X-Robots-Tag: noindex, nofollow` | ausente |
 
 - El `robots.txt` se genera en build leyendo `import.meta.env.PUBLIC_STAGING`. **No existe `public/robots.txt`** — fue reemplazado por el endpoint para que sea staging-aware. No recrear el archivo estático.
 - El dominio del sitemap sale de `astro.config.mjs` → `site` (debe ser `https://chwork.com.ar`, **no** `lucascontreras.com.ar`). El canonical, en cambio, sale de `site.url` en `src/data/site.ts`.
@@ -277,11 +288,13 @@ Para futuras instancias o si hay que rehacer:
 - ✅ Fixes mobile (header flex + hamburguesa + botones 50/50)
 - ✅ **LAUNCH (2026-06-13)**: sitio completo live e indexable en `chwork.com.ar` + `www.chwork.com.ar` (deploy de `dist/` sin `PUBLIC_STAGING` a `chwork-holding`, Opción B). Placeholder "Próximamente" reemplazado.
 - ✅ Google Search Console: propiedad de **Dominio** `chwork.com.ar` verificada (TXT vía integración Cloudflare↔GSC) + sitemap `sitemap-index.xml` enviado y leído OK (status "Success", 10 páginas descubiertas — 2026-06-13)
-- ✅ Hardening + medición post-launch (2026-06-13): redirect `www`→apex (301), HSTS (6 meses), Cloudflare Web Analytics activo (ver "Configuración post-launch")
+- ✅ Hardening + medición post-launch (2026-06-13): redirect `www`→apex (301), HSTS (6 meses), Cloudflare Web Analytics activo, security headers vía `dist/_headers` (CSP con hash + Referrer/Permissions/Frame; `X-Robots-Tag` en staging) — ver "Configuración post-launch"
+- ✅ Quick wins post-review Codex (2026-06-13): `h1` semántico en páginas internas (prop `as` en `SectionTitle`, verificado pixel-idéntico), test e2e ruta `/sobre-mi`→`/nosotros`, 404 sin clases muertas (`brand-600`→`orange-600`)
 - ⏳ Pendiente: contenido final del cliente (textos definitivos, logos clientes faltantes, foto/imagen genérica del rubro)
-- ⏳ Pendiente: GitHub Action para auto-deploy en cada push a `main`
+- ⏳ Pendiente: GitHub Action para auto-deploy en cada push a `main` (antes: limpiar `playwright.config.ts`, que aún apunta a las 6 variantes archivadas en puertos 4321-4326 → el suite e2e no corre tal cual contra el sitio actual)
 - ⏳ Pendiente: redirects defensivos `lcwork.com.ar` y `lucascontreras.com.ar` → `chwork.com.ar`
 - ⏳ Pendiente: hosting de handover a definir (Cloudflare Pages vs DonWeb) y traspaso de GSC a cuenta de Lucas cuando la tenga
+- ⏳ Pendiente (review Codex, baja prioridad): schema local más rico (`@id`, `logo`, `sameAs`), hero como `<Image>` para LCP, self-host de fuentes, foco/trap del menú mobile, `prefers-reduced-motion`
 
 ## Reglas de oro para agentes que trabajen acá
 
