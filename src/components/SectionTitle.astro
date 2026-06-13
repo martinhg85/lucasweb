@@ -3,15 +3,16 @@ interface Props {
   title: string;
   subtitle?: string;
   withRule?: boolean;
+  as?: "h1" | "h2";
 }
 
-const { title, subtitle, withRule = true } = Astro.props;
+const { title, subtitle, withRule = true, as: Tag = "h2" } = Astro.props;
 ---
 
 <div class="text-center mb-10 sm:mb-14">
-  <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-wider uppercase text-navy-700 leading-tight">
+  <Tag class="font-display text-3xl sm:text-4xl md:text-5xl font-light tracking-wider uppercase text-navy-700 leading-tight">
     {title}
-  </h2>
+  </Tag>
   {subtitle && (
     <p class="mt-6 text-ink-500 text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
       {subtitle}
