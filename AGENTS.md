@@ -123,6 +123,7 @@ git log version/clasica --oneline              # historia de una variante
 - **Estilos globales**: `src/styles/global.css`
 - **Datos del sitio (textos, servicios, contactos)**: `src/data/site.ts` — single source of truth para contenido
 - **Variables de tema (colores, tipografía, espaciado)**: en CSS variables dentro de `global.css` para que cada variante pueda redefinirlas sin tocar componentes
+- **Imágenes**: las que querés optimizar (WebP responsive) van en `src/assets/` y se usan con el componente `<Image>` de `astro:assets` (genera `/_astro/*.webp`, soporta `fetchpriority`/`widths`/`sizes`). Las de `public/` se sirven tal cual (sin optimizar) — se usan en CSS `background-image` y en las presentaciones `_`. Ojo: `syh-banner-v.jpg` existe **en ambos** lugares a propósito (el hero usa el de `src/assets/` vía `<Image>`; las presentaciones siguen usando el de `public/`).
 
 ### Reglas para mantener variantes "limpias"
 
@@ -290,11 +291,12 @@ Para futuras instancias o si hay que rehacer:
 - ✅ Google Search Console: propiedad de **Dominio** `chwork.com.ar` verificada (TXT vía integración Cloudflare↔GSC) + sitemap `sitemap-index.xml` enviado y leído OK (status "Success", 10 páginas descubiertas — 2026-06-13)
 - ✅ Hardening + medición post-launch (2026-06-13): redirect `www`→apex (301), HSTS (6 meses), Cloudflare Web Analytics activo, security headers vía `dist/_headers` (CSP con hash + Referrer/Permissions/Frame; `X-Robots-Tag` en staging) — ver "Configuración post-launch"
 - ✅ Quick wins post-review Codex (2026-06-13): `h1` semántico en páginas internas (prop `as` en `SectionTitle`, verificado pixel-idéntico), test e2e ruta `/sobre-mi`→`/nosotros`, 404 sin clases muertas (`brand-600`→`orange-600`)
+- ✅ Hero optimizado (2026-06-13): de `background-image` JPG (417 KB) a `<Image>` WebP responsive (13–94 KB) + `fetchpriority`. Validado visualmente por el cliente (diff píxeles 0.34–1%, solo bordes). Lighthouse mobile prod: Performance 81→**93**, LCP 4.5s→**2.7s**, SEO/Best Practices 100, Accesibilidad 90→94
 - ⏳ Pendiente: contenido final del cliente (textos definitivos, logos clientes faltantes, foto/imagen genérica del rubro)
 - ⏳ Pendiente: GitHub Action para auto-deploy en cada push a `main` (antes: limpiar `playwright.config.ts`, que aún apunta a las 6 variantes archivadas en puertos 4321-4326 → el suite e2e no corre tal cual contra el sitio actual)
 - ⏳ Pendiente: redirects defensivos `lcwork.com.ar` y `lucascontreras.com.ar` → `chwork.com.ar`
 - ⏳ Pendiente: hosting de handover a definir (Cloudflare Pages vs DonWeb) y traspaso de GSC a cuenta de Lucas cuando la tenga
-- ⏳ Pendiente (review Codex, baja prioridad): schema local más rico (`@id`, `logo`, `sameAs`), hero como `<Image>` para LCP, self-host de fuentes, foco/trap del menú mobile, `prefers-reduced-motion`
+- ⏳ Pendiente (review, baja prioridad): para Accesibilidad ~100 → contraste de `text-orange-600` en textos chicos (3.2–3.4, pide 4.5; usar `orange-700`), orden de headings (un `<h4>` en footer sin h2/h3 previo), `aria-label` de links que no incluye el texto visible. Otros: schema local más rico (`@id`, `logo`, `sameAs`), self-host de fuentes, foco/trap del menú mobile, `prefers-reduced-motion`
 
 ## Reglas de oro para agentes que trabajen acá
 
