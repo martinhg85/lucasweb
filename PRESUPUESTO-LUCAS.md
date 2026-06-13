@@ -59,7 +59,7 @@
 
 ## Opción 2 — Plan Profesional ⭐ recomendado
 
-**USD 750** (pago único) **+ ARS 300.000/año** (plan de soporte)
+**USD 1500** Incluye 1 año de soporte
 
 ### Incluye TODO lo del Plan Esencial, más:
 
@@ -67,7 +67,7 @@
 
 - Creación y verificación de tu **Google Business Profile** (la ficha que aparece a la derecha cuando alguien te busca por nombre, con tu foto, datos, horarios y reseñas)
 - Alta en **Google Search Console** y envío del sitemap (esto le dice activamente a Google que existís, sin esperar que te encuentre solo)
-- Alta en 2-3 directorios profesionales relevantes del rubro
+- Alta en 2-3 directorios profesionales relevantes del rubrocu
 
 **Optimización de contenido:**
 

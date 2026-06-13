@@ -1,0 +1,64 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+import { Icon } from "astro-icon/components";
+
+// 5 áreas preventivas, mismo orden que en el texto 4 del WhatsApp original.
+const especialidades = [
+  { icon: "ph:gauge-bold", title: "Higiene Ocupacional", subtitle: "(Mediciones)" },
+  { icon: "ph:person-arms-spread-bold", title: "Ergonomía" },
+  { icon: "ph:first-aid-kit-bold", title: "Primeros Auxilios" },
+  { icon: "ph:scales-bold", title: "Peritaje" },
+  { icon: "ph:fire-extinguisher-bold", title: "Instalaciones contra incendio" },
+];
+---
+
+<PresentacionLayout
+  title="Servicios preventivos"
+  pageNum={2}
+  pageTotal={5}
+  basePath="/presentacion-v5-feedback"
+  navLabel="CHWORK · CABARCO · PREVENTIVA + REACTIVA"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Servicios preventivos</p>
+      <p class="caption">02 / 05</p>
+    </div>
+
+    <div style="position:absolute; top:108px; left:80px; right:80px;">
+      <h2 class="h2">Soluciones integrales en Seguridad e Higiene Laboral</h2>
+      <span class="rule" style="margin-top:16px;"></span>
+    </div>
+
+    <div style="position:absolute; top:228px; left:80px; right:80px;">
+      <p class="lead" style="max-width:1000px;">
+        Brindamos soluciones en todas las áreas relacionadas a
+        <strong style="color:var(--navy-700);">Seguridad e Higiene Laboral</strong>,
+        con un equipo de Licenciados y Técnicos especializados por área.
+      </p>
+    </div>
+
+    <div style="position:absolute; top:380px; bottom:240px; left:80px; right:80px; display:grid; grid-template-columns:repeat(5, 1fr); gap:18px; align-items:stretch;">
+      {especialidades.map((e) => (
+        <article style="display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:28px 14px 24px; background:white; border:1px solid var(--ink-200); border-top:3px solid var(--orange-600); text-align:center;">
+          <div style="width:56px; height:56px; background:var(--navy-700); color:white; display:grid; place-items:center; border-radius:6px; flex-shrink:0;">
+            <Icon name={e.icon} style="width:28px; height:28px;" />
+          </div>
+          <div style="margin-top:22px;">
+            <h3 class="h3" style="font-size:15px; line-height:1.25;">{e.title}</h3>
+            {e.subtitle && (
+              <p style="margin-top:6px; font-size:11px; color:var(--ink-500); font-weight:600;">{e.subtitle}</p>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Asesoría integral en seguridad e higiene del trabajo</span>
+      <span>Preventiva · CABA y Provincia de Buenos Aires</span>
+    </div>
+  </div>
+</PresentacionLayout>

@@ -1,0 +1,108 @@
+---
+import PresentacionLayout from "../../layouts/PresentacionLayout.astro";
+import { Icon } from "astro-icon/components";
+
+// Las 3 etapas con formato homogéneo (intro + bullets). El contenido sale
+// textual de textos-nuevos.md; las descripciones en prosa de Antes/Después
+// se reordenan como lista (son enumeraciones) sin cambiar el significado.
+const etapas = [
+  {
+    fase: "Antes",
+    icon: "ph:magnifying-glass-bold",
+    title: "Visita técnica al establecimiento",
+    intro: "Relevamiento presencial del local o planta para observar:",
+    bullets: [
+      "Condiciones de trabajo e instalaciones",
+      "Circulación, orden y limpieza",
+      "Señalización",
+      "Riesgos potenciales",
+      "Aspectos preventivos de la actividad",
+    ],
+  },
+  {
+    fase: "Durante",
+    icon: "ph:chalkboard-teacher-bold",
+    title: "Capacitación en prevención de riesgos laborales",
+    intro: "Capacitación dirigida al personal sobre:",
+    bullets: [
+      "Prevención de accidentes laborales",
+      "Riesgos específicos de la actividad",
+      "Uso adecuado de Elementos de Protección Personal (EPP)",
+      "Procedimientos de trabajo seguro",
+      "Actuación ante emergencias y prevención de incendios",
+    ],
+  },
+  {
+    fase: "Después",
+    icon: "ph:arrows-clockwise-bold",
+    title: "Seguimiento y acompañamiento (opcional)",
+    intro: "Asistencia técnica periódica para:",
+    bullets: [
+      "Verificar avances",
+      "Reforzar las medidas implementadas",
+      "Brindar soporte continuo en Seguridad e Higiene",
+    ],
+  },
+];
+---
+
+<PresentacionLayout
+  title="Abordaje Integral 360° — Preventiva y Reactiva"
+  pageNum={2}
+  pageTotal={4}
+  basePath="/presentacion-v6-feedback"
+  navLabel="CHWORK · CABARCO · PREVENTIVA + REACTIVA"
+>
+  <div class="slide">
+    <div class="pattern"></div>
+
+    <div class="slide-header">
+      <p class="caption-orange">Abordaje preventivo</p>
+      <p class="caption">02 / 04</p>
+    </div>
+
+    <div style="position:absolute; top:104px; left:80px; right:80px;">
+      <h2 class="h2">
+        Abordaje Integral de Prevención en Seguridad e Higiene
+        <span style="color:var(--orange-600);">360°</span>
+      </h2>
+      <span class="rule" style="margin-top:16px;"></span>
+      <p class="lead" style="margin-top:20px; max-width:1040px;">
+        <strong style="color:var(--navy-700);">Objetivo:</strong>
+        identificar riesgos laborales, fortalecer la prevención y mejorar las
+        condiciones de seguridad del establecimiento, promoviendo ambientes de
+        trabajo más seguros y el cumplimiento normativo.
+      </p>
+    </div>
+
+    <div style="position:absolute; top:300px; bottom:150px; left:80px; right:80px; display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; align-items:stretch;">
+      {etapas.map((e) => (
+        <article style="display:flex; flex-direction:column; justify-content:flex-start; padding:30px 26px 26px; background:white; border:1px solid var(--ink-200); border-top:3px solid var(--orange-600);">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; background:var(--navy-700); color:white; display:grid; place-items:center; border-radius:6px; flex-shrink:0;">
+              <Icon name={e.icon} style="width:21px; height:21px;" />
+            </div>
+            <p class="caption-orange">{e.fase}</p>
+          </div>
+          <h3 class="h3" style="margin-top:14px; font-size:15px; line-height:1.25; min-height:38px;">{e.title}</h3>
+          <p class="body" style="margin-top:14px; font-size:13px; line-height:1.45; font-weight:700; color:var(--navy-700);">
+            {e.intro}
+          </p>
+          <ul style="margin-top:12px; list-style:none; display:flex; flex-direction:column; gap:8px;">
+            {e.bullets.map((t) => (
+              <li style="display:flex; gap:8px; font-size:12.5px; line-height:1.4; color:var(--ink-700);">
+                <span style="color:var(--orange-600); font-weight:900; flex-shrink:0;">›</span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="slide-footer">
+      <span>CHWORK — Asesoría integral en seguridad e higiene del trabajo</span>
+      <span>Preventiva + Reactiva · CABA y Provincia de Buenos Aires</span>
+    </div>
+  </div>
+</PresentacionLayout>
