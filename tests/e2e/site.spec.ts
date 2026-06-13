@@ -4,7 +4,7 @@ import * as path from "node:path";
 
 const ROUTES = [
   { slug: "home", path: "/" },
-  { slug: "sobre-mi", path: "/sobre-mi" },
+  { slug: "nosotros", path: "/nosotros" },
   { slug: "servicios", path: "/servicios" },
   { slug: "habilitaciones", path: "/servicios/habilitaciones" },
   { slug: "mediciones", path: "/servicios/mediciones" },
